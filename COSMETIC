@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RONA — Skincare Buatan Malaysia | Kulit Sihat, Rona Semula Jadi</title>
+<meta name="description" content="RONA: skincare bersih, halal & teruji dermatologi, direka untuk kulit dan iklim Malaysia. Beli serum, pelembap, pencuci muka & sunscreen. Order mudah via WhatsApp.">
+
+<!-- ============================================================
+     RONA — TEMPLATE DEMO KOSMETIK (Malaysia)  |  oleh KNM
+     Satu fail. Tiada backend. Boleh drag-drop ke Netlify terus.
+     ── YANG PERLU DITUKAR UNTUK CLIENT SEBENAR ──
+     1) WHATSAPP_NUMBER di bawah (format antarabangsa, tiada '+', tiada '0' depan)
+     2) Nama jenama "RONA", logo, warna (pemboleh ubah --wine dsb di :root)
+     3) Produk, harga, gambar (cari "ZON GAMBAR" — tukar div jadi <img>)
+     4) NAP footer (Nama, Alamat, Telefon) + jam operasi
+     5) Link sosial / Instagram
+     Borang: default buka WhatsApp (selalu jalan, tiada backend).
+     Untuk simpan lead ke email -> guna versi Netlify Forms yang dikomen
+     di bahagian borang. Jangan hardcode sebarang API key.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== TOKEN SISTEM ===== */
+:root{
+  --porcelain:#FAF5F0;     /* latar utama, warm off-white */
+  --porcelain-2:#F4EAE2;   /* latar seksyen selang-seli */
+  --blush:#F1DED5;         /* permukaan kad */
+  --petal:#E7C7BD;         /* sempadan / aksen lembut */
+  --wine:#6E2A3E;          /* jenama + CTA (warna gincu) */
+  --wine-deep:#511E2D;     /* hover */
+  --ink:#2A1B20;           /* teks */
+  --ink-soft:#6B5A5E;      /* teks sekunder */
+  --champagne:#B68A4E;     /* aksen emas, guna berhemat */
+  --line:#E3D2C9;
+  --r:18px;                /* radius */
+  --r-lg:28px;
+  --shadow:0 18px 50px -24px rgba(82,30,45,.45);
+  --shadow-sm:0 8px 24px -16px rgba(82,30,45,.4);
+  --maxw:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--porcelain);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:96px 0;scroll-margin-top:80px}
+.eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--wine);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--champagne)}
+.lead{color:var(--ink-soft);font-size:1.05rem;max-width:54ch}
+
+/* ===== BUTANG ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-weight:600;font-size:.96rem;padding:14px 26px;border-radius:999px;
+  cursor:pointer;border:1.5px solid transparent;transition:.25s ease;white-space:nowrap;
+}
+.btn-primary{background:var(--wine);color:#fff}
+.btn-primary:hover{background:var(--wine-deep);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-ghost{background:transparent;color:var(--wine);border-color:var(--petal)}
+.btn-ghost:hover{border-color:var(--wine);background:#fff}
+.btn svg{width:18px;height:18px}
+:focus-visible{outline:3px solid var(--champagne);outline-offset:3px;border-radius:6px}
+
+/* ===== ANNOUNCEMENT ===== */
+.topbar{
+  background:var(--wine);color:#fff;text-align:center;
+  font-size:.82rem;letter-spacing:.03em;padding:9px 16px;font-weight:500;
+}
+.topbar b{color:#F1DED5}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,245,240,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;letter-spacing:.02em;color:var(--ink)}
+.logo span{color:var(--wine)}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:.93rem;font-weight:500;color:var(--ink-soft);transition:.2s}
+.nav-links a:hover{color:var(--wine)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s;border-radius:2px}
+
+/* ===== HERO ===== */
+.hero{position:relative;overflow:hidden;padding:88px 0 96px}
+.bloom{
+  position:absolute;z-index:0;width:760px;height:760px;border-radius:50%;
+  right:-160px;top:-120px;pointer-events:none;filter:blur(8px);opacity:.85;
+  background:radial-gradient(circle at 50% 50%,
+     rgba(231,199,189,.95) 0%, rgba(182,138,78,.4) 38%, rgba(110,42,62,.18) 60%, transparent 72%);
+  animation:breathe 9s ease-in-out infinite;
+}
+.bloom-2{
+  position:absolute;z-index:0;width:420px;height:420px;border-radius:50%;
+  left:-140px;bottom:-160px;filter:blur(14px);opacity:.7;pointer-events:none;
+  background:radial-gradient(circle,rgba(241,222,213,.9),transparent 70%);
+}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin:20px 0 18px}
+.hero h1 em{font-style:italic;color:var(--wine);font-weight:500}
+.hero .lead{margin-bottom:30px;font-size:1.12rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px}
+.trust .chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
+.trust .chip svg{width:17px;height:17px;color:var(--wine)}
+
+/* Visual hero (SVG botol di atas kad glow) — ZON GAMBAR boleh ganti */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.glasscard{
+  width:100%;max-width:420px;aspect-ratio:4/5;border-radius:var(--r-lg);
+  background:linear-gradient(155deg,#fff 0%,var(--blush) 55%,var(--petal) 100%);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.6);
+}
+.glasscard::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 20%,rgba(255,255,255,.7),transparent 45%);}
+.badge-float{
+  position:absolute;z-index:2;background:#fff;border-radius:14px;padding:10px 15px;
+  box-shadow:var(--shadow-sm);font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:8px;
+}
+.badge-float .star{color:var(--champagne)}
+.badge-tl{top:22px;left:-10px}
+.badge-br{bottom:26px;right:-8px;color:var(--wine)}
+
+/* ===== MARQUEE ===== */
+.marquee{background:var(--ink);color:var(--porcelain);overflow:hidden;padding:15px 0}
+.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 22s linear infinite;font-family:'Fraunces',serif;font-size:1.05rem;letter-spacing:.06em}
+.marquee-track span{opacity:.9}
+.marquee-track .dot{color:var(--champagne)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== SECTION HEAD ===== */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:46px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2rem,4vw,3rem)}
+.sec-head p{margin-top:12px}
+
+/* ===== PRODUK ===== */
+.alt{background:var(--porcelain-2)}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.pcard{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:.3s ease;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+/* ZON GAMBAR PRODUK — ganti .pimg dengan <img alt="..."> */
+.pimg{aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center}
+.pimg.g1{background:linear-gradient(160deg,#F7E9E2,#E7C7BD)}
+.pimg.g2{background:linear-gradient(160deg,#EFE6DC,#D9C7B6)}
+.pimg.g3{background:linear-gradient(160deg,#F3E2DB,#E9C9C0)}
+.pimg.g4{background:linear-gradient(160deg,#EDE3DA,#DBCBC0)}
+.tag{position:absolute;top:12px;left:12px;background:var(--wine);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:999px;text-transform:uppercase}
+.pbody{padding:20px;display:flex;flex-direction:column;gap:7px;flex:1}
+.pcat{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);font-weight:700}
+.pcard h3{font-size:1.2rem;font-weight:600}
+.pdesc{font-size:.88rem;color:var(--ink-soft);flex:1}
+.prow{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--wine)}
+.rating{font-size:.82rem;color:var(--ink-soft);display:flex;align-items:center;gap:4px}
+.rating .star{color:var(--champagne)}
+.pcard .btn{margin:0 20px 20px;justify-content:center}
+.btn-wa{background:var(--porcelain-2);color:var(--wine);border:1.5px solid var(--petal);font-size:.86rem;padding:11px}
+.pcard:hover .btn-wa{background:var(--wine);color:#fff;border-color:var(--wine)}
+
+/* ===== KENAPA RONA ===== */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:34px 28px;text-align:left}
+.picon{width:54px;height:54px;border-radius:14px;background:var(--blush);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--wine)}
+.picon svg{width:26px;height:26px}
+.pillar h3{font-size:1.3rem;margin-bottom:10px}
+.pillar p{font-size:.95rem;color:var(--ink-soft)}
+
+/* ===== HASIL ===== */
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.result{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
+/* ZON GAMBAR HASIL — ganti dengan gambar sebenar (dengan kebenaran pelanggan) */
+.ba div{aspect-ratio:1/1;position:relative;display:flex;align-items:flex-end;padding:12px}
+.ba .before{background:linear-gradient(160deg,#E9DAD0,#CDBBAE)}
+.ba .after{background:linear-gradient(160deg,#F6E7DF,#E8C6BB)}
+.ba label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(42,27,32,.78);color:#fff;padding:4px 9px;border-radius:6px}
+.result-body{padding:22px 24px}
+.result-body h3{font-size:1.25rem;margin-bottom:6px}
+.result-body p{font-size:.92rem;color:var(--ink-soft)}
+.disclaimer{font-size:.8rem;color:var(--ink-soft);margin-top:22px;font-style:italic;opacity:.9}
+
+/* ===== REVIEW ===== */
+.rev-top{text-align:center;margin-bottom:46px}
+.rev-top .big{font-family:'Fraunces',serif;font-size:3rem;color:var(--wine);line-height:1}
+.rev-top .stars{color:var(--champagne);font-size:1.3rem;letter-spacing:3px;margin:6px 0}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.review{background:var(--porcelain);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.review .stars{color:var(--champagne);letter-spacing:2px;margin-bottom:14px}
+.review p{font-size:.96rem;margin-bottom:18px}
+.who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--petal),var(--wine));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem}
+.who b{font-size:.92rem}
+.who small{display:block;color:var(--ink-soft);font-size:.8rem}
+
+/* ===== INSTAGRAM ===== */
+.ig-head{text-align:center;margin-bottom:38px}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+/* ZON GAMBAR IG — ganti tile dengan gambar feed sebenar */
+.ig-tile{aspect-ratio:1/1;border-radius:14px;position:relative;overflow:hidden;cursor:pointer;transition:.3s}
+.ig-tile:hover{transform:scale(1.04)}
+.ig-tile::after{content:"";position:absolute;inset:0;background:rgba(110,42,62,0);transition:.3s}
+.ig-tile:hover::after{background:rgba(110,42,62,.22)}
+.ig1{background:linear-gradient(150deg,#F1DED5,#C98F9E)}
+.ig2{background:linear-gradient(150deg,#E7C7BD,#B68A4E)}
+.ig3{background:linear-gradient(150deg,#EFE6DC,#D9B7AA)}
+.ig4{background:linear-gradient(150deg,#F4E4DC,#6E2A3E)}
+.ig5{background:linear-gradient(150deg,#E9D6CC,#CBA98E)}
+.ig6{background:linear-gradient(150deg,#F1DDD4,#A85C6B)}
+
+/* ===== ORDER / ENQUIRY ===== */
+.contact{background:var(--ink);color:var(--porcelain)}
+.contact .eyebrow{color:var(--petal)}
+.contact .eyebrow::before{background:var(--champagne)}
+.c-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:start}
+.contact h2{font-size:clamp(2rem,4vw,3rem);color:#fff;margin:16px 0 16px}
+.c-left p{color:#D9C7C0;max-width:42ch;margin-bottom:28px}
+.c-info{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.c-info div{display:flex;gap:13px;align-items:flex-start;font-size:.95rem}
+.c-info svg{width:20px;height:20px;color:var(--champagne);flex:none;margin-top:2px}
+.pay{display:flex;gap:8px;flex-wrap:wrap}
+.pay span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 12px;font-size:.78rem;font-weight:600}
+.form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:32px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:7px;color:#E8D9D2}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(250,245,240,.96);border:1px solid transparent;border-radius:12px;
+  padding:13px 15px;font-family:inherit;font-size:.95rem;color:var(--ink);
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--champagne)}
+.field textarea{resize:vertical;min-height:96px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:#CDBBB4;margin-bottom:20px}
+.consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--champagne)}
+.form .btn-primary{width:100%;justify-content:center;background:var(--champagne);color:var(--ink)}
+.form .btn-primary:hover{background:#caa05f}
+.form-note{font-size:.78rem;color:#B7A39C;text-align:center;margin-top:12px}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--porcelain-2);padding:64px 0 28px;border-top:1px solid var(--line)}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:46px}
+.footer .logo{margin-bottom:14px;display:inline-block}
+.f-about p{font-size:.92rem;color:var(--ink-soft);max-width:32ch}
+.f-social{display:flex;gap:12px;margin-top:18px}
+.f-social a{width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--wine);transition:.2s}
+.f-social a:hover{background:var(--wine);color:#fff}
+.f-social svg{width:18px;height:18px}
+.f-col h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+.f-col a{display:block;font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;transition:.2s}
+.f-col a:hover{color:var(--wine)}
+.news input{width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:inherit;margin-bottom:10px;font-size:.9rem}
+.news input:focus{outline:none;border-color:var(--wine)}
+.news .btn{width:100%;justify-content:center;font-size:.88rem;padding:12px}
+.f-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-soft)}
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -8px rgba(37,211,102,.7);transition:.25s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+
+/* ===== RESPONSIF ===== */
+@media(max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-visual{order:-1}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .pillars{grid-template-columns:1fr}
+  .results-grid,.reviews{grid-template-columns:1fr}
+  .ig-grid{grid-template-columns:repeat(3,1fr)}
+  .c-grid{grid-template-columns:1fr;gap:34px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .nav-links{
+    position:absolute;top:72px;left:0;right:0;background:var(--porcelain);
+    flex-direction:column;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line);
+    display:none;box-shadow:var(--shadow-sm);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 0;border-bottom:1px solid var(--line);width:100%}
+  .burger{display:block}
+  .nav .btn-ghost{display:none}
+  .section{padding:68px 0}
+}
+@media(max-width:520px){
+  .products{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .reviews,.ig-grid{grid-template-columns:1fr 1fr}
+  .hero-actions .btn{flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .bloom,.marquee-track{animation:none}
+  *{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="topbar">✦ Penghantaran <b>PERCUMA</b> seluruh Malaysia untuk pembelian RM150+ &nbsp;•&nbsp; Halal &amp; Teruji Dermatologi &nbsp;•&nbsp; COD tersedia</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">RO<span>NA</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#produk">Produk</a>
+      <a href="#kenapa">Kenapa RONA</a>
+      <a href="#hasil">Hasil</a>
+      <a href="#review">Ulasan</a>
+      <a href="#hubungi">Hubungi</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#produk" class="btn btn-ghost">Beli Sekarang</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="bloom"></div>
+  <div class="bloom-2"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Skincare • Dibuat di Malaysia</span>
+      <h1>Kulit sihat,<br><em>rona</em> semula jadi.</h1>
+      <p class="lead">Formula ringkas, bersih dan halal — direka khas untuk kulit dan iklim lembap Malaysia. Tanpa janji kosong, hanya rutin yang kulit anda sayang.</p>
+      <div class="hero-actions">
+        <a href="#produk" class="btn btn-primary">Lihat Produk</a>
+        <a href="#hubungi" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .5l-.3.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
+          Tanya di WhatsApp
+        </a>
+      </div>
+      <div class="trust">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Halal Sah</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Cruelty-Free</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Teruji Dermatologi</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Buatan Malaysia</span>
+      </div>
+    </div>
+
+    <!-- ZON GAMBAR HERO: ganti seluruh .glasscard dengan <img src="hero.jpg" alt="Produk RONA"> -->
+    <div class="hero-visual">
+      <span class="badge-float badge-tl"><span class="star">★</span> 4.9/5 · 2,300+ ulasan</span>
+      <div class="glasscard">
+        <!-- SVG botol serum sebagai placeholder premium -->
+        <svg width="150" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+          <rect x="46" y="6" width="28" height="22" rx="4" fill="#6E2A3E"/>
+          <rect x="50" y="26" width="20" height="12" fill="#B68A4E"/>
+          <rect x="30" y="38" width="60" height="150" rx="20" fill="#fff" opacity=".92"/>
+          <rect x="30" y="38" width="60" height="150" rx="20" fill="url(#gloss)"/>
+          <rect x="42" y="92" width="36" height="58" rx="8" fill="#6E2A3E" opacity=".12"/>
+          <text x="60" y="118" text-anchor="middle" font-family="Fraunces,serif" font-size="15" font-weight="600" fill="#6E2A3E">RONA</text>
+          <text x="60" y="135" text-anchor="middle" font-family="Manrope,sans-serif" font-size="7.5" letter-spacing="1" fill="#B68A4E">SERUM CERAH</text>
+          <defs><linearGradient id="gloss" x1="30" y1="38" x2="90" y2="188" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".7"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient></defs>
+        </svg>
+      </div>
+      <span class="badge-float badge-br">✦ Hidrasi 72 jam</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>GLOW SEMULA JADI</span><span class="dot">✦</span><span>RAMUAN BERSIH</span><span class="dot">✦</span><span>HALAL &amp; SELAMAT</span><span class="dot">✦</span><span>UNTUK KULIT MALAYSIA</span><span class="dot">✦</span>
+    <span>GLOW SEMULA JADI</span><span class="dot">✦</span><span>RAMUAN BERSIH</span><span class="dot">✦</span><span>HALAL &amp; SELAMAT</span><span class="dot">✦</span><span>UNTUK KULIT MALAYSIA</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- PRODUK -->
+<section class="section alt" id="produk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Produk Pilihan</span>
+        <h2>Rutin yang berkesan,<br>tanpa rumit.</h2>
+      </div>
+      <p class="lead">Empat asas untuk mula. Tekan butang untuk order terus melalui WhatsApp — pantas, peribadi, mudah.</p>
+    </div>
+
+    <div class="products">
+      <!-- PRODUK 1 -->
+      <article class="pcard">
+        <div class="pimg g1"><span class="tag">Terlaris</span>
+          <svg width="78" viewBox="0 0 80 130" aria-hidden="true"><rect x="30" y="4" width="20" height="16" rx="3" fill="#6E2A3E"/><rect x="18" y="22" width="44" height="104" rx="14" fill="#fff" opacity=".9"/><text x="40" y="74" text-anchor="middle" font-family="Fraunces,serif" font-size="11" fill="#6E2A3E">RONA</text></svg>
+        </div>
+        <div class="pbody">
+          <span class="pcat">Serum</span>
+          <h3>Serum Cerah Rona</h3>
+          <p class="pdesc">Vitamin C 10% + Niacinamide. Bantu cerahkan kulit kusam &amp; ratakan warna kulit.</p>
+          <div class="prow">
+            <span class="price">RM89</span>
+            <span class="rating"><span class="star">★</span> 4.9</span>
+          </div>
+        </div>
+        <button class="btn btn-wa order-btn" data-product="Serum Cerah Rona (RM89)">+ Order via WhatsApp</button>
+      </article>
+
+      <!-- PRODUK 2 -->
+      <article class="pcard">
+        <div class="pimg g2">
+          <svg width="78" viewBox="0 0 90 120" aria-hidden="true"><rect x="18" y="10" width="54" height="100" rx="16" fill="#fff" opacity=".9"/><circle cx="45" cy="22" r="9" fill="#B68A4E"/><text x="45" y="70" text-anchor="middle" font-family="Fraunces,serif" font-size="11" fill="#6E2A3E">RONA</text></svg>
+        </div>
+        <div class="pbody">
+          <span class="pcat">Pelembap</span>
+          <h3>Pelembap Hidrasi 72H</h3>
+          <p class="pdesc">Hyaluronic Acid + Centella. Lembap sepanjang hari, ringan &amp; tak melekit.</p>
+          <div class="prow">
+            <span class="price">RM69</span>
+            <span class="rating"><span class="star">★</span> 4.8</span>
+          </div>
+        </div>
+        <button class="btn btn-wa order-btn" data-product="Pelembap Hidrasi 72H (RM69)">+ Order via WhatsApp</button>
+      </article>
+
+      <!-- PRODUK 3 -->
+      <article class="pcard">
+        <div class="pimg g3">
+          <svg width="70" viewBox="0 0 80 130" aria-hidden="true"><rect x="22" y="6" width="36" height="14" rx="3" fill="#B68A4E"/><rect x="16" y="22" width="48" height="104" rx="12" fill="#fff" opacity=".9"/><text x="40" y="74" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="#6E2A3E">RONA</text></svg>
+        </div>
+        <div class="pbody">
+          <span class="pcat">Pembersih</span>
+          <h3>Pencuci Muka Lembut</h3>
+          <p class="pdesc">pH seimbang, bebas sulfat. Bersihkan tanpa tegang atau kering.</p>
+          <div class="prow">
+            <span class="price">RM45</span>
+            <span class="rating"><span class="star">★</span> 4.9</span>
+          </div>
+        </div>
+        <button class="btn btn-wa order-btn" data-product="Pencuci Muka Lembut (RM45)">+ Order via WhatsApp</button>
+      </article>
+
+      <!-- PRODUK 4 -->
+      <article class="pcard">
+        <div class="pimg g4"><span class="tag">Baru</span>
+          <svg width="74" viewBox="0 0 80 120" aria-hidden="true"><rect x="18" y="8" width="44" height="102" rx="14" fill="#fff" opacity=".9"/><rect x="30" y="2" width="20" height="12" rx="3" fill="#6E2A3E"/><text x="40" y="66" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="#6E2A3E">SPF50</text></svg>
+        </div>
+        <div class="pbody">
+          <span class="pcat">Pelindung</span>
+          <h3>Sunscreen SPF50+ Ringan</h3>
+          <p class="pdesc">Perlindungan tinggi tanpa kesan putih (white cast). Sesuai harian.</p>
+          <div class="prow">
+            <span class="price">RM75</span>
+            <span class="rating"><span class="star">★</span> 5.0</span>
+          </div>
+        </div>
+        <button class="btn btn-wa order-btn" data-product="Sunscreen SPF50+ Ringan (RM75)">+ Order via WhatsApp</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KENAPA RONA -->
+<section class="section" id="kenapa">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Kenapa RONA</span>
+        <h2>Dibuat dengan niat,<br>bukan sekadar trend.</h2>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-5Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Ramuan bersih &amp; jujur</h3>
+        <p>Tiada bahan keras yang tak perlu. Setiap formula dipilih kerana ia berkesan — kami senaraikan semuanya, telus.</p>
+      </div>
+      <div class="pillar">
+        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
+        <h3>Untuk kulit &amp; iklim kita</h3>
+        <p>Cuaca panas dan lembap Malaysia berbeza. Tekstur ringan kami direka supaya selesa dipakai sepanjang hari.</p>
+      </div>
+      <div class="pillar">
+        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><path d="M12 3c-1.5 1.5-3.5 2-5.5 2C6 9 7 14 12 21c5-7 6-12 5.5-16-2 0-4-.5-5.5-2Z"/></svg></div>
+        <h3>Halal &amp; teruji dermatologi</h3>
+        <p>Disahkan halal dan diuji untuk keselamatan kulit sensitif. Ketenangan fikiran dalam setiap botol.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HASIL -->
+<section class="section alt" id="hasil">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Rona Sebenar</span>
+        <h2>Perjalanan kulit pelanggan kami.</h2>
+      </div>
+      <p class="lead">Hasil sebenar selepas konsisten dengan rutin RONA. Dikongsi dengan kebenaran pelanggan.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result">
+        <!-- ZON GAMBAR HASIL: ganti .before / .after dengan <img> sebenar -->
+        <div class="ba"><div class="before"><label>Sebelum</label></div><div class="after"><label>4 Minggu</label></div></div>
+        <div class="result-body"><h3>Nadia, 28 — Kuala Lumpur</h3><p>"Kulit kusam saya nampak lebih cerah &amp; sekata. Serum jadi step kegemaran setiap malam."</p></div>
+      </div>
+      <div class="result">
+        <div class="ba"><div class="before"><label>Sebelum</label></div><div class="after"><label>6 Minggu</label></div></div>
+        <div class="result-body"><h3>Aisyah, 34 — Johor Bahru</h3><p>"Tekstur kulit lagi lembut dan terjaga. Sunscreen pun tak melekit walaupun pakai tudung sepanjang hari."</p></div>
+      </div>
+    </div>
+    <p class="disclaimer">*Keputusan individu mungkin berbeza. Skincare berfungsi paling baik dengan penggunaan konsisten dan rutin yang sesuai dengan jenis kulit anda.</p>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="section" id="review">
+  <div class="wrap">
+    <div class="rev-top">
+      <span class="eyebrow">Ulasan Pelanggan</span>
+      <div class="big">4.9 / 5</div>
+      <div class="stars">★★★★★</div>
+      <p class="lead" style="margin:0 auto;text-align:center">Daripada lebih 2,300 pelanggan ternilai di seluruh Malaysia.</p>
+    </div>
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Dah cuba macam-macam, tapi RONA paling sesuai dengan kulit sensitif saya. Tak breakout, kulit rasa sihat."</p>
+        <div class="who"><div class="avatar">N</div><div><b>Nurul H.</b><small>Shah Alam · Pembeli Disahkan</small></div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Packaging cantik, produk berbaloi. Order via WhatsApp pun laju, admin reply terus. Repeat customer dah!"</p>
+        <div class="who"><div class="avatar">M</div><div><b>Mei Ling T.</b><small>Pulau Pinang · Pembeli Disahkan</small></div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Suka sebab halal &amp; jujur dengan ingredient. Pelembap dia ringan, sesuai cuaca panas KL."</p>
+        <div class="who"><div class="avatar">F</div><div><b>Farah A.</b><small>Kuala Lumpur · Pembeli Disahkan</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="ig-head">
+      <span class="eyebrow">Komuniti</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-top:8px">Ikuti @rona.beauty.my</h2>
+    </div>
+    <!-- ZON GAMBAR IG: ganti setiap .ig-tile dengan gambar feed sebenar / embed -->
+    <div class="ig-grid">
+      <a class="ig-tile ig1" href="#" aria-label="Instagram post"></a>
+      <a class="ig-tile ig2" href="#" aria-label="Instagram post"></a>
+      <a class="ig-tile ig3" href="#" aria-label="Instagram post"></a>
+      <a class="ig-tile ig4" href="#" aria-label="Instagram post"></a>
+      <a class="ig-tile ig5" href="#" aria-label="Instagram post"></a>
+      <a class="ig-tile ig6" href="#" aria-label="Instagram post"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER / ENQUIRY -->
+<section class="section contact" id="hubungi">
+  <div class="wrap c-grid">
+    <div class="c-left">
+      <span class="eyebrow">Hubungi / Order</span>
+      <h2>Sedia untuk glow?</h2>
+      <p>Hantar pertanyaan atau order anda — kami balas dalam waktu bekerja. Tekan hantar dan ia terus ke WhatsApp kami.</p>
+      <div class="c-info">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Z"/></svg> WhatsApp: +60 12-345 6789</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> hello@rona.my</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Isnin–Sabtu, 10:00 pagi – 7:00 petang</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Petaling Jaya, Selangor, Malaysia</div>
+      </div>
+      <div class="pay">
+        <span>FPX / Online Banking</span><span>DuitNow QR</span><span>Touch 'n Go</span><span>COD</span>
+      </div>
+    </div>
+
+    <!-- BORANG: default = buka WhatsApp dengan butiran (sentiasa jalan, tiada backend).
+         Untuk simpan lead ke email guna Netlify Forms: buang onsubmit JS, tambah
+         method="POST" data-netlify="true" name="enquiry", dan satu input honeypot. -->
+    <form class="form" id="enquiryForm" novalidate>
+      <div class="field">
+        <label for="nama">Nama anda</label>
+        <input id="nama" name="nama" type="text" placeholder="cth: Siti Nurhaliza" required>
+      </div>
+      <div class="field">
+        <label for="fon">No. telefon (WhatsApp)</label>
+        <input id="fon" name="fon" type="tel" placeholder="cth: 012-345 6789" required>
+      </div>
+      <div class="field">
+        <label for="produk">Produk yang diminati</label>
+        <select id="produk" name="produk">
+          <option>Set Rutin Lengkap</option>
+          <option>Serum Cerah Rona (RM89)</option>
+          <option>Pelembap Hidrasi 72H (RM69)</option>
+          <option>Pencuci Muka Lembut (RM45)</option>
+          <option>Sunscreen SPF50+ Ringan (RM75)</option>
+          <option>Belum pasti — nak konsultasi</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="mesej">Mesej (pilihan)</label>
+        <textarea id="mesej" name="mesej" placeholder="Ceritakan jenis kulit atau soalan anda…"></textarea>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent" required>
+        <span>Saya bersetuju RONA menghubungi saya berkaitan pertanyaan ini. Maklumat anda dilindungi mengikut PDPA 2010.</span>
+      </label>
+      <button type="submit" class="btn btn-primary">Hantar via WhatsApp →</button>
+      <p class="form-note">Selamat &amp; pantas — borang ini membuka WhatsApp dengan butiran anda siap diisi.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="#" class="logo">RO<span>NA</span></a>
+        <p>Skincare bersih, halal &amp; teruji — direka untuk kulit dan iklim Malaysia. Kulit sihat, rona semula jadi.</p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.5 3.5 3.5 3.8v2.6c-1.3 0-2.5-.4-3.5-1v6.1A5.5 5.5 0 1 1 10 9.5v2.7a2.8 2.8 0 1 0 2 2.7V3h4Z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-.8.2-1 1-1h2V3h-3c-2.2 0-3 1.3-3 3v3H9v3h2v8h3v-8h2.5l.5-3H14Z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Produk</h4>
+        <a href="#produk">Serum</a>
+        <a href="#produk">Pelembap</a>
+        <a href="#produk">Pembersih</a>
+        <a href="#produk">Pelindung Matahari</a>
+      </div>
+      <div class="f-col">
+        <h4>Syarikat</h4>
+        <a href="#kenapa">Kisah Kami</a>
+        <a href="#hasil">Hasil Pelanggan</a>
+        <a href="#review">Ulasan</a>
+        <a href="#hubungi">Hubungi</a>
+      </div>
+      <div class="f-col news">
+        <h4>Dapat 10% Diskaun</h4>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:14px">Sertai senarai untuk tips kulit &amp; tawaran awal.</p>
+        <input type="email" placeholder="Emel anda" aria-label="Emel">
+        <button class="btn btn-primary">Langgan</button>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 RONA Beauty (Demo). Hak cipta terpelihara.</span>
+      <span>Reka &amp; bina oleh KNM · Laman demo template</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="#" class="wa-float" id="waFloat" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .5l-.3.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
+</a>
+
+<script>
+/* ====== TUKAR NOMBOR INI UNTUK CLIENT (format antarabangsa, tanpa + atau 0 depan) ====== */
+const WHATSAPP_NUMBER = "60123456789"; // cth Malaysia: 0123456789 -> 60123456789
+
+/* Menu mobile */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+}));
+
+/* Helper buka WhatsApp */
+function openWA(message){
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+/* Butang float + nav WhatsApp */
+document.getElementById('waFloat').addEventListener('click', e => {
+  e.preventDefault();
+  openWA("Hi RONA! Saya nak tanya tentang produk anda 😊");
+});
+
+/* Order produk individu */
+document.querySelectorAll('.order-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    openWA(`Hi RONA! Saya berminat untuk order: ${btn.dataset.product}. Boleh bantu?`);
+  });
+});
+
+/* Borang -> WhatsApp (sentiasa jalan, tiada backend perlu) */
+document.getElementById('enquiryForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const nama = document.getElementById('nama').value.trim();
+  const fon = document.getElementById('fon').value.trim();
+  const produk = document.getElementById('produk').value;
+  const mesej = document.getElementById('mesej').value.trim();
+  const consent = document.getElementById('consent').checked;
+  if(!nama || !fon){ alert('Sila isi nama dan no. telefon.'); return; }
+  if(!consent){ alert('Sila tanda kotak persetujuan untuk teruskan.'); return; }
+  let msg = `Hi RONA! Saya nak buat pertanyaan:\n\n• Nama: ${nama}\n• Telefon: ${fon}\n• Produk: ${produk}`;
+  if(mesej) msg += `\n• Mesej: ${mesej}`;
+  openWA(msg);
+});
+</script>
+</body>
+</html>
