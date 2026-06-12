@@ -12,7 +12,7 @@
 <title>Adam &amp; Aisyah — Walimatul Urus | 21 November 2026</title>
 <meta name="description" content="Dengan penuh kesyukuran, kami menjemput anda ke majlis perkahwinan Adam Mukhriz & Nur Aisyah pada 21 November 2026 di Glasshouse Seputeh, Kuala Lumpur.">
 <meta property="og:title" content="Jemputan Walimatul Urus — Adam & Aisyah">
-<meta property="og:description" content="Sabtu, 21 November 2026 · Glasshouse Seputeh, Kuala Lumpur. Ketik untuk buka jemputan.">
+<meta property="og:description" content="Sabtu, 21 November 2026 · Glasshouse Seputeh, Kuala Lumpur. Sentuh untuk membuka jemputan.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -299,7 +299,7 @@ footer a{color:var(--gold);text-decoration:none}
     <p class="intro-sub">Walimatul Urus</p>
     <p class="intro-names">Adam &amp; Aisyah</p><!-- EDIT: nama pendek pasangan -->
     <p class="intro-sub">21 · 11 · 2026</p><!-- EDIT: tarikh -->
-    <p class="intro-hint">Ketik untuk buka</p>
+    <p class="intro-hint">Sentuh untuk membuka</p>
   </div>
 </div>
 
@@ -486,7 +486,7 @@ footer a{color:var(--gold);text-decoration:none}
         </div>
       </div>
 
-      <p style="text-align:center;font-size:.88rem;color:var(--ink-soft)">Mohon sahkan kehadiran sebelum <strong>7 November 2026</strong>.</p><!-- EDIT: tarikh tutup RSVP -->
+      <p style="text-align:center;font-size:.88rem;color:var(--ink-soft)">Sila sahkan kehadiran anda sebelum <strong>7 November 2026</strong>.</p><!-- EDIT: tarikh tutup RSVP -->
       <form id="rsvpForm" novalidate>
         <label for="rNama">Nama</label>
         <input type="text" id="rNama" name="nama" maxlength="80" autocomplete="name" required placeholder="Nama anda / keluarga">
@@ -519,7 +519,7 @@ footer a{color:var(--gold);text-decoration:none}
       <p class="eyebrow">Dewan Ucapan</p>
       <h2 class="sec-title">Titipan <em>Doa &amp; Ucapan</em></h2>
       <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/></svg>
-      <p style="text-align:center;font-size:.86rem;color:var(--ink-soft);margin-bottom:22px">Ketik mana-mana nota untuk baca ucapan penuh ♡</p>
+      <p style="text-align:center;font-size:.86rem;color:var(--ink-soft);margin-bottom:22px">Sentuh mana-mana nota untuk membaca ucapan penuh ♡</p>
     </div>
     <div class="notes rv" id="notesWall" aria-live="polite"></div>
     <div style="text-align:center;margin-top:14px">
@@ -529,7 +529,7 @@ footer a{color:var(--gold);text-decoration:none}
       <form id="wishForm" novalidate>
         <label for="wNama">Nama</label>
         <input type="text" id="wNama" name="nama" maxlength="60" required placeholder="Nama anda">
-        <label for="wMesej">Ucapan <span style="text-transform:none;letter-spacing:0;opacity:.7" id="wCount">(maks 300 aksara)</span></label>
+        <label for="wMesej">Ucapan <span style="text-transform:none;letter-spacing:0;opacity:.7" id="wCount">(maksimum 300 aksara)</span></label>
         <textarea id="wMesej" name="mesej" rows="4" maxlength="300" required placeholder="Titipkan doa & ucapan untuk pengantin..."></textarea>
         <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-solid" type="submit" style="width:100%;margin-top:22px">Tampal Nota Ucapan</button>
@@ -571,7 +571,7 @@ footer a{color:var(--gold);text-decoration:none}
     <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/></svg>
     <div class="ask-card">
       <p class="ask-title">💬 Tanya Pengantin</p>
-      <p class="ask-sub" id="askSub">Ada soalan sebelum majlis? Terus hubungi kami</p>
+      <p class="ask-sub" id="askSub">Ada pertanyaan sebelum majlis? Hubungi kami secara terus</p>
       <div class="ask-btns" id="askBtns"></div>
     </div>
     <div class="contact-grid" id="contactGrid"></div>
@@ -639,10 +639,56 @@ const CONFIG = {
 
 /* Nota demo — dipapar bila sheetsApiUrl kosong sahaja */
 const DEMO_UCAPAN = [
-  { nama: "Keluarga Pak Long", mesej: "Tahniah Adam & Aisyah! Semoga ikatan ini berkekalan hingga ke Jannah. Baarakallahu lakuma wa baaraka 'alaikuma wa jama'a bainakuma fii khair." },
-  { nama: "Geng Opis Adam", mesej: "Congrats bro! Akhirnya hari yang ditunggu tiba. Semoga bahagia selalu dan murah rezeki sekeluarga." },
-  { nama: "Aina & Zaki", mesej: "Sis Aisyah cantik sangat hari ni confirm! Semoga rumah tangga dipenuhi sakinah, mawaddah wa rahmah. Tak sabar nak datang!" },
-  { nama: "Cikgu Rahimah", mesej: "Dari anak murid sekolah rendah sampai naik pelamin... cikgu doakan yang terbaik untuk kalian berdua. Semoga menjadi pasangan dunia akhirat." }
+  { nama: "Keluarga Pak Long", mesej: "Tahniah Adam & Aisyah! Semoga ikatan ini berkekalan hingga ke Jannah. Baarakallahu lakuma." },
+  { nama: "Geng Opis Adam", mesej: "Alhamdulillah, akhirnya sampai ke hari bahagia. Semoga rumah tangga dipenuhi sakinah, mawaddah wa rahmah." },
+  { nama: "Aina & Zaki", mesej: "Selamat pengantin baru! Doa kami sentiasa bersama kalian berdua." },
+  { nama: "Cikgu Rahimah", mesej: "Dari bangku sekolah sampai ke pelamin, kami doakan yang terbaik buat kalian." },
+  { nama: "Pak Ngah & Mak Ngah", mesej: "Semoga Allah permudahkan segala urusan rumah tangga kalian. Tahniah!" },
+  { nama: "Keluarga Hj Osman", mesej: "Moga menjadi pasangan dunia dan akhirat. Aamiin." },
+  { nama: "Farah Alia", mesej: "Cantiknya pengantin hari ini! Semoga kekal bahagia selamanya." },
+  { nama: "Aiman Hakim", mesej: "Tahniah bro! Jaga wifey elok-elok tau. Doa yang terbaik dari kami." },
+  { nama: "Kak Yam Sebelah Rumah", mesej: "Semoga dikurniakan zuriat yang soleh dan solehah. Barakallah." },
+  { nama: "Rakan Sekerja Aisyah", mesej: "Alhamdulillah, tak sangka dah besar dan kahwin dah. Semoga berbahagia!" },
+  { nama: "Ustaz Fadzil", mesej: "Baarakallahu lakuma wa baaraka 'alaikuma wa jama'a bainakuma fii khair." },
+  { nama: "Team Futsal Adam", mesej: "Selamat melayari bahtera rumah tangga! Semoga sentiasa dalam rahmat Allah." },
+  { nama: "Kak Long & Abang Ipar", mesej: "Tahniah! Semoga majlis berjalan lancar dan kalian bahagia hingga akhir hayat." },
+  { nama: "Wan & Atok", mesej: "Doa kami agar rezeki kalian sentiasa murah dan keluarga sentiasa harmoni." },
+  { nama: "Alia Batch UIA", mesej: "Semoga cinta kalian semakin mekar setiap hari. Tahniah pengantin baru!" },
+  { nama: "Mak Cik Senah", mesej: "Moga Allah kekalkan jodoh kalian dan limpahkan keberkatan dalam hidup." },
+  { nama: "Hafiz & Maria", mesej: "Tahniah Adam & Aisyah! Tak sabar nak tengok kalian di pelamin." },
+  { nama: "Keluarga Subang", mesej: "Semoga perjalanan baharu ini membawa seribu kebahagiaan. Aamiin." },
+  { nama: "Adik-adik Usrah", mesej: "Dari kami sekeluarga, selamat pengantin baru dan semoga kekal ke anak cucu." },
+  { nama: "Jiran Taman Pelangi", mesej: "Ya Allah, berkatilah pasangan ini dan kurniakan mereka kebahagiaan dunia akhirat." },
+  { nama: "Syikin Kawan Sekolah", mesej: "Congrats! Semoga sentiasa sabar dan saling melengkapi antara satu sama lain." },
+  { nama: "Abe Mat Kelantan", mesej: "Moga rumah tangga kalian jadi contoh buat kami semua. Tahniah!" },
+  { nama: "Keluarga Tok Wan", mesej: "Semoga Allah satukan hati kalian dalam iman dan kasih sayang." },
+  { nama: "Geng Surau Al-Falah", mesej: "Tahniah! Jangan lupa jemput kami makan nasi minyak lagi tahun depan, hehe." },
+  { nama: "Dayah & Suami", mesej: "Doa terbaik buat pasangan serasi ini. Semoga bahagia ke Jannah." },
+  { nama: "Acik Ros", mesej: "Alhamdulillah, majlis yang ditunggu tiba jua. Selamat pengantin baru!" },
+  { nama: "Kawan Uni Aisyah", mesej: "Semoga setiap langkah kalian diberkati dan dipermudahkan urusan." },
+  { nama: "Pakcik Dollah", mesej: "Kami tumpang gembira! Moga kalian sentiasa dalam lindungan Allah." },
+  { nama: "Mira & Keluarga", mesej: "Tahniah atas pernikahan kalian. Semoga cinta ini abadi selamanya." },
+  { nama: "Saudara Penang", mesej: "Moga Allah jadikan rumah tangga kalian baiti jannati. Aamiin." },
+  { nama: "Cikgu Azman", mesej: "Selamat pengantin baru! Semoga kalian saling menyayangi sampai tua." },
+  { nama: "Kak Nab Kantin", mesej: "Doa dari jauh untuk pasangan bahagia. Barakallahu fikum." },
+  { nama: "Keluarga Ipoh", mesej: "Semoga ikatan suci ini membawa rahmat buat kedua-dua keluarga." },
+  { nama: "Adam Punya Roommate", mesej: "Tahniah kawan! Akhirnya jadi suami orang. Semoga bahagia selalu." },
+  { nama: "Nisa & Irfan", mesej: "Moga kalian kekal bersama dalam susah dan senang. Aamiin Ya Rabb." },
+  { nama: "Mak Teh", mesej: "Pengantin comel! Semoga sentiasa bahagia dan murah rezeki." },
+  { nama: "Geng Badminton", mesej: "Semoga Allah kurniakan kalian kesabaran, kasih sayang dan keberkatan." },
+  { nama: "Keluarga Melaka", mesej: "Tahniah! Semoga hari ini jadi permulaan kisah cinta yang indah." },
+  { nama: "Anis Sepupu", mesej: "Doa kami sekeluarga sentiasa mengiringi kalian berdua." },
+  { nama: "Abang Li Kedai Runcit", mesej: "Selamat menempuh hidup baru! Semoga sentiasa dirahmati Allah." },
+  { nama: "Sahabat Tahfiz", mesej: "Moga jodoh kalian kekal hingga hujung nyawa. Tahniah!" },
+  { nama: "Kak Zai & Family", mesej: "Semoga rumah tangga kalian dihiasi tawa dan kebahagiaan setiap hari." },
+  { nama: "Hakim & Aqil", mesej: "Tahniah Adam & Aisyah! Semoga cepat dapat baby, hehe. Doa yang baik-baik!" },
+  { nama: "Mok Cik Timah", mesej: "Barakallah atas pernikahan ini. Semoga kekal harmoni sekeluarga." },
+  { nama: "Rakan PLKN", mesej: "Dari rakan lama, semoga kalian bahagia dan terus thabat di jalan Allah." },
+  { nama: "Keluarga Seremban", mesej: "Semoga majlis penuh barakah dan kalian beroleh kebahagiaan berpanjangan." },
+  { nama: "Iman & Balqis", mesej: "Tahniah! Kami doakan yang terbaik buat kalian di dunia dan akhirat." },
+  { nama: "Tok Imam Kampung", mesej: "Ya Allah, kekalkanlah kasih sayang antara mereka berdua. Aamiin." },
+  { nama: "Geng Hiking", mesej: "Selamat pengantin baru! Moga sentiasa sehat dan bahagia bersama." },
+  { nama: "Saudara Johor", mesej: "Semoga Allah memberkati kalian dan menyatukan kalian hingga ke syurga." }
 ];
 
 /* ---------- helpers ---------- */
@@ -751,7 +797,7 @@ rsvpForm.addEventListener("submit", async e => {
   e.preventDefault();
   if (rsvpForm.website.value) return; /* honeypot: bot diam-diam diabaikan */
   const nama = rsvpForm.nama.value.trim(), hadir = rsvpForm.hadir.value;
-  if (!nama || !hadir) { rsvpMsg.textContent = "Mohon isi nama & pilih kehadiran ya 🙂"; return; }
+  if (!nama || !hadir) { rsvpMsg.textContent = "Sila isikan nama dan pilihan kehadiran anda 🙂"; return; }
   const pax = hadir === "Hadir" ? rsvpForm.pax.value : "0";
   const btn = rsvpForm.querySelector("button"); btn.disabled = true;
   rsvpMsg.textContent = "Menghantar...";
@@ -759,12 +805,12 @@ rsvpForm.addEventListener("submit", async e => {
     if (CONFIG.sheetsApiUrl) await postData({ type: "rsvp", nama, hadir, pax });
     else await new Promise(r => setTimeout(r, 600)); /* mod demo */
     rsvpMsg.textContent = hadir === "Hadir"
-      ? `Terima kasih ${nama}! Kehadiran ${pax} orang telah direkodkan. Jumpa di majlis nanti ♡`
-      : `Terima kasih ${nama} kerana memaklumkan. Semoga dapat bersua di lain kesempatan ♡`;
+      ? `Terima kasih ${nama}! Kehadiran ${pax} orang telah direkodkan. Semoga bertemu di majlis nanti ♡`
+      : `Terima kasih ${nama} kerana memaklumkan. Semoga dapat bersua pada masa akan datang ♡`;
     if (!CONFIG.sheetsApiUrl) rsvpMsg.textContent += " (mod demo)";
     rsvpForm.reset(); paxField.classList.remove("show");
   } catch {
-    rsvpMsg.textContent = "Maaf, ada masalah sambungan. Cuba sekali lagi atau hubungi penganjur.";
+    rsvpMsg.textContent = "Maaf, ada masalah sambungan. Sila cuba sekali lagi atau hubungi penganjur.";
   }
   btn.disabled = false;
 });
@@ -776,7 +822,7 @@ let allUcapan = [];
 const WALL_MAX = 12;
 function noteHTML(u){
   return `<button class="note" type="button" data-nama="${esc(u.nama)}" data-mesej="${esc(u.mesej)}">
-    <p>${esc(u.mesej)}</p><h4>${esc(u.nama)}</h4><small>ketik untuk baca</small></button>`;
+    <p>${esc(u.mesej)}</p><h4>${esc(u.nama)}</h4><small>sentuh untuk baca</small></button>`;
 }
 function paintWall(){
   const b = $("#btnSemua");
@@ -847,18 +893,18 @@ wishForm.addEventListener("submit", async e => {
   e.preventDefault();
   if (wishForm.website.value) return;
   const nama = wishForm.nama.value.trim(), mesej = wishForm.mesej.value.trim();
-  if (!nama || !mesej) { wishMsg.textContent = "Mohon isi nama & ucapan ya 🙂"; return; }
+  if (!nama || !mesej) { wishMsg.textContent = "Sila isikan nama dan ucapan anda 🙂"; return; }
   const btn = wishForm.querySelector("button"); btn.disabled = true;
-  wishMsg.textContent = "Menampal nota...";
+  wishMsg.textContent = "Nota sedang ditampal…";
   try {
     if (CONFIG.sheetsApiUrl) await postData({ type: "ucapan", nama, mesej });
     else await new Promise(r => setTimeout(r, 600));
     /* tampal terus ke dinding (optimistic) */
     allUcapan.unshift({ nama, mesej }); paintWall();
     wishMsg.textContent = "Terima kasih! Nota anda telah ditampal ♡" + (CONFIG.sheetsApiUrl ? "" : " (mod demo)");
-    wishForm.reset(); $("#wCount").textContent = "(maks 300 aksara)";
+    wishForm.reset(); $("#wCount").textContent = "(maksimum 300 aksara)";
   } catch {
-    wishMsg.textContent = "Maaf, ada masalah sambungan. Cuba sekali lagi.";
+    wishMsg.textContent = "Maaf, ada masalah sambungan. Sila cuba sekali lagi.";
   }
   btn.disabled = false;
 });
