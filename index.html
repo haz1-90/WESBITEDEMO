@@ -73,9 +73,9 @@ section{padding:64px 0;position:relative}
   background:linear-gradient(180deg,var(--sky-a),var(--sky-b) 60%,var(--ivory));overflow:hidden}
 .scene{position:absolute;inset:0;overflow:hidden}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
-  will-change:transform;scale:1.12;transform:translateY(calc(var(--sc,0)*-0.12px))}
-body.opened .hero-img{animation:kenburns 7s ease forwards}
-@keyframes kenburns{to{scale:1}}
+  will-change:transform;transform:scale(var(--img-scale,1.08)) translateY(calc(var(--sc,0)*-0.06px));transition:transform .05s linear}
+body.opened .hero-img{animation:kenburns 1.4s ease forwards}
+@keyframes kenburns{from{transform:scale(1.25) translateY(0)}to{transform:scale(1.08) translateY(0)}}
 .veil{position:absolute;left:0;right:0;bottom:0;height:46%;
   background:linear-gradient(180deg,rgba(250,247,240,0),rgba(250,247,240,.9) 58%,var(--ivory) 92%)}
 .hero-text{position:relative;z-index:5;text-align:center;padding:0 22px 9svh}
@@ -216,7 +216,7 @@ footer a{color:var(--gold);text-decoration:none}
 @media(min-width:560px){.notes{column-count:3}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .hero-img{transform:none!important;scale:1}
+  .hero-img{transform:none!important}
   .rv,.hero-enter{opacity:1!important;transform:none!important}
   html{scroll-behavior:auto}
 }
@@ -495,6 +495,9 @@ if (!reduceMotion) {
     requestAnimationFrame(() => {
       const y = Math.min(scrollY, innerHeight);
       hero.style.setProperty("--sc", y);
+      // zoom makin besar bila scroll turun (1.08 → 1.22)
+      const scale = 1.08 + (y / innerHeight) * 0.14;
+      hero.style.setProperty("--img-scale", scale.toFixed(4));
       tick = false;
     });
   }, { passive: true });
