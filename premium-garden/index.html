@@ -306,7 +306,10 @@ footer a{color:var(--gold);text-decoration:none}
 <!-- ============ 2. HERO — TAMAN KACA ============ -->
 <section id="hero">
   <!-- EDIT: tukar mood — hero-siang.webp / hero-senja.webp / hero-taman.webp -->
-  <img class="hero-img" src="hero-siang.webp" alt="" fetchpriority="high">
+  <video class="hero-img" id="heroVid" muted loop playsinline preload="metadata"
+       poster="hero-siang.webp"><source src="hero.mp4" type="video/mp4"></video>
+  <!-- PREMIUM: letak video AI (Gemini Veo) bernama hero.mp4 dalam folder ini.
+       Tiada hero.mp4? Poster hero-siang.webp dipapar — site tetap berfungsi. -->
   <div class="hero-veil"></div>
   <i class="petal" style="left:14%;animation-duration:11s"></i>
   <i class="petal" style="left:30%;animation-duration:14s;animation-delay:3s"></i>
@@ -620,7 +623,7 @@ const CONFIG = {
   // Lagu latar — MESTI fail berlesen (Pixabay Music percuma / AudioJungle).
   // Letak URL fail .mp3 (upload sekali dengan site di Netlify, cth: "lagu.mp3").
   // Kosongkan "" = butang muzik auto-sembunyi.
-  musicUrl: "lagu.mp3",
+  musicUrl: "lagu2.mp3",
 
   // URL Web App dari Google Apps Script (lihat PANDUAN-SETUP.md).
   // Kosongkan "" = mod demo (RSVP/ucapan tak disimpan, papar nota demo).
@@ -653,6 +656,7 @@ function bukaJemputan(){
   if (document.body.classList.contains("opened")) return;
   intro.classList.add("open");
   document.body.classList.add("opened");
+  const hv=document.getElementById("heroVid"); if(hv) hv.play().catch(()=>{});
   if (CONFIG.musicUrl) {
     bgm.src = CONFIG.musicUrl;
     musicBtn.style.display = "flex";
