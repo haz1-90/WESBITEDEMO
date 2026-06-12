@@ -3,731 +3,622 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RONA — Skincare Buatan Malaysia | Kulit Sihat, Rona Semula Jadi</title>
-<meta name="description" content="RONA: skincare bersih, halal & teruji dermatologi, direka untuk kulit dan iklim Malaysia. Beli serum, pelembap, pencuci muka & sunscreen. Order mudah via WhatsApp.">
-
 <!-- ============================================================
-     RONA — TEMPLATE DEMO KOSMETIK (Malaysia)  |  oleh KNM
-     Satu fail. Tiada backend. Boleh drag-drop ke Netlify terus.
-     ── YANG PERLU DITUKAR UNTUK CLIENT SEBENAR ──
-     1) WHATSAPP_NUMBER di bawah (format antarabangsa, tiada '+', tiada '0' depan)
-     2) Nama jenama "RONA", logo, warna (pemboleh ubah --wine dsb di :root)
-     3) Produk, harga, gambar (cari "ZON GAMBAR" — tukar div jadi <img>)
-     4) NAP footer (Nama, Alamat, Telefon) + jam operasi
-     5) Link sosial / Instagram
-     Borang: default buka WhatsApp (selalu jalan, tiada backend).
-     Untuk simpan lead ke email -> guna versi Netlify Forms yang dikomen
-     di bahagian borang. Jangan hardcode sebarang API key.
+     KNM WEB STUDIO — FLAGSHIP TEMPLATE: "TAMAN KACA"
+     Wedding E-Invite Premium (Animated Illustrated Scene)
+     Cara tukar maklumat majlis: cari tanda  EDIT:  dalam fail ini
+     Setting teknikal (tarikh, WhatsApp, lagu, backend): cari CONFIG
      ============================================================ -->
-
+<title>Adam &amp; Aisyah — Walimatul Urus | 21 November 2026</title>
+<meta name="description" content="Dengan penuh kesyukuran, kami menjemput anda ke majlis perkahwinan Adam Mukhriz & Nur Aisyah pada 21 November 2026 di Glasshouse Seputeh, Kuala Lumpur.">
+<meta property="og:title" content="Jemputan Walimatul Urus — Adam & Aisyah">
+<meta property="og:description" content="Sabtu, 21 November 2026 · Glasshouse Seputeh, Kuala Lumpur. Ketik untuk buka jemputan.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Ephesis&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ===== TOKEN SISTEM ===== */
 :root{
-  --porcelain:#FAF5F0;     /* latar utama, warm off-white */
-  --porcelain-2:#F4EAE2;   /* latar seksyen selang-seli */
-  --blush:#F1DED5;         /* permukaan kad */
-  --petal:#E7C7BD;         /* sempadan / aksen lembut */
-  --wine:#6E2A3E;          /* jenama + CTA (warna gincu) */
-  --wine-deep:#511E2D;     /* hover */
-  --ink:#2A1B20;           /* teks */
-  --ink-soft:#6B5A5E;      /* teks sekunder */
-  --champagne:#B68A4E;     /* aksen emas, guna berhemat */
-  --line:#E3D2C9;
-  --r:18px;                /* radius */
-  --r-lg:28px;
-  --shadow:0 18px 50px -24px rgba(82,30,45,.45);
-  --shadow-sm:0 8px 24px -16px rgba(82,30,45,.4);
-  --maxw:1180px;
+  --ivory:#FAF7F0; --paper:#FFFDF8; --ink:#2F3429; --ink-soft:#5C6152;
+  --sage:#8A9B7E; --sage-deep:#555F47; --peach:#E0A983; --blush:#F2DCD0;
+  --gold:#B98A4E; --frame:#2C2C28; --sky-a:#DCE8E6; --sky-b:#F4EFE2;
+  --script:'Ephesis',cursive; --serif:'Cormorant Garamond',serif; --body:'Jost',sans-serif;
+  --shadow:0 14px 40px rgba(47,52,41,.10);
 }
-
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Manrope',system-ui,sans-serif;
-  color:var(--ink);
-  background:var(--porcelain);
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
+body{font-family:var(--body);font-weight:300;background:var(--ivory);color:var(--ink);
+  line-height:1.7;letter-spacing:.02em;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+h1,h2,h3{font-weight:500}
 
-h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+/* ---------- shared section bits ---------- */
+.wrap{max-width:560px;margin:0 auto;padding:0 22px}
+section{padding:64px 0;position:relative}
+.eyebrow{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  text-align:center;margin-bottom:10px}
+.sec-title{font-family:var(--serif);font-size:2rem;text-align:center;color:var(--ink);margin-bottom:6px}
+.sec-title em{font-family:var(--script);font-size:2.6rem;font-style:normal;color:var(--sage-deep);line-height:1}
+.flourish{width:120px;height:14px;margin:14px auto 26px;color:var(--sage)}
+.card{background:var(--paper);border:1px solid rgba(85,95,71,.14);border-radius:18px;
+  padding:34px 26px;box-shadow:var(--shadow)}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.section{padding:96px 0;scroll-margin-top:80px}
-.eyebrow{
-  font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--wine);display:inline-flex;align-items:center;gap:10px;
-}
-.eyebrow::before{content:"";width:26px;height:1px;background:var(--champagne)}
-.lead{color:var(--ink-soft);font-size:1.05rem;max-width:54ch}
+/* ---------- scroll reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:none}
 
-/* ===== BUTANG ===== */
-.btn{
-  display:inline-flex;align-items:center;gap:9px;
-  font-weight:600;font-size:.96rem;padding:14px 26px;border-radius:999px;
-  cursor:pointer;border:1.5px solid transparent;transition:.25s ease;white-space:nowrap;
-}
-.btn-primary{background:var(--wine);color:#fff}
-.btn-primary:hover{background:var(--wine-deep);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.btn-ghost{background:transparent;color:var(--wine);border-color:var(--petal)}
-.btn-ghost:hover{border-color:var(--wine);background:#fff}
-.btn svg{width:18px;height:18px}
-:focus-visible{outline:3px solid var(--champagne);outline-offset:3px;border-radius:6px}
+/* ---------- 1. INTRO ENVELOPE ---------- */
+#intro{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(170deg,var(--sky-b),var(--ivory) 55%,var(--blush));
+  transition:opacity 1s ease,visibility 1s;cursor:pointer;text-align:center;padding:24px}
+#intro.open{opacity:0;visibility:hidden;pointer-events:none}
+.intro-card{background:var(--paper);border:1px solid rgba(185,138,78,.35);border-radius:6px;
+  padding:54px 34px 44px;max-width:340px;width:100%;box-shadow:0 24px 60px rgba(47,52,41,.16);position:relative}
+.intro-card::before{content:"";position:absolute;inset:9px;border:1px solid rgba(185,138,78,.3);border-radius:3px}
+.seal{width:78px;height:78px;margin:0 auto 18px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,#cfa169,var(--gold) 58%,#8f6a39);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(143,106,57,.45);
+  font-family:var(--serif);font-size:1.35rem;color:#FFF7E8;letter-spacing:.05em;
+  animation:sealpulse 2.6s ease-in-out infinite}
+@keyframes sealpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.intro-names{font-family:var(--script);font-size:2.5rem;color:var(--sage-deep);line-height:1.15;margin:8px 0 4px}
+.intro-sub{font-family:var(--serif);font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.intro-hint{margin-top:26px;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.intro-hint::after{content:"";display:block;width:1px;height:26px;background:var(--gold);margin:10px auto 0;
+  animation:drip 1.6s ease-in-out infinite}
+@keyframes drip{0%,100%{transform:scaleY(.3);opacity:.3}50%{transform:scaleY(1);opacity:1}}
 
-/* ===== ANNOUNCEMENT ===== */
-.topbar{
-  background:var(--wine);color:#fff;text-align:center;
-  font-size:.82rem;letter-spacing:.03em;padding:9px 16px;font-weight:500;
-}
-.topbar b{color:#F1DED5}
+/* ---------- 2. HERO — GLASSHOUSE SCENE ---------- */
+#hero{min-height:100svh;padding:0;display:flex;flex-direction:column;justify-content:flex-end;
+  background:linear-gradient(180deg,var(--sky-a),var(--sky-b) 60%,var(--ivory));overflow:hidden}
+.scene{position:absolute;inset:0;overflow:hidden}
+.hero-img{position:absolute;inset:-6% 0 0 0;width:100%;height:106%;object-fit:cover;object-position:center 22%;
+  will-change:transform;scale:1.12;transform:translateY(calc(var(--sc,0)*-0.12px))}
+body.opened .hero-img{animation:kenburns 7s ease forwards}
+@keyframes kenburns{to{scale:1}}
+.veil{position:absolute;left:0;right:0;bottom:0;height:46%;
+  background:linear-gradient(180deg,rgba(250,247,240,0),rgba(250,247,240,.9) 58%,var(--ivory) 92%)}
+.hero-text{position:relative;z-index:5;text-align:center;padding:0 22px 9svh}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--sage-deep)}
+.hero-names{font-family:var(--script);font-size:clamp(3.2rem,13vw,5rem);color:var(--ink);line-height:1.05;margin:10px 0 6px}
+.hero-amp{font-size:.55em;color:var(--gold)}
+.hero-date{font-family:var(--serif);font-size:1.05rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
+.hero-enter{opacity:0;transform:translateY(24px)}
+body.opened .hero-enter{animation:rise 1.1s ease forwards}
+body.opened .he-1{animation-delay:.15s}body.opened .he-2{animation-delay:.35s}
+body.opened .he-3{animation-delay:.55s}body.opened .he-4{animation-delay:.75s}
+@keyframes rise{to{opacity:1;transform:none}}
+.scroll-cue{position:relative;z-index:5;margin:0 auto;padding-bottom:22px;width:max-content;
+  font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--sage-deep);text-align:center}
+.scroll-cue span{display:block;width:1px;height:30px;background:var(--sage-deep);margin:8px auto 0;
+  animation:drip 1.8s ease-in-out infinite}
 
-/* ===== NAV ===== */
-.nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(250,245,240,.82);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;letter-spacing:.02em;color:var(--ink)}
-.logo span{color:var(--wine)}
-.nav-links{display:flex;gap:34px;align-items:center}
-.nav-links a{font-size:.93rem;font-weight:500;color:var(--ink-soft);transition:.2s}
-.nav-links a:hover{color:var(--wine)}
-.nav-cta{display:flex;align-items:center;gap:14px}
-.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
-.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s;border-radius:2px}
+/* petals */
+.petal{position:absolute;top:-4%;width:14px;height:11px;border-radius:80% 10% 80% 10%;
+  background:linear-gradient(135deg,var(--blush),var(--peach));opacity:.85;z-index:4;
+  animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translate3d(0,-4vh,0) rotate(0deg)}
+  25%{transform:translate3d(3.5vw,26vh,0) rotate(140deg)}
+  50%{transform:translate3d(-2.5vw,52vh,0) rotate(260deg)}
+  75%{transform:translate3d(3vw,78vh,0) rotate(380deg)}
+  100%{transform:translate3d(-1.5vw,108vh,0) rotate(520deg)}}
 
-/* ===== HERO ===== */
-.hero{position:relative;overflow:hidden;padding:88px 0 96px}
-.bloom{
-  position:absolute;z-index:0;width:760px;height:760px;border-radius:50%;
-  right:-160px;top:-120px;pointer-events:none;filter:blur(8px);opacity:.85;
-  background:radial-gradient(circle at 50% 50%,
-     rgba(231,199,189,.95) 0%, rgba(182,138,78,.4) 38%, rgba(110,42,62,.18) 60%, transparent 72%);
-  animation:breathe 9s ease-in-out infinite;
-}
-.bloom-2{
-  position:absolute;z-index:0;width:420px;height:420px;border-radius:50%;
-  left:-140px;bottom:-160px;filter:blur(14px);opacity:.7;pointer-events:none;
-  background:radial-gradient(circle,rgba(241,222,213,.9),transparent 70%);
-}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin:20px 0 18px}
-.hero h1 em{font-style:italic;color:var(--wine);font-weight:500}
-.hero .lead{margin-bottom:30px;font-size:1.12rem}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
-.trust{display:flex;flex-wrap:wrap;gap:10px 22px}
-.trust .chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
-.trust .chip svg{width:17px;height:17px;color:var(--wine)}
+/* ---------- 3. JEMPUTAN ---------- */
+.bismillah{font-family:var(--serif);font-size:1.7rem;text-align:center;color:var(--sage-deep);
+  letter-spacing:.04em;margin-bottom:18px}
+.invite-body{text-align:center;font-size:.98rem;color:var(--ink-soft)}
+.invite-body strong{font-family:var(--serif);font-weight:600;font-size:1.12rem;color:var(--ink);
+  letter-spacing:.06em;display:block;margin:14px 0 4px}
+.couple-full{font-family:var(--script);font-size:2.3rem;color:var(--sage-deep);line-height:1.25;margin:18px 0}
 
-/* Visual hero (SVG botol di atas kad glow) — ZON GAMBAR boleh ganti */
-.hero-visual{position:relative;display:flex;justify-content:center}
-.glasscard{
-  width:100%;max-width:420px;aspect-ratio:4/5;border-radius:var(--r-lg);
-  background:linear-gradient(155deg,#fff 0%,var(--blush) 55%,var(--petal) 100%);
-  box-shadow:var(--shadow);position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(255,255,255,.6);
-}
-.glasscard::after{content:"";position:absolute;inset:0;background:
-  radial-gradient(circle at 30% 20%,rgba(255,255,255,.7),transparent 45%);}
-.badge-float{
-  position:absolute;z-index:2;background:#fff;border-radius:14px;padding:10px 15px;
-  box-shadow:var(--shadow-sm);font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:8px;
-}
-.badge-float .star{color:var(--champagne)}
-.badge-tl{top:22px;left:-10px}
-.badge-br{bottom:26px;right:-8px;color:var(--wine)}
+/* ---------- 4. DETAIL & ATUR CARA ---------- */
+.detail-grid{display:grid;gap:14px;margin-top:8px}
+.detail-item{display:flex;gap:16px;align-items:flex-start;background:var(--paper);
+  border:1px solid rgba(85,95,71,.12);border-radius:14px;padding:18px 20px}
+.detail-item svg{flex:0 0 26px;color:var(--gold);margin-top:3px}
+.detail-item h3{font-family:var(--serif);font-size:1.06rem;letter-spacing:.08em}
+.detail-item p{font-size:.9rem;color:var(--ink-soft)}
+.aturcara{margin-top:34px}
+.tl{list-style:none;margin-top:18px;border-left:1px solid rgba(185,138,78,.45);padding-left:24px}
+.tl li{position:relative;padding-bottom:20px}
+.tl li::before{content:"";position:absolute;left:-28.5px;top:7px;width:9px;height:9px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 4px var(--ivory)}
+.tl time{font-family:var(--serif);font-weight:600;font-size:1rem;letter-spacing:.08em;color:var(--sage-deep);display:block}
+.tl span{font-size:.9rem;color:var(--ink-soft)}
 
-/* ===== MARQUEE ===== */
-.marquee{background:var(--ink);color:var(--porcelain);overflow:hidden;padding:15px 0}
-.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 22s linear infinite;font-family:'Fraunces',serif;font-size:1.05rem;letter-spacing:.06em}
-.marquee-track span{opacity:.9}
-.marquee-track .dot{color:var(--champagne)}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ---------- 5. COUNTDOWN ---------- */
+#countdown{background:linear-gradient(180deg,var(--ivory),var(--blush) 140%)}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:6px auto 0}
+.cd-cell{background:var(--paper);border:1px solid rgba(185,138,78,.3);border-radius:14px;
+  padding:16px 4px;text-align:center;box-shadow:var(--shadow)}
+.cd-num{font-family:var(--serif);font-size:1.9rem;font-weight:600;color:var(--sage-deep);line-height:1}
+.cd-lab{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:6px}
 
-/* ===== SECTION HEAD ===== */
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:46px;flex-wrap:wrap}
-.sec-head h2{font-size:clamp(2rem,4vw,3rem)}
-.sec-head p{margin-top:12px}
+/* ---------- 6. LOKASI ---------- */
+.map-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:14px 18px;border-radius:999px;
+  font-family:var(--body);font-weight:400;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.btn:active{transform:scale(.97)}
+.btn-solid{background:var(--sage-deep);color:var(--ivory);box-shadow:0 10px 24px rgba(85,95,71,.32)}
+.btn-line{background:transparent;color:var(--sage-deep);border:1px solid var(--sage-deep)}
 
-/* ===== PRODUK ===== */
-.alt{background:var(--porcelain-2)}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.pcard{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:.3s ease;display:flex;flex-direction:column}
-.pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-/* ZON GAMBAR PRODUK — ganti .pimg dengan <img alt="..."> */
-.pimg{aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center}
-.pimg.g1{background:linear-gradient(160deg,#F7E9E2,#E7C7BD)}
-.pimg.g2{background:linear-gradient(160deg,#EFE6DC,#D9C7B6)}
-.pimg.g3{background:linear-gradient(160deg,#F3E2DB,#E9C9C0)}
-.pimg.g4{background:linear-gradient(160deg,#EDE3DA,#DBCBC0)}
-.tag{position:absolute;top:12px;left:12px;background:var(--wine);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:999px;text-transform:uppercase}
-.pbody{padding:20px;display:flex;flex-direction:column;gap:7px;flex:1}
-.pcat{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);font-weight:700}
-.pcard h3{font-size:1.2rem;font-weight:600}
-.pdesc{font-size:.88rem;color:var(--ink-soft);flex:1}
-.prow{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
-.price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--wine)}
-.rating{font-size:.82rem;color:var(--ink-soft);display:flex;align-items:center;gap:4px}
-.rating .star{color:var(--champagne)}
-.pcard .btn{margin:0 20px 20px;justify-content:center}
-.btn-wa{background:var(--porcelain-2);color:var(--wine);border:1.5px solid var(--petal);font-size:.86rem;padding:11px}
-.pcard:hover .btn-wa{background:var(--wine);color:#fff;border-color:var(--wine)}
+/* ---------- 7. RSVP ---------- */
+label{display:block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sage-deep);margin:18px 0 8px}
+input[type=text],textarea,select{width:100%;background:var(--ivory);border:1px solid rgba(85,95,71,.25);
+  border-radius:12px;padding:13px 16px;font-family:var(--body);font-weight:300;font-size:.95rem;color:var(--ink)}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--sage);outline-offset:1px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:13px 8px;border:1px solid rgba(85,95,71,.3);border-radius:12px;
+  font-size:.88rem;cursor:pointer;transition:all .25s ease;color:var(--ink-soft)}
+.seg input:checked+span{background:var(--sage-deep);border-color:var(--sage-deep);color:var(--ivory)}
+.seg input:focus-visible+span{outline:2px solid var(--gold)}
+#paxField{max-height:0;overflow:hidden;transition:max-height .45s ease}
+#paxField.show{max-height:140px}
+.pdpa{font-size:.72rem;color:var(--ink-soft);margin-top:16px;opacity:.85}
+.form-msg{margin-top:16px;font-size:.9rem;text-align:center;color:var(--sage-deep);min-height:1.4em}
+.hp{position:absolute;left:-5000px;opacity:0}
 
-/* ===== KENAPA RONA ===== */
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.pillar{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:34px 28px;text-align:left}
-.picon{width:54px;height:54px;border-radius:14px;background:var(--blush);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--wine)}
-.picon svg{width:26px;height:26px}
-.pillar h3{font-size:1.3rem;margin-bottom:10px}
-.pillar p{font-size:.95rem;color:var(--ink-soft)}
+/* ---------- 8. DEWAN UCAPAN ---------- */
+#ucapan{background:
+  linear-gradient(rgba(250,247,240,.92),rgba(250,247,240,.92)),
+  repeating-linear-gradient(45deg,transparent 0 34px,rgba(138,155,126,.18) 34px 35px),
+  repeating-linear-gradient(-45deg,transparent 0 34px,rgba(138,155,126,.18) 34px 35px)}
+.notes{column-count:2;column-gap:14px;margin-top:10px}
+.note{break-inside:avoid;background:var(--paper);border-radius:4px;padding:26px 16px 16px;margin-bottom:14px;
+  box-shadow:0 8px 20px rgba(47,52,41,.12);position:relative;cursor:pointer;border:none;width:100%;
+  text-align:left;font-family:var(--body);transition:transform .3s ease}
+.note:hover{transform:translateY(-3px) rotate(0deg)!important}
+.note:nth-child(odd){transform:rotate(-1.6deg)}
+.note:nth-child(even){transform:rotate(1.4deg)}
+.note::before{content:"";position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:64px;height:18px;background:rgba(224,169,131,.55);border-radius:2px}
+.note:nth-child(3n)::before{background:rgba(138,155,126,.5)}
+.note:nth-child(3n+1)::before{background:rgba(185,138,78,.4)}
+.note p{font-size:.86rem;color:var(--ink-soft);font-weight:300;display:-webkit-box;
+  -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.note h4{font-family:var(--script);font-size:1.35rem;font-weight:400;color:var(--sage-deep);margin-top:10px}
+.note small{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.notes-empty{text-align:center;font-size:.9rem;color:var(--ink-soft);padding:24px 0}
+/* modal baca penuh */
+#noteModal{position:fixed;inset:0;z-index:70;background:rgba(47,52,41,.45);backdrop-filter:blur(3px);
+  display:none;align-items:center;justify-content:center;padding:24px}
+#noteModal.show{display:flex}
+.modal-card{background:var(--paper);border-radius:6px;max-width:420px;width:100%;padding:44px 28px 30px;
+  position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);max-height:80svh;overflow:auto}
+.modal-card::before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:84px;height:22px;background:rgba(224,169,131,.6);border-radius:2px}
+.modal-card p{font-family:var(--serif);font-size:1.12rem;line-height:1.8;color:var(--ink)}
+.modal-card h4{font-family:var(--script);font-size:1.7rem;color:var(--sage-deep);margin-top:18px;font-weight:400}
+.modal-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.5rem;
+  color:var(--ink-soft);cursor:pointer;line-height:1;padding:6px}
 
-/* ===== HASIL ===== */
-.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.result{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
-.ba{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
-/* ZON GAMBAR HASIL — ganti dengan gambar sebenar (dengan kebenaran pelanggan) */
-.ba div{aspect-ratio:1/1;position:relative;display:flex;align-items:flex-end;padding:12px}
-.ba .before{background:linear-gradient(160deg,#E9DAD0,#CDBBAE)}
-.ba .after{background:linear-gradient(160deg,#F6E7DF,#E8C6BB)}
-.ba label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(42,27,32,.78);color:#fff;padding:4px 9px;border-radius:6px}
-.result-body{padding:22px 24px}
-.result-body h3{font-size:1.25rem;margin-bottom:6px}
-.result-body p{font-size:.92rem;color:var(--ink-soft)}
-.disclaimer{font-size:.8rem;color:var(--ink-soft);margin-top:22px;font-style:italic;opacity:.9}
+/* ---------- 9. MUSIC + CONTACT + FOOTER ---------- */
+#musicBtn{position:fixed;right:18px;bottom:18px;z-index:50;width:52px;height:52px;border-radius:50%;
+  background:var(--paper);border:1px solid rgba(185,138,78,.45);box-shadow:var(--shadow);cursor:pointer;
+  display:none;align-items:center;justify-content:center;color:var(--gold)}
+#musicBtn.on svg{animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.contact-grid{display:grid;gap:12px;margin-top:8px}
+.contact-card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);
+  border:1px solid rgba(85,95,71,.12);border-radius:14px;padding:16px 18px}
+.contact-card div h3{font-family:var(--serif);font-size:1.02rem}
+.contact-card div p{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.contact-card .acts{display:flex;gap:8px}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--ivory);border:1px solid rgba(85,95,71,.25);color:var(--sage-deep);text-decoration:none}
+footer{text-align:center;padding:40px 22px 56px;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft)}
+footer a{color:var(--gold);text-decoration:none}
 
-/* ===== REVIEW ===== */
-.rev-top{text-align:center;margin-bottom:46px}
-.rev-top .big{font-family:'Fraunces',serif;font-size:3rem;color:var(--wine);line-height:1}
-.rev-top .stars{color:var(--champagne);font-size:1.3rem;letter-spacing:3px;margin:6px 0}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.review{background:var(--porcelain);border:1px solid var(--line);border-radius:var(--r);padding:28px}
-.review .stars{color:var(--champagne);letter-spacing:2px;margin-bottom:14px}
-.review p{font-size:.96rem;margin-bottom:18px}
-.who{display:flex;align-items:center;gap:12px}
-.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--petal),var(--wine));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem}
-.who b{font-size:.92rem}
-.who small{display:block;color:var(--ink-soft);font-size:.8rem}
-
-/* ===== INSTAGRAM ===== */
-.ig-head{text-align:center;margin-bottom:38px}
-.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-/* ZON GAMBAR IG — ganti tile dengan gambar feed sebenar */
-.ig-tile{aspect-ratio:1/1;border-radius:14px;position:relative;overflow:hidden;cursor:pointer;transition:.3s}
-.ig-tile:hover{transform:scale(1.04)}
-.ig-tile::after{content:"";position:absolute;inset:0;background:rgba(110,42,62,0);transition:.3s}
-.ig-tile:hover::after{background:rgba(110,42,62,.22)}
-.ig1{background:linear-gradient(150deg,#F1DED5,#C98F9E)}
-.ig2{background:linear-gradient(150deg,#E7C7BD,#B68A4E)}
-.ig3{background:linear-gradient(150deg,#EFE6DC,#D9B7AA)}
-.ig4{background:linear-gradient(150deg,#F4E4DC,#6E2A3E)}
-.ig5{background:linear-gradient(150deg,#E9D6CC,#CBA98E)}
-.ig6{background:linear-gradient(150deg,#F1DDD4,#A85C6B)}
-
-/* ===== ORDER / ENQUIRY ===== */
-.contact{background:var(--ink);color:var(--porcelain)}
-.contact .eyebrow{color:var(--petal)}
-.contact .eyebrow::before{background:var(--champagne)}
-.c-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:start}
-.contact h2{font-size:clamp(2rem,4vw,3rem);color:#fff;margin:16px 0 16px}
-.c-left p{color:#D9C7C0;max-width:42ch;margin-bottom:28px}
-.c-info{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
-.c-info div{display:flex;gap:13px;align-items:flex-start;font-size:.95rem}
-.c-info svg{width:20px;height:20px;color:var(--champagne);flex:none;margin-top:2px}
-.pay{display:flex;gap:8px;flex-wrap:wrap}
-.pay span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 12px;font-size:.78rem;font-weight:600}
-.form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:32px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:7px;color:#E8D9D2}
-.field input,.field select,.field textarea{
-  width:100%;background:rgba(250,245,240,.96);border:1px solid transparent;border-radius:12px;
-  padding:13px 15px;font-family:inherit;font-size:.95rem;color:var(--ink);
-}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--champagne)}
-.field textarea{resize:vertical;min-height:96px}
-.consent{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:#CDBBB4;margin-bottom:20px}
-.consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--champagne)}
-.form .btn-primary{width:100%;justify-content:center;background:var(--champagne);color:var(--ink)}
-.form .btn-primary:hover{background:#caa05f}
-.form-note{font-size:.78rem;color:#B7A39C;text-align:center;margin-top:12px}
-
-/* ===== FOOTER ===== */
-.footer{background:var(--porcelain-2);padding:64px 0 28px;border-top:1px solid var(--line)}
-.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:46px}
-.footer .logo{margin-bottom:14px;display:inline-block}
-.f-about p{font-size:.92rem;color:var(--ink-soft);max-width:32ch}
-.f-social{display:flex;gap:12px;margin-top:18px}
-.f-social a{width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--wine);transition:.2s}
-.f-social a:hover{background:var(--wine);color:#fff}
-.f-social svg{width:18px;height:18px}
-.f-col h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
-.f-col a{display:block;font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;transition:.2s}
-.f-col a:hover{color:var(--wine)}
-.news input{width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:inherit;margin-bottom:10px;font-size:.9rem}
-.news input:focus{outline:none;border-color:var(--wine)}
-.news .btn{width:100%;justify-content:center;font-size:.88rem;padding:12px}
-.f-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-soft)}
-
-/* ===== WHATSAPP FLOAT ===== */
-.wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -8px rgba(37,211,102,.7);transition:.25s}
-.wa-float:hover{transform:scale(1.08)}
-.wa-float svg{width:30px;height:30px;color:#fff}
-
-/* ===== RESPONSIF ===== */
-@media(max-width:920px){
-  .hero-grid{grid-template-columns:1fr;gap:36px}
-  .hero-visual{order:-1}
-  .products{grid-template-columns:repeat(2,1fr)}
-  .pillars{grid-template-columns:1fr}
-  .results-grid,.reviews{grid-template-columns:1fr}
-  .ig-grid{grid-template-columns:repeat(3,1fr)}
-  .c-grid{grid-template-columns:1fr;gap:34px}
-  .f-grid{grid-template-columns:1fr 1fr;gap:30px}
-  .nav-links{
-    position:absolute;top:72px;left:0;right:0;background:var(--porcelain);
-    flex-direction:column;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line);
-    display:none;box-shadow:var(--shadow-sm);
-  }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:13px 0;border-bottom:1px solid var(--line);width:100%}
-  .burger{display:block}
-  .nav .btn-ghost{display:none}
-  .section{padding:68px 0}
-}
-@media(max-width:520px){
-  .products{grid-template-columns:1fr}
-  .f-grid{grid-template-columns:1fr}
-  .reviews,.ig-grid{grid-template-columns:1fr 1fr}
-  .hero-actions .btn{flex:1}
-}
+@media(min-width:560px){.notes{column-count:3}}
 @media (prefers-reduced-motion:reduce){
-  .bloom,.marquee-track{animation:none}
-  *{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .hero-img{transform:none!important;scale:1}
+  .rv,.hero-enter{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="topbar">✦ Penghantaran <b>PERCUMA</b> seluruh Malaysia untuk pembelian RM150+ &nbsp;•&nbsp; Halal &amp; Teruji Dermatologi &nbsp;•&nbsp; COD tersedia</div>
-
-<!-- NAV -->
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a href="#" class="logo">RO<span>NA</span></a>
-    <nav class="nav-links" id="navLinks">
-      <a href="#produk">Produk</a>
-      <a href="#kenapa">Kenapa RONA</a>
-      <a href="#hasil">Hasil</a>
-      <a href="#review">Ulasan</a>
-      <a href="#hubungi">Hubungi</a>
-    </nav>
-    <div class="nav-cta">
-      <a href="#produk" class="btn btn-ghost">Beli Sekarang</a>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="bloom"></div>
-  <div class="bloom-2"></div>
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">Skincare • Dibuat di Malaysia</span>
-      <h1>Kulit sihat,<br><em>rona</em> semula jadi.</h1>
-      <p class="lead">Formula ringkas, bersih dan halal — direka khas untuk kulit dan iklim lembap Malaysia. Tanpa janji kosong, hanya rutin yang kulit anda sayang.</p>
-      <div class="hero-actions">
-        <a href="#produk" class="btn btn-primary">Lihat Produk</a>
-        <a href="#hubungi" class="btn btn-ghost">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .5l-.3.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
-          Tanya di WhatsApp
-        </a>
-      </div>
-      <div class="trust">
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Halal Sah</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Cruelty-Free</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Teruji Dermatologi</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Buatan Malaysia</span>
-      </div>
-    </div>
-
-    <!-- ZON GAMBAR HERO: ganti seluruh .glasscard dengan <img src="hero.jpg" alt="Produk RONA"> -->
-    <div class="hero-visual">
-      <span class="badge-float badge-tl"><span class="star">★</span> 4.9/5 · 2,300+ ulasan</span>
-      <div class="glasscard">
-        <!-- SVG botol serum sebagai placeholder premium -->
-        <svg width="150" viewBox="0 0 120 200" fill="none" aria-hidden="true">
-          <rect x="46" y="6" width="28" height="22" rx="4" fill="#6E2A3E"/>
-          <rect x="50" y="26" width="20" height="12" fill="#B68A4E"/>
-          <rect x="30" y="38" width="60" height="150" rx="20" fill="#fff" opacity=".92"/>
-          <rect x="30" y="38" width="60" height="150" rx="20" fill="url(#gloss)"/>
-          <rect x="42" y="92" width="36" height="58" rx="8" fill="#6E2A3E" opacity=".12"/>
-          <text x="60" y="118" text-anchor="middle" font-family="Fraunces,serif" font-size="15" font-weight="600" fill="#6E2A3E">RONA</text>
-          <text x="60" y="135" text-anchor="middle" font-family="Manrope,sans-serif" font-size="7.5" letter-spacing="1" fill="#B68A4E">SERUM CERAH</text>
-          <defs><linearGradient id="gloss" x1="30" y1="38" x2="90" y2="188" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#fff" stop-opacity=".7"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
-          </linearGradient></defs>
-        </svg>
-      </div>
-      <span class="badge-float badge-br">✦ Hidrasi 72 jam</span>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>GLOW SEMULA JADI</span><span class="dot">✦</span><span>RAMUAN BERSIH</span><span class="dot">✦</span><span>HALAL &amp; SELAMAT</span><span class="dot">✦</span><span>UNTUK KULIT MALAYSIA</span><span class="dot">✦</span>
-    <span>GLOW SEMULA JADI</span><span class="dot">✦</span><span>RAMUAN BERSIH</span><span class="dot">✦</span><span>HALAL &amp; SELAMAT</span><span class="dot">✦</span><span>UNTUK KULIT MALAYSIA</span><span class="dot">✦</span>
+<!-- ============ 1. INTRO ENVELOPE ============ -->
+<div id="intro" role="button" tabindex="0" aria-label="Buka jemputan">
+  <div class="intro-card">
+    <div class="seal">A·A</div><!-- EDIT: monogram pasangan -->
+    <p class="intro-sub">Walimatul Urus</p>
+    <p class="intro-names">Adam &amp; Aisyah</p><!-- EDIT: nama pendek pasangan -->
+    <p class="intro-sub">21 · 11 · 2026</p><!-- EDIT: tarikh -->
+    <p class="intro-hint">Ketik untuk buka</p>
   </div>
 </div>
 
-<!-- PRODUK -->
-<section class="section alt" id="produk">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Produk Pilihan</span>
-        <h2>Rutin yang berkesan,<br>tanpa rumit.</h2>
-      </div>
-      <p class="lead">Empat asas untuk mula. Tekan butang untuk order terus melalui WhatsApp — pantas, peribadi, mudah.</p>
-    </div>
+<!-- ============ 2. HERO — TAMAN KACA ============ -->
+<section id="hero">
+  <div class="scene" aria-hidden="true">
+    <!-- EDIT: tukar mood hero — "hero-siang.webp" (siang) / "hero-senja.webp" (senja candlelight) / "hero-taman.webp" (close-up wreath) -->
+    <img class="hero-img" src="hero-siang.webp" alt="" fetchpriority="high">
+    <div class="veil"></div>
 
-    <div class="products">
-      <!-- PRODUK 1 -->
-      <article class="pcard">
-        <div class="pimg g1"><span class="tag">Terlaris</span>
-          <svg width="78" viewBox="0 0 80 130" aria-hidden="true"><rect x="30" y="4" width="20" height="16" rx="3" fill="#6E2A3E"/><rect x="18" y="22" width="44" height="104" rx="14" fill="#fff" opacity=".9"/><text x="40" y="74" text-anchor="middle" font-family="Fraunces,serif" font-size="11" fill="#6E2A3E">RONA</text></svg>
-        </div>
-        <div class="pbody">
-          <span class="pcat">Serum</span>
-          <h3>Serum Cerah Rona</h3>
-          <p class="pdesc">Vitamin C 10% + Niacinamide. Bantu cerahkan kulit kusam &amp; ratakan warna kulit.</p>
-          <div class="prow">
-            <span class="price">RM89</span>
-            <span class="rating"><span class="star">★</span> 4.9</span>
-          </div>
-        </div>
-        <button class="btn btn-wa order-btn" data-product="Serum Cerah Rona (RM89)">+ Order via WhatsApp</button>
-      </article>
+    <!-- petals -->
+    <i class="petal" style="left:14%;animation-duration:11s;animation-delay:0s"></i>
+    <i class="petal" style="left:30%;animation-duration:14s;animation-delay:3s;width:11px;height:9px"></i>
+    <i class="petal" style="left:50%;animation-duration:12s;animation-delay:6s"></i>
+    <i class="petal" style="left:66%;animation-duration:15s;animation-delay:1.5s;width:10px;height:8px"></i>
+    <i class="petal" style="left:82%;animation-duration:13s;animation-delay:4.5s"></i>
+  </div>
 
-      <!-- PRODUK 2 -->
-      <article class="pcard">
-        <div class="pimg g2">
-          <svg width="78" viewBox="0 0 90 120" aria-hidden="true"><rect x="18" y="10" width="54" height="100" rx="16" fill="#fff" opacity=".9"/><circle cx="45" cy="22" r="9" fill="#B68A4E"/><text x="45" y="70" text-anchor="middle" font-family="Fraunces,serif" font-size="11" fill="#6E2A3E">RONA</text></svg>
-        </div>
-        <div class="pbody">
-          <span class="pcat">Pelembap</span>
-          <h3>Pelembap Hidrasi 72H</h3>
-          <p class="pdesc">Hyaluronic Acid + Centella. Lembap sepanjang hari, ringan &amp; tak melekit.</p>
-          <div class="prow">
-            <span class="price">RM69</span>
-            <span class="rating"><span class="star">★</span> 4.8</span>
-          </div>
-        </div>
-        <button class="btn btn-wa order-btn" data-product="Pelembap Hidrasi 72H (RM69)">+ Order via WhatsApp</button>
-      </article>
+  <div class="hero-text">
+    <p class="hero-eyebrow hero-enter he-1">Walimatul Urus</p>
+    <h1 class="hero-names hero-enter he-2">Adam <span class="hero-amp">&amp;</span> Aisyah</h1><!-- EDIT: nama pendek -->
+    <p class="hero-date hero-enter he-3">Sabtu · 21 November 2026</p><!-- EDIT: hari & tarikh -->
+  </div>
+  <div class="scroll-cue hero-enter he-4">Skrol<span></span></div>
+</section>
 
-      <!-- PRODUK 3 -->
-      <article class="pcard">
-        <div class="pimg g3">
-          <svg width="70" viewBox="0 0 80 130" aria-hidden="true"><rect x="22" y="6" width="36" height="14" rx="3" fill="#B68A4E"/><rect x="16" y="22" width="48" height="104" rx="12" fill="#fff" opacity=".9"/><text x="40" y="74" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="#6E2A3E">RONA</text></svg>
-        </div>
-        <div class="pbody">
-          <span class="pcat">Pembersih</span>
-          <h3>Pencuci Muka Lembut</h3>
-          <p class="pdesc">pH seimbang, bebas sulfat. Bersihkan tanpa tegang atau kering.</p>
-          <div class="prow">
-            <span class="price">RM45</span>
-            <span class="rating"><span class="star">★</span> 4.9</span>
-          </div>
-        </div>
-        <button class="btn btn-wa order-btn" data-product="Pencuci Muka Lembut (RM45)">+ Order via WhatsApp</button>
-      </article>
-
-      <!-- PRODUK 4 -->
-      <article class="pcard">
-        <div class="pimg g4"><span class="tag">Baru</span>
-          <svg width="74" viewBox="0 0 80 120" aria-hidden="true"><rect x="18" y="8" width="44" height="102" rx="14" fill="#fff" opacity=".9"/><rect x="30" y="2" width="20" height="12" rx="3" fill="#6E2A3E"/><text x="40" y="66" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="#6E2A3E">SPF50</text></svg>
-        </div>
-        <div class="pbody">
-          <span class="pcat">Pelindung</span>
-          <h3>Sunscreen SPF50+ Ringan</h3>
-          <p class="pdesc">Perlindungan tinggi tanpa kesan putih (white cast). Sesuai harian.</p>
-          <div class="prow">
-            <span class="price">RM75</span>
-            <span class="rating"><span class="star">★</span> 5.0</span>
-          </div>
-        </div>
-        <button class="btn btn-wa order-btn" data-product="Sunscreen SPF50+ Ringan (RM75)">+ Order via WhatsApp</button>
-      </article>
+<!-- ============ 3. JEMPUTAN ============ -->
+<section id="jemputan">
+  <div class="wrap rv">
+    <p class="bismillah">Bismillāhir-Raḥmānir-Raḥīm</p>
+    <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/><circle cx="52" cy="7" r="1.5" fill="currentColor"/><circle cx="68" cy="7" r="1.5" fill="currentColor"/></svg>
+    <div class="invite-body">
+      <p>Dengan penuh kesyukuran ke hadrat Ilahi, kami</p>
+      <!-- EDIT: nama ibu bapa penganjur -->
+      <strong>Roslan bin Hamid<br>&amp; Salmah binti Yusof</strong>
+      <p>dengan segala hormatnya menjemput<br>Dato' / Datin / Tuan / Puan / Encik / Cik<br>sekeluarga ke majlis perkahwinan anakanda kami</p>
+      <!-- EDIT: nama penuh pasangan -->
+      <p class="couple-full">Adam Mukhriz bin Roslan<br><span style="font-size:.55em;color:var(--gold)">dengan pasangannya</span><br>Nur Aisyah binti Kamarul</p>
+      <p>Semoga kehadiran tuan/puan menyerikan lagi majlis dan mengeratkan silaturahim antara kita.</p>
     </div>
   </div>
 </section>
 
-<!-- KENAPA RONA -->
-<section class="section" id="kenapa">
+<!-- ============ 4. DETAIL & ATUR CARA ============ -->
+<section id="detail" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Kenapa RONA</span>
-        <h2>Dibuat dengan niat,<br>bukan sekadar trend.</h2>
+    <div class="rv">
+      <p class="eyebrow">Maklumat Majlis</p>
+      <h2 class="sec-title">Butiran <em>Majlis</em></h2>
+      <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/></svg>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-item rv">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+        <div><h3>Tarikh</h3><p>Sabtu, 21 November 2026<br>10 Jamadilakhir 1448H</p></div><!-- EDIT -->
+      </div>
+      <div class="detail-item rv">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><h3>Masa</h3><p>11:00 pagi — 4:00 petang</p></div><!-- EDIT -->
+      </div>
+      <div class="detail-item rv">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div><h3>Tempat</h3><p>The Glasshouse Seputeh,<br>Jalan Seputeh, 58000 Kuala Lumpur</p></div><!-- EDIT -->
       </div>
     </div>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-5Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Ramuan bersih &amp; jujur</h3>
-        <p>Tiada bahan keras yang tak perlu. Setiap formula dipilih kerana ia berkesan — kami senaraikan semuanya, telus.</p>
-      </div>
-      <div class="pillar">
-        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
-        <h3>Untuk kulit &amp; iklim kita</h3>
-        <p>Cuaca panas dan lembap Malaysia berbeza. Tekstur ringan kami direka supaya selesa dipakai sepanjang hari.</p>
-      </div>
-      <div class="pillar">
-        <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><path d="M12 3c-1.5 1.5-3.5 2-5.5 2C6 9 7 14 12 21c5-7 6-12 5.5-16-2 0-4-.5-5.5-2Z"/></svg></div>
-        <h3>Halal &amp; teruji dermatologi</h3>
-        <p>Disahkan halal dan diuji untuk keselamatan kulit sensitif. Ketenangan fikiran dalam setiap botol.</p>
+    <div class="aturcara rv">
+      <p class="eyebrow" style="text-align:left">Atur Cara</p>
+      <ul class="tl">
+        <li><time>11:00 AM</time><span>Ketibaan tetamu</span></li>
+        <li><time>12:30 PM</time><span>Ketibaan pengantin &amp; makan beradab</span></li>
+        <li><time>2:00 PM</time><span>Sesi bergambar bersama tetamu</span></li>
+        <li><time>4:00 PM</time><span>Majlis bersurai</span></li>
+      </ul><!-- EDIT: atur cara -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. COUNTDOWN ============ -->
+<section id="countdown">
+  <div class="wrap rv">
+    <p class="eyebrow">Menghitung Hari</p>
+    <h2 class="sec-title">Menuju <em>Hari Bahagia</em></h2>
+    <div class="cd-grid">
+      <div class="cd-cell"><div class="cd-num" id="cdD">—</div><div class="cd-lab">Hari</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdH">—</div><div class="cd-lab">Jam</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdM">—</div><div class="cd-lab">Minit</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdS">—</div><div class="cd-lab">Saat</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. LOKASI ============ -->
+<section id="lokasi" style="padding-top:0">
+  <div class="wrap rv">
+    <div class="card" style="text-align:center">
+      <p class="eyebrow">Lokasi</p>
+      <h2 class="sec-title" style="font-size:1.6rem">The Glasshouse Seputeh</h2><!-- EDIT -->
+      <p style="font-size:.92rem;color:var(--ink-soft)">Jalan Seputeh, 58000 Kuala Lumpur</p><!-- EDIT -->
+      <div class="map-actions">
+        <a class="btn btn-solid" id="lnkMaps" href="#" target="_blank" rel="noopener">Google Maps</a>
+        <a class="btn btn-line" id="lnkWaze" href="#" target="_blank" rel="noopener">Waze</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HASIL -->
-<section class="section alt" id="hasil">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Rona Sebenar</span>
-        <h2>Perjalanan kulit pelanggan kami.</h2>
-      </div>
-      <p class="lead">Hasil sebenar selepas konsisten dengan rutin RONA. Dikongsi dengan kebenaran pelanggan.</p>
-    </div>
-    <div class="results-grid">
-      <div class="result">
-        <!-- ZON GAMBAR HASIL: ganti .before / .after dengan <img> sebenar -->
-        <div class="ba"><div class="before"><label>Sebelum</label></div><div class="after"><label>4 Minggu</label></div></div>
-        <div class="result-body"><h3>Nadia, 28 — Kuala Lumpur</h3><p>"Kulit kusam saya nampak lebih cerah &amp; sekata. Serum jadi step kegemaran setiap malam."</p></div>
-      </div>
-      <div class="result">
-        <div class="ba"><div class="before"><label>Sebelum</label></div><div class="after"><label>6 Minggu</label></div></div>
-        <div class="result-body"><h3>Aisyah, 34 — Johor Bahru</h3><p>"Tekstur kulit lagi lembut dan terjaga. Sunscreen pun tak melekit walaupun pakai tudung sepanjang hari."</p></div>
-      </div>
-    </div>
-    <p class="disclaimer">*Keputusan individu mungkin berbeza. Skincare berfungsi paling baik dengan penggunaan konsisten dan rutin yang sesuai dengan jenis kulit anda.</p>
-  </div>
-</section>
-
-<!-- REVIEW -->
-<section class="section" id="review">
-  <div class="wrap">
-    <div class="rev-top">
-      <span class="eyebrow">Ulasan Pelanggan</span>
-      <div class="big">4.9 / 5</div>
-      <div class="stars">★★★★★</div>
-      <p class="lead" style="margin:0 auto;text-align:center">Daripada lebih 2,300 pelanggan ternilai di seluruh Malaysia.</p>
-    </div>
-    <div class="reviews">
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p>"Dah cuba macam-macam, tapi RONA paling sesuai dengan kulit sensitif saya. Tak breakout, kulit rasa sihat."</p>
-        <div class="who"><div class="avatar">N</div><div><b>Nurul H.</b><small>Shah Alam · Pembeli Disahkan</small></div></div>
-      </div>
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p>"Packaging cantik, produk berbaloi. Order via WhatsApp pun laju, admin reply terus. Repeat customer dah!"</p>
-        <div class="who"><div class="avatar">M</div><div><b>Mei Ling T.</b><small>Pulau Pinang · Pembeli Disahkan</small></div></div>
-      </div>
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p>"Suka sebab halal &amp; jujur dengan ingredient. Pelembap dia ringan, sesuai cuaca panas KL."</p>
-        <div class="who"><div class="avatar">F</div><div><b>Farah A.</b><small>Kuala Lumpur · Pembeli Disahkan</small></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INSTAGRAM -->
-<section class="section alt">
-  <div class="wrap">
-    <div class="ig-head">
-      <span class="eyebrow">Komuniti</span>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-top:8px">Ikuti @rona.beauty.my</h2>
-    </div>
-    <!-- ZON GAMBAR IG: ganti setiap .ig-tile dengan gambar feed sebenar / embed -->
-    <div class="ig-grid">
-      <a class="ig-tile ig1" href="#" aria-label="Instagram post"></a>
-      <a class="ig-tile ig2" href="#" aria-label="Instagram post"></a>
-      <a class="ig-tile ig3" href="#" aria-label="Instagram post"></a>
-      <a class="ig-tile ig4" href="#" aria-label="Instagram post"></a>
-      <a class="ig-tile ig5" href="#" aria-label="Instagram post"></a>
-      <a class="ig-tile ig6" href="#" aria-label="Instagram post"></a>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER / ENQUIRY -->
-<section class="section contact" id="hubungi">
-  <div class="wrap c-grid">
-    <div class="c-left">
-      <span class="eyebrow">Hubungi / Order</span>
-      <h2>Sedia untuk glow?</h2>
-      <p>Hantar pertanyaan atau order anda — kami balas dalam waktu bekerja. Tekan hantar dan ia terus ke WhatsApp kami.</p>
-      <div class="c-info">
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Z"/></svg> WhatsApp: +60 12-345 6789</div>
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> hello@rona.my</div>
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Isnin–Sabtu, 10:00 pagi – 7:00 petang</div>
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Petaling Jaya, Selangor, Malaysia</div>
-      </div>
-      <div class="pay">
-        <span>FPX / Online Banking</span><span>DuitNow QR</span><span>Touch 'n Go</span><span>COD</span>
-      </div>
-    </div>
-
-    <!-- BORANG: default = buka WhatsApp dengan butiran (sentiasa jalan, tiada backend).
-         Untuk simpan lead ke email guna Netlify Forms: buang onsubmit JS, tambah
-         method="POST" data-netlify="true" name="enquiry", dan satu input honeypot. -->
-    <form class="form" id="enquiryForm" novalidate>
-      <div class="field">
-        <label for="nama">Nama anda</label>
-        <input id="nama" name="nama" type="text" placeholder="cth: Siti Nurhaliza" required>
-      </div>
-      <div class="field">
-        <label for="fon">No. telefon (WhatsApp)</label>
-        <input id="fon" name="fon" type="tel" placeholder="cth: 012-345 6789" required>
-      </div>
-      <div class="field">
-        <label for="produk">Produk yang diminati</label>
-        <select id="produk" name="produk">
-          <option>Set Rutin Lengkap</option>
-          <option>Serum Cerah Rona (RM89)</option>
-          <option>Pelembap Hidrasi 72H (RM69)</option>
-          <option>Pencuci Muka Lembut (RM45)</option>
-          <option>Sunscreen SPF50+ Ringan (RM75)</option>
-          <option>Belum pasti — nak konsultasi</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="mesej">Mesej (pilihan)</label>
-        <textarea id="mesej" name="mesej" placeholder="Ceritakan jenis kulit atau soalan anda…"></textarea>
-      </div>
-      <label class="consent">
-        <input type="checkbox" id="consent" required>
-        <span>Saya bersetuju RONA menghubungi saya berkaitan pertanyaan ini. Maklumat anda dilindungi mengikut PDPA 2010.</span>
-      </label>
-      <button type="submit" class="btn btn-primary">Hantar via WhatsApp →</button>
-      <p class="form-note">Selamat &amp; pantas — borang ini membuka WhatsApp dengan butiran anda siap diisi.</p>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="f-grid">
-      <div class="f-about">
-        <a href="#" class="logo">RO<span>NA</span></a>
-        <p>Skincare bersih, halal &amp; teruji — direka untuk kulit dan iklim Malaysia. Kulit sihat, rona semula jadi.</p>
-        <div class="f-social">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.5 3.5 3.5 3.8v2.6c-1.3 0-2.5-.4-3.5-1v6.1A5.5 5.5 0 1 1 10 9.5v2.7a2.8 2.8 0 1 0 2 2.7V3h4Z"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-.8.2-1 1-1h2V3h-3c-2.2 0-3 1.3-3 3v3H9v3h2v8h3v-8h2.5l.5-3H14Z"/></svg></a>
-          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Z"/></svg></a>
+<!-- ============ 7. RSVP ============ -->
+<section id="rsvp" style="padding-top:0">
+  <div class="wrap rv">
+    <div class="card">
+      <p class="eyebrow">Maklum Kehadiran</p>
+      <h2 class="sec-title">Jawab <em>Jemputan</em></h2>
+      <p style="text-align:center;font-size:.88rem;color:var(--ink-soft)">Mohon sahkan kehadiran sebelum <strong>7 November 2026</strong>.</p><!-- EDIT: tarikh tutup RSVP -->
+      <form id="rsvpForm" novalidate>
+        <label for="rNama">Nama</label>
+        <input type="text" id="rNama" name="nama" maxlength="80" autocomplete="name" required placeholder="Nama anda / keluarga">
+        <label>Kehadiran</label>
+        <div class="seg" role="radiogroup" aria-label="Kehadiran">
+          <label style="margin:0"><input type="radio" name="hadir" value="Hadir" required><span>✓ Hadir</span></label>
+          <label style="margin:0"><input type="radio" name="hadir" value="Tidak Hadir"><span>Tidak Hadir</span></label>
         </div>
-      </div>
-      <div class="f-col">
-        <h4>Produk</h4>
-        <a href="#produk">Serum</a>
-        <a href="#produk">Pelembap</a>
-        <a href="#produk">Pembersih</a>
-        <a href="#produk">Pelindung Matahari</a>
-      </div>
-      <div class="f-col">
-        <h4>Syarikat</h4>
-        <a href="#kenapa">Kisah Kami</a>
-        <a href="#hasil">Hasil Pelanggan</a>
-        <a href="#review">Ulasan</a>
-        <a href="#hubungi">Hubungi</a>
-      </div>
-      <div class="f-col news">
-        <h4>Dapat 10% Diskaun</h4>
-        <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:14px">Sertai senarai untuk tips kulit &amp; tawaran awal.</p>
-        <input type="email" placeholder="Emel anda" aria-label="Emel">
-        <button class="btn btn-primary">Langgan</button>
-      </div>
-    </div>
-    <div class="f-bottom">
-      <span>© 2026 RONA Beauty (Demo). Hak cipta terpelihara.</span>
-      <span>Reka &amp; bina oleh KNM · Laman demo template</span>
+        <div id="paxField">
+          <label for="rPax">Bilangan yang hadir (termasuk anda)</label>
+          <select id="rPax" name="pax">
+            <option value="1">1 orang</option><option value="2" selected>2 orang</option>
+            <option value="3">3 orang</option><option value="4">4 orang</option>
+            <option value="5">5 orang</option><option value="6">6 orang</option>
+          </select>
+        </div>
+        <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-solid" type="submit" style="width:100%;margin-top:24px">Hantar RSVP</button>
+        <p class="form-msg" id="rsvpMsg" role="status"></p>
+        <p class="pdpa">Maklumat anda digunakan untuk urusan kehadiran majlis ini sahaja dan tidak dikongsi dengan pihak lain.</p>
+      </form>
     </div>
   </div>
+</section>
+
+<!-- ============ 8. DEWAN UCAPAN ============ -->
+<section id="ucapan">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Dewan Ucapan</p>
+      <h2 class="sec-title">Titipan <em>Doa &amp; Ucapan</em></h2>
+      <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/></svg>
+      <p style="text-align:center;font-size:.86rem;color:var(--ink-soft);margin-bottom:22px">Ketik mana-mana nota untuk baca ucapan penuh ♡</p>
+    </div>
+    <div class="notes rv" id="notesWall" aria-live="polite"></div>
+    <div class="card rv" style="margin-top:26px">
+      <form id="wishForm" novalidate>
+        <label for="wNama">Nama</label>
+        <input type="text" id="wNama" name="nama" maxlength="60" required placeholder="Nama anda">
+        <label for="wMesej">Ucapan <span style="text-transform:none;letter-spacing:0;opacity:.7" id="wCount">(maks 300 aksara)</span></label>
+        <textarea id="wMesej" name="mesej" rows="4" maxlength="300" required placeholder="Titipkan doa & ucapan untuk pengantin..."></textarea>
+        <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-solid" type="submit" style="width:100%;margin-top:22px">Tampal Nota Ucapan</button>
+        <p class="form-msg" id="wishMsg" role="status"></p>
+        <p class="pdpa">Nama dan ucapan anda akan dipaparkan secara terbuka di halaman ini.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- modal baca ucapan penuh -->
+<div id="noteModal" role="dialog" aria-modal="true" aria-label="Ucapan penuh">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">×</button>
+    <p id="modalMsg"></p>
+    <h4 id="modalNama"></h4>
+  </div>
+</div>
+
+<!-- ============ 9. CONTACT ============ -->
+<section id="hubungi" style="padding-top:0">
+  <div class="wrap rv">
+    <p class="eyebrow">Sebarang Pertanyaan</p>
+    <h2 class="sec-title">Hubungi <em>Kami</em></h2>
+    <svg class="flourish" viewBox="0 0 120 14" fill="none"><path d="M2 7 H46 M74 7 H118" stroke="currentColor"/><circle cx="60" cy="7" r="3.5" stroke="currentColor"/></svg>
+    <div class="contact-grid" id="contactGrid"></div>
+  </div>
+</section>
+
+<footer>
+  Jemputan digital dengan ♡ oleh <a href="https://wa.me/601161200054" target="_blank" rel="noopener">KNM Web Studio</a>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a href="#" class="wa-float" id="waFloat" aria-label="Chat WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .5l-.3.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
-</a>
+<button id="musicBtn" aria-label="Main / jeda muzik" aria-pressed="false">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/></svg>
+</button>
+<audio id="bgm" loop preload="none"></audio>
 
 <script>
-/* ====== TUKAR NOMBOR INI UNTUK CLIENT (format antarabangsa, tanpa + atau 0 depan) ====== */
-const WHATSAPP_NUMBER = "60123456789"; // cth Malaysia: 0123456789 -> 60123456789
+/* ==========================================================
+   CONFIG — satu-satunya tempat setting teknikal per client
+   ========================================================== */
+const CONFIG = {
+  // Tarikh & masa majlis bermula (untuk countdown). Format: YYYY-MM-DDTHH:MM:SS+08:00
+  tarikhMajlis: "2026-11-21T11:00:00+08:00",
 
-/* Menu mobile */
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
+  // Link lokasi (dapatkan dari butang Share dalam Google Maps & Waze)
+  mapsUrl: "https://maps.google.com/?q=The+Glasshouse+Seputeh+Kuala+Lumpur",
+  wazeUrl: "https://waze.com/ul?q=The%20Glasshouse%20Seputeh",
+
+  // Lagu latar — MESTI fail berlesen (Pixabay Music percuma / AudioJungle).
+  // Letak URL fail .mp3 (upload sekali dengan site di Netlify, cth: "lagu.mp3").
+  // Kosongkan "" = butang muzik auto-sembunyi.
+  musicUrl: "",
+
+  // URL Web App dari Google Apps Script (lihat PANDUAN-SETUP.md).
+  // Kosongkan "" = mod demo (RSVP/ucapan tak disimpan, papar nota demo).
+  sheetsApiUrl: "",
+
+  // Penganjur untuk seksyen Hubungi (nombor format antarabangsa tanpa +)
+  hubungi: [
+    { nama: "Roslan", peranan: "Bapa Pengantin Lelaki", tel: "60121234567" },
+    { nama: "Salmah", peranan: "Ibu Pengantin Lelaki",  tel: "60127654321" },
+    { nama: "Hafiz",  peranan: "Pengapit",              tel: "60139876543" }
+  ]
+};
+
+/* Nota demo — dipapar bila sheetsApiUrl kosong sahaja */
+const DEMO_UCAPAN = [
+  { nama: "Keluarga Pak Long", mesej: "Tahniah Adam & Aisyah! Semoga ikatan ini berkekalan hingga ke Jannah. Baarakallahu lakuma wa baaraka 'alaikuma wa jama'a bainakuma fii khair." },
+  { nama: "Geng Opis Adam", mesej: "Congrats bro! Akhirnya hari yang ditunggu tiba. Semoga bahagia selalu dan murah rezeki sekeluarga." },
+  { nama: "Aina & Zaki", mesej: "Sis Aisyah cantik sangat hari ni confirm! Semoga rumah tangga dipenuhi sakinah, mawaddah wa rahmah. Tak sabar nak datang!" },
+  { nama: "Cikgu Rahimah", mesej: "Dari anak murid sekolah rendah sampai naik pelamin... cikgu doakan yang terbaik untuk kalian berdua. Semoga menjadi pasangan dunia akhirat." }
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = t => { const d = document.createElement("div"); d.textContent = t; return d.innerHTML; };
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- intro buka jemputan ---------- */
+const intro = $("#intro"), bgm = $("#bgm"), musicBtn = $("#musicBtn");
+function bukaJemputan(){
+  if (document.body.classList.contains("opened")) return;
+  intro.classList.add("open");
+  document.body.classList.add("opened");
+  if (CONFIG.musicUrl) {
+    bgm.src = CONFIG.musicUrl;
+    musicBtn.style.display = "flex";
+    bgm.play().then(()=>{ musicBtn.classList.add("on"); musicBtn.setAttribute("aria-pressed","true"); }).catch(()=>{});
+  }
+}
+intro.addEventListener("click", bukaJemputan);
+intro.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") bukaJemputan(); });
+
+/* ---------- muzik tap-to-play (NO autoplay) ---------- */
+musicBtn.addEventListener("click", () => {
+  if (bgm.paused) { bgm.play(); musicBtn.classList.add("on"); musicBtn.setAttribute("aria-pressed","true"); }
+  else { bgm.pause(); musicBtn.classList.remove("on"); musicBtn.setAttribute("aria-pressed","false"); }
 });
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navLinks.classList.remove('open'); burger.setAttribute('aria-expanded', false);
-}));
 
-/* Helper buka WhatsApp */
-function openWA(message){
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+/* ---------- parallax hero (transform sahaja, rAF) ---------- */
+const hero = $("#hero");
+if (!reduceMotion) {
+  let tick = false;
+  addEventListener("scroll", () => {
+    if (tick) return; tick = true;
+    requestAnimationFrame(() => {
+      const y = Math.min(scrollY, innerHeight);
+      hero.style.setProperty("--sc", y);
+      tick = false;
+    });
+  }, { passive: true });
 }
 
-/* Butang float + nav WhatsApp */
-document.getElementById('waFloat').addEventListener('click', e => {
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+/* ---------- countdown ---------- */
+const target = new Date(CONFIG.tarikhMajlis).getTime();
+const pad = n => String(n).padStart(2,"0");
+function cdTick(){
+  const d = target - Date.now();
+  if (d <= 0) { ["cdD","cdH","cdM","cdS"].forEach(i => $("#"+i).textContent = "0"); 
+    $("#cdD").parentElement.parentElement.insertAdjacentHTML("afterend",""); return; }
+  $("#cdD").textContent = Math.floor(d/864e5);
+  $("#cdH").textContent = pad(Math.floor(d/36e5)%24);
+  $("#cdM").textContent = pad(Math.floor(d/6e4)%60);
+  $("#cdS").textContent = pad(Math.floor(d/1e3)%60);
+}
+cdTick(); setInterval(cdTick, 1000);
+
+/* ---------- lokasi & hubungi dari CONFIG ---------- */
+$("#lnkMaps").href = CONFIG.mapsUrl;
+$("#lnkWaze").href = CONFIG.wazeUrl;
+$("#contactGrid").innerHTML = CONFIG.hubungi.map(h => `
+  <div class="contact-card">
+    <div><h3>${esc(h.nama)}</h3><p>${esc(h.peranan)}</p></div>
+    <div class="acts">
+      <a class="icon-btn" href="tel:+${esc(h.tel)}" aria-label="Telefon ${esc(h.nama)}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+      <a class="icon-btn" href="https://wa.me/${esc(h.tel)}" target="_blank" rel="noopener" aria-label="WhatsApp ${esc(h.nama)}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.5A9 9 0 1 1 21 12z"/><path d="M9 9.5c.5 2.5 3 5 5.5 5.5l1-1.5 2 1c-.5 1.5-1.5 2-3 1.5-3-.8-5.7-3.5-6.5-6.5-.4-1.5 0-2.5 1.5-3l1 2z" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>`).join("");
+
+/* ---------- RSVP ---------- */
+const rsvpForm = $("#rsvpForm"), rsvpMsg = $("#rsvpMsg"), paxField = $("#paxField");
+rsvpForm.addEventListener("change", () => {
+  const v = rsvpForm.hadir.value;
+  paxField.classList.toggle("show", v === "Hadir");
+});
+async function postData(payload){
+  const res = await fetch(CONFIG.sheetsApiUrl, { method: "POST", body: JSON.stringify(payload) });
+  return res.json();
+}
+rsvpForm.addEventListener("submit", async e => {
   e.preventDefault();
-  openWA("Hi RONA! Saya nak tanya tentang produk anda 😊");
+  if (rsvpForm.website.value) return; /* honeypot: bot diam-diam diabaikan */
+  const nama = rsvpForm.nama.value.trim(), hadir = rsvpForm.hadir.value;
+  if (!nama || !hadir) { rsvpMsg.textContent = "Mohon isi nama & pilih kehadiran ya 🙂"; return; }
+  const pax = hadir === "Hadir" ? rsvpForm.pax.value : "0";
+  const btn = rsvpForm.querySelector("button"); btn.disabled = true;
+  rsvpMsg.textContent = "Menghantar...";
+  try {
+    if (CONFIG.sheetsApiUrl) await postData({ type: "rsvp", nama, hadir, pax });
+    else await new Promise(r => setTimeout(r, 600)); /* mod demo */
+    rsvpMsg.textContent = hadir === "Hadir"
+      ? `Terima kasih ${nama}! Kehadiran ${pax} orang telah direkodkan. Jumpa di majlis nanti ♡`
+      : `Terima kasih ${nama} kerana memaklumkan. Semoga dapat bersua di lain kesempatan ♡`;
+    if (!CONFIG.sheetsApiUrl) rsvpMsg.textContent += " (mod demo)";
+    rsvpForm.reset(); paxField.classList.remove("show");
+  } catch {
+    rsvpMsg.textContent = "Maaf, ada masalah sambungan. Cuba sekali lagi atau hubungi penganjur.";
+  }
+  btn.disabled = false;
 });
 
-/* Order produk individu */
-document.querySelectorAll('.order-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    openWA(`Hi RONA! Saya berminat untuk order: ${btn.dataset.product}. Boleh bantu?`);
-  });
+/* ---------- Dewan Ucapan ---------- */
+const wall = $("#notesWall"), wishForm = $("#wishForm"), wishMsg = $("#wishMsg");
+const modal = $("#noteModal");
+function renderNotes(list){
+  if (!list.length) { wall.innerHTML = `<p class="notes-empty">Jadilah yang pertama menitipkan ucapan ♡</p>`; return; }
+  wall.innerHTML = list.map(u => `
+    <button class="note" type="button" data-nama="${esc(u.nama)}" data-mesej="${esc(u.mesej)}">
+      <p>${esc(u.mesej)}</p><h4>${esc(u.nama)}</h4><small>ketik untuk baca</small>
+    </button>`).join("");
+}
+wall.addEventListener("click", e => {
+  const n = e.target.closest(".note"); if (!n) return;
+  $("#modalMsg").textContent = n.dataset.mesej;
+  $("#modalNama").textContent = "— " + n.dataset.nama;
+  modal.classList.add("show");
 });
+$("#modalClose").addEventListener("click", () => modal.classList.remove("show"));
+modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("show"); });
+addEventListener("keydown", e => { if (e.key === "Escape") modal.classList.remove("show"); });
 
-/* Borang -> WhatsApp (sentiasa jalan, tiada backend perlu) */
-document.getElementById('enquiryForm').addEventListener('submit', e => {
+async function loadUcapan(){
+  if (!CONFIG.sheetsApiUrl) { renderNotes(DEMO_UCAPAN); return; }
+  try {
+    const res = await fetch(CONFIG.sheetsApiUrl + "?type=ucapan");
+    const data = await res.json();
+    renderNotes(data.ucapan || []);
+  } catch { renderNotes([]); }
+}
+loadUcapan();
+
+$("#wMesej").addEventListener("input", e => {
+  $("#wCount").textContent = `(${300 - e.target.value.length} aksara lagi)`;
+});
+wishForm.addEventListener("submit", async e => {
   e.preventDefault();
-  const nama = document.getElementById('nama').value.trim();
-  const fon = document.getElementById('fon').value.trim();
-  const produk = document.getElementById('produk').value;
-  const mesej = document.getElementById('mesej').value.trim();
-  const consent = document.getElementById('consent').checked;
-  if(!nama || !fon){ alert('Sila isi nama dan no. telefon.'); return; }
-  if(!consent){ alert('Sila tanda kotak persetujuan untuk teruskan.'); return; }
-  let msg = `Hi RONA! Saya nak buat pertanyaan:\n\n• Nama: ${nama}\n• Telefon: ${fon}\n• Produk: ${produk}`;
-  if(mesej) msg += `\n• Mesej: ${mesej}`;
-  openWA(msg);
+  if (wishForm.website.value) return;
+  const nama = wishForm.nama.value.trim(), mesej = wishForm.mesej.value.trim();
+  if (!nama || !mesej) { wishMsg.textContent = "Mohon isi nama & ucapan ya 🙂"; return; }
+  const btn = wishForm.querySelector("button"); btn.disabled = true;
+  wishMsg.textContent = "Menampal nota...";
+  try {
+    if (CONFIG.sheetsApiUrl) await postData({ type: "ucapan", nama, mesej });
+    else await new Promise(r => setTimeout(r, 600));
+    /* tampal terus ke dinding (optimistic) */
+    const cur = wall.querySelector(".notes-empty") ? [] :
+      [...wall.querySelectorAll(".note")].map(n => ({ nama: n.dataset.nama, mesej: n.dataset.mesej }));
+    renderNotes([{ nama, mesej }, ...cur]);
+    wishMsg.textContent = "Terima kasih! Nota anda telah ditampal ♡" + (CONFIG.sheetsApiUrl ? "" : " (mod demo)");
+    wishForm.reset(); $("#wCount").textContent = "(maks 300 aksara)";
+  } catch {
+    wishMsg.textContent = "Maaf, ada masalah sambungan. Cuba sekali lagi.";
+  }
+  btn.disabled = false;
 });
 </script>
 </body>
