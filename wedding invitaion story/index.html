@@ -289,27 +289,31 @@ footer a{color:var(--gold);text-decoration:none}
 .board-count{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold,#B08F52);margin-bottom:10px}
 .board-inner .notes{overflow:auto;flex:1;padding:4px 2px 8px}
 
-/* ===== SCROLL STORY (Kisah Kami) — scroll-driven horizontal journey ===== */
-#kisah{position:relative;background:var(--ink)}            /* height = N x 100vh via JS */
-.kisah-stage{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:500px;overflow:hidden;z-index:3;opacity:0;visibility:hidden;pointer-events:none}
-.kisah-stage.pin{opacity:1;visibility:visible}
-.krail{display:flex;height:100%;will-change:transform}     /* the ONLY thing that moves */
-.kscene{position:relative;flex:0 0 100%;height:100%;overflow:hidden;background:var(--ink)}
-.kimg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--ink)}
-.kveil{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,22,16,.84),rgba(26,22,16,.05) 48%,rgba(26,22,16,.32))}
-.kcap{position:absolute;left:0;right:0;bottom:15svh;text-align:center;padding:0 30px;z-index:2}
-.kk{font-family:var(--script);font-size:2.5rem;color:#FFF3DF;line-height:1;margin-bottom:8px;text-shadow:0 2px 22px rgba(0,0,0,.55)}
-.kt{font-family:var(--serif);font-size:1.06rem;color:#F4EADA;max-width:27ch;margin:0 auto;letter-spacing:.02em;text-shadow:0 1px 14px rgba(0,0,0,.55)}
-.kisah-hint{position:absolute;top:7svh;left:0;right:0;text-align:center;z-index:4;
-  font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,243,223,.7)}
-.kprogress{position:absolute;left:30px;right:30px;bottom:8svh;height:1px;z-index:4;background:rgba(255,243,223,.22)}
-.kprogress span{display:block;height:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;will-change:transform}
-#kisah.kisah--static{height:auto!important}
-.kisah--static .kisah-stage{position:relative;left:auto;transform:none;margin:0 auto;opacity:1;visibility:visible;height:auto}
-.kisah--static .krail{flex-direction:column}
-.kisah--static .kscene{flex:none;aspect-ratio:4/5}
-.kisah--static .kisah-hint,.kisah--static .kprogress{display:none}
+/* ===== KISAH — cinematic swipe (native snap + ken burns + caption fade) ===== */
+#kisah{position:relative;background:var(--ink)}
+.krail{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.krail::-webkit-scrollbar{display:none}
+.kscene{position:relative;flex:0 0 100%;scroll-snap-align:center;height:92svh;overflow:hidden;background:var(--ink)}
+.kimg{position:absolute;inset:-7%;background-size:cover;background-position:center;background-color:var(--ink);transform:scale(1.05)}
+.kscene.live .kimg{animation:kb 13s ease-out forwards}
+@keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.13) translateY(-1.6%)}}
+.kveil{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,22,16,.9),rgba(26,22,16,.04) 52%,rgba(26,22,16,.26))}
+.kcap{position:absolute;left:0;right:0;bottom:16svh;text-align:center;padding:0 34px;z-index:2;opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+.kscene.live .kcap{opacity:1;transform:none}
+.kt{font-family:var(--serif);font-size:1.14rem;line-height:1.75;color:#F6EEE0;max-width:25ch;margin:0 auto;letter-spacing:.012em;text-shadow:0 1px 18px rgba(0,0,0,.62)}
+.kui{position:absolute;inset:0;pointer-events:none;z-index:3}
+.kprog{position:absolute;left:34px;right:34px;bottom:9svh;height:1px;background:rgba(255,243,223,.2)}
+.kprog span{display:block;height:100%;width:16%;background:var(--gold);transition:width .45s cubic-bezier(.4,0,.2,1)}
+.khint{position:absolute;top:7svh;left:0;right:0;text-align:center;font-size:.56rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(255,243,223,.74);transition:opacity .6s}
+.khint.gone{opacity:0}
+.karrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(26,22,16,.4);border:1px solid rgba(255,243,223,.38);color:#FFF3DF;font-size:1.3rem;display:none;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto}
+.karrow.prev{left:12px}.karrow.next{right:12px}
+@media(min-width:760px){.karrow{display:flex}}
+#kisah.kisah--static .krail{flex-direction:column;overflow:visible}
+.kisah--static .kscene{flex:none;height:auto;aspect-ratio:4/5;scroll-snap-align:none}
+.kisah--static .kimg{animation:none;transform:none;inset:0}
+.kisah--static .kcap{opacity:1;transform:none}
+.kisah--static .kui{display:none}
 </style>
 </head>
 <body>
@@ -345,33 +349,21 @@ footer a{color:var(--gold);text-decoration:none}
   <div class="scroll-cue hero-enter he-4">Skrol<span></span></div>
 </section>
 
-<!-- ============ 2c. KISAH — SCROLL STORY (skrol bawah, kisah bergerak ke tepi) ============ -->
-<!-- GAMBAR: ganti url('...') dengan set gambar konsisten Gemini (lihat prompt-kisah-gemini.md).
-     Scene 1-4 guna gambar glasshouse SEMENTARA — ganti semua 6. Simpan sebagai .webp nama sama. -->
+<!-- ============ 2c. KISAH — swipe cinematic (geser tepi, no titles) ============ -->
 <section id="kisah" aria-label="Kisah pasangan">
-  <div class="kisah-stage" id="kisahStage">
-    <div class="krail" id="kisahRail">
-      <!-- SEMENTARA → scene-pertemuan.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-pertemuan.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Pertemuan</p><p class="kt">Bermula dengan sapaan yang sederhana, dua hati perlahan menemukan rasa.</p></div></div>
-      <!-- SEMENTARA → scene-pinangan.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-pinangan.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Pinangan</p><p class="kt">Datang membawa hajat dan harapan, sebuah pinangan disambut penuh restu.</p></div></div>
-      <!-- SEMENTARA → scene-persediaan.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-persediaan.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Persediaan</p><p class="kt">Setiap persiapan dititipkan doa, agar segala urusan dipermudahkan-Nya.</p></div></div>
-      <!-- SEMENTARA → scene-akad.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-akad.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Ijab &amp; Kabul</p><p class="kt">Dengan satu lafaz yang sah, dua jiwa disatukan atas nama-Nya.</p></div></div>
-      <!-- JANA → scene-walimah.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-walimah.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Walimah</p><p class="kt">Bersanding di singgahsana, berpegangan tangan, diraikan insan yang dikasihi.</p></div></div>
-      <!-- JANA → scene-doa.webp -->
-      <div class="kscene"><div class="kimg" style="background-image:url('scene-doa.webp')"></div><div class="kveil"></div>
-        <div class="kcap"><p class="kk">Doa</p><p class="kt">Moga kasih ini kekal hingga ke hujung usia, dan dipertemukan semula di syurga-Nya.</p></div></div>
-    </div>
-    <p class="kisah-hint">Skrol perlahan &mdash; kisah kami</p>
-    <div class="kprogress"><span></span></div>
+  <div class="krail" id="kisahRail">
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-pertemuan.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Bermula dengan sapaan yang sederhana, dua hati perlahan menemukan rasa.</p></div></div>
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-pinangan.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Datang membawa hajat dan harapan, sebuah pinangan disambut penuh restu.</p></div></div>
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-persediaan.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Setiap persiapan dititipkan doa, agar segala urusan dipermudahkan-Nya.</p></div></div>
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-akad.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Dengan satu lafaz yang sah, dua jiwa disatukan atas nama-Nya.</p></div></div>
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-walimah.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Bersanding di singgahsana, berpegangan tangan, diraikan insan yang dikasihi.</p></div></div>
+      <div class="kscene"><div class="kimg" style="background-image:url('scene-doa.webp')"></div><div class="kveil"></div><div class="kcap"><p class="kt">Moga kasih ini kekal hingga ke hujung usia, dan dipertemukan semula di syurga-Nya.</p></div></div>
+  </div>
+  <div class="kui">
+    <p class="khint" id="kHint">Geser &rarr;</p>
+    <button class="karrow prev" id="kPrev" aria-label="Sebelum">&#8249;</button>
+    <button class="karrow next" id="kNext" aria-label="Seterusnya">&#8250;</button>
+    <div class="kprog"><span id="kProg"></span></div>
   </div>
 </section>
 
@@ -771,31 +763,18 @@ musicBtn.addEventListener("click", () => {
 });
 
 /* ---------- parallax hero (transform sahaja, rAF) ---------- */
-/* ---------- SCROLL STORY (Kisah Kami) — horizontal, single-transform (smooth) ---------- */
+/* ---------- KISAH swipe (native snap; ken burns + fade per landing) ---------- */
 (function(){
-  const track=$("#kisah"), stage=$("#kisahStage"), rail=$("#kisahRail");
-  if(!track||!stage||!rail) return;
-  const scenes=[...rail.children], N=scenes.length, bar=stage.querySelector(".kprogress span");
-  if(reduceMotion){ track.classList.add("kisah--static"); return; }
-  let vh=innerHeight, w=stage.clientWidth;
-  function dims(){ vh=innerHeight; w=stage.clientWidth; track.style.height=(N*100)+"vh"; }
-  scenes.forEach(s=>{ const im=s.querySelector(".kimg");
-    const m=/url\(['"]?([^'")]+)/.exec(im.style.backgroundImage); if(m){ const i=new Image(); i.src=m[1]; } });
-  let ticking=false;
-  function render(){
-    ticking=false;
-    const r=track.getBoundingClientRect(), span=track.offsetHeight-vh;
-    const active = r.top<=0 && r.bottom>=vh;
-    stage.classList.toggle("pin", active);
-    if(!active) return;
-    const p=Math.min(1,Math.max(0,(-r.top)/span));
-    rail.style.transform="translate3d("+(-p*(N-1)*w)+"px,0,0)";
-    bar.style.transform="scaleX("+p+")";
-  }
-  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(render); } }
-  addEventListener("scroll", onScroll, {passive:true});
-  addEventListener("resize", ()=>{ dims(); onScroll(); });
-  dims(); render();
+  const rail=$("#kisahRail"), sec=$("#kisah"); if(!rail||!sec) return;
+  const scenes=[...rail.children], N=scenes.length;
+  if(reduceMotion){ sec.classList.add("kisah--static"); scenes.forEach(s=>s.classList.add("live")); return; }
+  const prog=$("#kProg"), hint=$("#kHint"), prev=$("#kPrev"), next=$("#kNext"); let idx=-1, tk=false;
+  function live(i){ if(i===idx)return; idx=i; scenes.forEach((s,j)=>s.classList.toggle("live",j===i)); if(prog)prog.style.width=((i+1)/N*100)+"%"; }
+  function sync(){ tk=false; live(Math.min(N-1,Math.max(0,Math.round(rail.scrollLeft/rail.clientWidth)))); }
+  rail.addEventListener("scroll",()=>{ if(!tk){tk=true;requestAnimationFrame(sync);} if(hint&&!hint.classList.contains("gone"))hint.classList.add("gone"); },{passive:true});
+  function go(d){ rail.scrollTo({left:(idx+d)*rail.clientWidth,behavior:"smooth"}); }
+  if(prev)prev.addEventListener("click",()=>go(-1)); if(next)next.addEventListener("click",()=>go(1));
+  live(0);
 })();
 
 
