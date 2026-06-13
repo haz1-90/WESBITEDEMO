@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORWELL | Quality Menswear</title>
+<meta name="description" content="MORWELL offers six essential menswear staples across shirts, t-shirts, knitwear, and outerwear. Select your size, view current stock, and order with secure local payment.">
+<meta property="og:title" content="MORWELL | Quality Menswear">
+<meta property="og:description" content="Six essential menswear staples. Select your size, check stock, and order.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#ECEAE5; --paper:#F6F4F0; --ink:#16171A; --ink-soft:#2A2C30;
+    --indigo:#2F4858; --indigo-deep:#1F3340; --tan:#B79A6E; --muted:#6C6A64;
+    --line:#D7D3CA; --line-dark:#34363A; --good:#3F7A5E; --warn:#B07A2E; --bad:#9B4A4A;
+    --shadow:0 18px 50px -24px rgba(22,23,26,.5); --r:12px; --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--stone);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,.display{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:600;line-height:1.02;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--indigo);font-weight:700}
+  .gilt-line{height:1px;background:var(--tan);opacity:.6}
+
+  .marquee{background:var(--ink);color:var(--stone);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line-dark)}
+  .marquee__track{display:inline-flex;gap:3rem;padding:9px 0;will-change:transform;animation:marq 28s linear infinite}
+  .marquee__track span{opacity:.85}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  header{position:sticky;top:0;z-index:60;background:rgba(236,234,229,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;letter-spacing:.2em;font-weight:700}
+  .brand small{font-size:.55rem;letter-spacing:.34em;display:block;color:var(--muted);font-family:'Plus Jakarta Sans';font-weight:600;margin-top:-2px}
+  .nav__links{display:flex;gap:28px;font-size:.82rem;font-weight:500}
+  .nav__links a{color:var(--muted);transition:color .2s}
+  .nav__links a:hover{color:var(--ink)}
+  .cart-btn{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.84rem;padding:9px 16px;border:1px solid var(--ink);border-radius:999px;transition:.2s}
+  .cart-btn:hover{background:var(--ink);color:var(--stone)}
+  .cart-btn .count{background:var(--indigo);color:#fff;border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;padding:0 5px}
+  @media(max-width:760px){.nav__links{display:none}}
+
+  .hero{position:relative;padding:64px 0 56px;overflow:hidden}
+  .hero__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.7rem)}
+  .hero h1 em{font-style:normal;color:var(--indigo)}
+  .hero p{margin:22px 0 30px;font-size:1.05rem;color:var(--muted);max-width:46ch}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--stone);padding:14px 26px;border-radius:999px;font-weight:600;font-size:.9rem;transition:.22s;border:1px solid var(--ink)}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);transform:translateY(-2px)}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--ink);color:var(--stone)}
+  .hero__meta{display:flex;gap:30px;margin-top:34px}
+  .hero__meta div{border-left:1px solid var(--line);padding-left:14px}
+  .hero__meta b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;display:block;font-weight:700}
+  .hero__meta small{color:var(--muted);font-size:.78rem}
+  .hero__art{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(160deg,#cfcabf,#9a958c)}
+  .hero__art img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .hero__art .tag{position:absolute;bottom:16px;left:16px;background:rgba(22,23,26,.78);color:#fff;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:7px 13px;border-radius:999px;backdrop-filter:blur(4px)}
+  @media(max-width:860px){.hero__grid{grid-template-columns:1fr;gap:30px}.hero__art{max-width:400px;margin:0 auto}}
+
+  .trust{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:26px 24px}
+  .trust .t{display:flex;gap:12px;align-items:flex-start;font-size:.85rem}
+  .trust .t b{display:block;font-weight:600}
+  .trust .t span{color:var(--muted);font-size:.78rem}
+  .trust .ic{flex:0 0 auto;width:28px;height:28px;color:var(--indigo)}
+  @media(max-width:760px){.trust .wrap{grid-template-columns:1fr 1fr;gap:16px}}
+
+  .section{padding:68px 0}
+  .section__head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px}
+  .section__head h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+  .section__head p{color:var(--muted);max-width:40ch;font-size:.92rem}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .card__media{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(160deg,#d6d1c7,#a8a298)}
+  .card__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s ease}
+  .card:hover .card__media img{transform:scale(1.05)}
+  .card__no{position:absolute;top:12px;left:14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;color:#fff;mix-blend-mode:difference;letter-spacing:.04em;z-index:2}
+  .card__tag{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.92);color:var(--ink);font-size:.66rem;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.04em;z-index:2}
+  .card__tag.low{background:var(--warn);color:#fff}
+  .card__tag.out{background:var(--bad);color:#fff}
+  .card__body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card__body h3{font-size:1.25rem;font-weight:600}
+  .card__fabric{font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+  .card__price{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;color:var(--ink);font-weight:700}
+  .card .btn{margin-top:auto;justify-content:center;width:100%;font-size:.85rem;padding:12px}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  .overlay{position:fixed;inset:0;background:rgba(18,18,20,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:opacity .3s}
+  .overlay.open{opacity:1;pointer-events:auto}
+  .modal{position:fixed;z-index:90;top:50%;left:50%;transform:translate(-50%,-46%);width:min(940px,94vw);max-height:92vh;overflow:auto;background:var(--stone);border-radius:16px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+  .modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+  .modal__grid{display:grid;grid-template-columns:1fr 1fr}
+  @media(max-width:780px){.modal__grid{grid-template-columns:1fr}}
+  .pmedia{position:relative;background:linear-gradient(160deg,#d6d1c7,#a8a298);min-height:420px}
+  .pmedia img{width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0}
+  .modal__close{position:absolute;top:12px;right:14px;z-index:5;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);font-size:1.2rem;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+
+  .pinfo{padding:30px 30px 34px}
+  .pinfo .pno{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .pinfo h2{font-size:2rem;margin:4px 0 2px;font-weight:600}
+  .pinfo .fab{color:var(--muted);font-size:.85rem;margin:2px 0 14px}
+  .pinfo .price{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:700}
+  .pinfo .desc{font-size:.9rem;color:var(--ink-soft);margin:14px 0 18px}
+  .attr{font-size:.82rem;margin-bottom:16px}.attr b{font-weight:600}
+  .field-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:9px;display:flex;justify-content:space-between}
+  .field-label a{color:var(--indigo);text-decoration:underline;cursor:pointer;font-weight:600;letter-spacing:0;text-transform:none}
+  .sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .sz{min-width:48px;height:46px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:600;font-size:.9rem;color:var(--ink);display:flex;align-items:center;justify-content:center;position:relative;transition:.15s}
+  .sz[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+  .sz:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+  .stock{font-size:.8rem;font-weight:600;margin:8px 0 18px}
+  .stock.ok{color:var(--good)} .stock.low{color:var(--warn)} .stock.out{color:var(--bad)} .stock.none{color:var(--muted)}
+  .qtyrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .stepper button{width:38px;height:40px;font-size:1.1rem;color:var(--ink)}
+  .stepper button:disabled{opacity:.3;cursor:not-allowed}
+  .stepper input{width:42px;text-align:center;border:none;background:transparent;font-weight:600;font-family:inherit;font-size:1rem}
+
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100vw);background:var(--stone);z-index:95;box-shadow:-20px 0 60px -30px rgba(0,0,0,.5);transform:translateX(102%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+  .drawer.open{transform:none}
+  .drawer__head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+  .drawer__head h3{font-size:1.35rem;font-weight:600}
+  .drawer__body{flex:1;overflow:auto;padding:20px 24px}
+  .drawer__foot{border-top:1px solid var(--line);padding:20px 24px;background:var(--paper)}
+  .citem{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+  .citem__img{width:58px;height:72px;border-radius:8px;border:1px solid var(--line);object-fit:cover;object-position:center top;background:#cfcabf}
+  .citem__name{font-weight:600;font-size:.92rem}
+  .citem__meta{font-size:.76rem;color:var(--muted)}
+  .citem .stepper{transform:scale(.82);transform-origin:left;margin-top:4px}
+  .citem__price{font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
+  .citem__rm{font-size:.72rem;color:var(--bad);margin-top:6px;cursor:pointer;text-align:left;padding:0}
+  .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:.9rem}
+  .sumrow{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:8px}
+  .sumrow.total{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin:12px 0;padding-top:12px;border-top:1px solid var(--line)}
+  .freeship{font-size:.74rem;color:var(--good);font-weight:600;margin-bottom:10px}
+  .drawer .btn{width:100%;justify-content:center}
+
+  .co-form{display:grid;gap:12px}
+  .co-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .co-form label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;margin-bottom:5px}
+  .co-form input,.co-form select,.co-form textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;font-family:inherit;font-size:.9rem;color:var(--ink)}
+  .co-form input:focus,.co-form select:focus,.co-form textarea:focus{outline:none;border-color:var(--indigo)}
+  .pdpa{font-size:.72rem;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;line-height:1.5}
+  .tnc{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;margin:4px 0 2px}
+  .tnc input{width:18px;height:18px;flex:0 0 auto;margin-top:2px}
+  .tnc a{color:var(--indigo);text-decoration:underline;cursor:pointer}
+  .err{color:var(--bad);font-size:.78rem;font-weight:600;display:none}
+  .err.show{display:block}
+  .back-link{font-size:.8rem;color:var(--muted);cursor:pointer;display:inline-flex;gap:6px;align-items:center;margin-bottom:14px}
+  .pay-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
+
+  footer{background:var(--ink);color:var(--stone);padding:56px 0 30px;margin-top:30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+  footer h4{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;margin-bottom:12px;font-weight:700}
+  footer p,footer a{font-size:.85rem;color:rgba(236,234,229,.72)}
+  footer a:hover{color:#fff}
+  .foot-links{display:flex;flex-direction:column;gap:8px}
+  .foot-bottom{border-top:1px solid var(--line-dark);margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.74rem;color:rgba(236,234,229,.5)}
+  .demo-badge{background:var(--indigo);color:#fff;font-size:.66rem;letter-spacing:.1em;padding:4px 10px;border-radius:999px;text-transform:uppercase;font-weight:700}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:24px}}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--ink);color:var(--stone);padding:13px 22px;border-radius:999px;font-size:.85rem;font-weight:500;z-index:120;transition:transform .35s;box-shadow:var(--shadow)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Free shipping on orders over RM250</span><span>·</span><span>Quality staples made to last</span><span>·</span><span>Shirts · T-Shirts · Knitwear · Outerwear</span><span>·</span>
+    <span>Free shipping on orders over RM250</span><span>·</span><span>Quality staples made to last</span><span>·</span><span>Shirts · T-Shirts · Knitwear · Outerwear</span><span>·</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">MORWELL<small>MENSWEAR</small></a>
+    <nav class="nav__links">
+      <a href="#collection">Shop</a>
+      <a href="#make">Our Materials</a>
+      <a href="#care">Shipping &amp; Returns</a>
+    </nav>
+    <button class="cart-btn" id="openCart">Bag <span class="count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div class="reveal">
+      <p class="eyebrow">The Essentials</p>
+      <h1>Refined menswear for <em>everyday wear.</em></h1>
+      <p>Six essential staples, made from quality fabrics and cut for a clean fit. Select your size, check what is in stock, and complete your order in minutes.</p>
+      <a href="#collection" class="btn">Shop the Collection</a>
+      <div class="hero__meta">
+        <div><b>6</b><small>core pieces</small></div>
+        <div><b>S–XL</b><small>full size range</small></div>
+        <div><b>14-Day</b><small>returns</small></div>
+      </div>
+    </div>
+    <div class="hero__art reveal">
+      <img src="https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Man wearing a white shirt and tailored blazer" loading="eager" onerror="this.style.display='none'">
+      <span class="tag">Autumn / Winter Collection</span>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="t"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg><div><b>Secure local payment</b><span>ToyyibPay / FPX</span></div></div>
+    <div class="t"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><div><b>Nationwide delivery</b><span>West &amp; East Malaysia</span></div></div>
+    <div class="t"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg><div><b>14-day returns</b><span>Unworn, with tags attached</span></div></div>
+    <div class="t"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg><div><b>Live stock by size</b><span>View remaining quantities</span></div></div>
+  </div>
+</div>
+
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <div><p class="eyebrow">The Collection</p><h2>Six Essential Pieces</h2></div>
+      <p>Select any item to view the full size range and current stock, then add it to your bag.</p>
+    </div>
+    <div class="gilt-line reveal" style="margin-bottom:34px"></div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="make" style="background:var(--ink);color:var(--stone)">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+    <div class="reveal">
+      <p class="eyebrow" style="color:var(--tan)">Our Materials</p>
+      <h2 style="font-size:clamp(1.9rem,4vw,2.8rem)">Quality fabrics.<br>Clean lines.</h2>
+      <p style="color:rgba(236,234,229,.75);margin-top:18px;max-width:46ch">No loud logos and no fast-fashion shortcuts. We use mid-weight cottons, genuine lambswool, and outerwear that holds its shape season after season.</p>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="border:1px solid var(--line-dark);border-radius:12px;padding:18px"><b style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;color:var(--tan)">Cotton Oxford</b><p style="font-size:.82rem;color:rgba(236,234,229,.7);margin-top:6px">Crisp and breathable, and softens with wear.</p></div>
+      <div style="border:1px solid var(--line-dark);border-radius:12px;padding:18px"><b style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;color:var(--tan)">Lambswool</b><p style="font-size:.82rem;color:rgba(236,234,229,.7);margin-top:6px">Warm, fine-gauge, and true to size.</p></div>
+      <div style="border:1px solid var(--line-dark);border-radius:12px;padding:18px"><b style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;color:var(--tan)">Heavy Jersey</b><p style="font-size:.82rem;color:rgba(236,234,229,.7);margin-top:6px">Structured t-shirts that keep their shape.</p></div>
+      <div style="border:1px solid var(--line-dark);border-radius:12px;padding:18px"><b style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;color:var(--tan)">Wool Blend</b><p style="font-size:.82rem;color:rgba(236,234,229,.7);margin-top:6px">Tailored outerwear, built to last.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="care">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow reveal">Shipping &amp; Returns</p>
+    <h2 class="reveal" style="font-size:clamp(1.7rem,3.5vw,2.4rem);margin:8px auto 14px;max-width:20ch">Fast shipping, full tracking, easy returns</h2>
+    <p class="reveal" style="color:var(--muted);max-width:54ch;margin:0 auto 8px">West Malaysia RM10, East Malaysia RM15, and free shipping on orders over RM250. Orders are shipped within two working days, and tracking details are sent via WhatsApp. Returns are accepted within 14 days on unworn items.</p>
+  </div>
+</section>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="pName">
+  <button class="modal__close" id="closeModal" aria-label="Close">×</button>
+  <div class="modal__grid">
+    <div class="pmedia"><img id="pImg" alt="" onerror="this.style.opacity=0"></div>
+    <div class="pinfo">
+      <p class="pno" id="pNo">Piece 01</p>
+      <h2 id="pName">—</h2>
+      <p class="fab" id="pFab">—</p>
+      <p class="price" id="pPrice">RM0</p>
+      <p class="desc" id="pDesc">—</p>
+      <p class="attr">Colour: <b id="pColour">—</b></p>
+      <p class="field-label">Select size <a id="sizeGuide">Size guide</a></p>
+      <div class="sizes" id="sizeRow"></div>
+      <p class="stock" id="stockLine">—</p>
+      <p class="field-label">Quantity</p>
+      <div class="qtyrow">
+        <div class="stepper">
+          <button id="qMinus" aria-label="Decrease">−</button>
+          <input id="qInput" value="1" inputmode="numeric" aria-label="Quantity">
+          <button id="qPlus" aria-label="Increase">+</button>
+        </div>
+        <span style="font-size:.78rem;color:var(--muted)" id="qMax"></span>
+      </div>
+      <button class="btn" id="addCart" style="width:100%;justify-content:center">Select a size</button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" id="drawer">
+  <div class="drawer__head"><h3 id="drawerTitle">Your bag</h3><button id="closeDrawer" aria-label="Close" style="font-size:1.5rem;color:var(--ink)">×</button></div>
+  <div class="drawer__body" id="drawerBody"></div>
+  <div class="drawer__foot" id="drawerFoot"></div>
+</div>
+
+<div class="modal" id="tncModal" role="dialog" aria-modal="true" style="width:min(620px,94vw)">
+  <button class="modal__close" id="closeTnc" aria-label="Close">×</button>
+  <div style="padding:32px 34px">
+    <p class="eyebrow">Terms &amp; Conditions</p>
+    <h2 style="font-size:1.6rem;margin:6px 0 18px;font-weight:600">Summary of terms</h2>
+    <div style="font-size:.86rem;color:var(--ink-soft);line-height:1.65;display:grid;gap:14px">
+      <div><b>Shipping.</b> Orders are shipped within two working days. Shipping is RM10 for West Malaysia and RM15 for East Malaysia (Sabah, Sarawak, and Labuan), and free on orders over RM250. A tracking number is sent to your WhatsApp once the order has been posted.</div>
+      <div><b>Returns.</b> Unworn items with tags attached may be returned within 14 days of delivery. Return postage is borne by the customer unless the item is faulty.</div>
+      <div><b>Stock.</b> The quantities shown are updated by us and may differ slightly during busy launches. If a size sells out after you place an order, we will issue a full refund.</div>
+      <div><b>Privacy (PDPA).</b> The name, phone number, email address, and delivery address you provide are used only to process and deliver your order, and to contact you about it. We do not sell your data. You may request correction or deletion of your details at any time.</div>
+      <div><b>Payment.</b> Payment is processed through the store's own ToyyibPay / FPX account, and funds go directly to the store. We do not store your card or banking details on this site.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>MORWELL</h4>
+        <p style="max-width:36ch">Quality menswear for everyday wear. Quality fabrics, clean lines, and a full size range.</p>
+        <p style="margin-top:14px"><span class="demo-badge">Demo store</span></p>
+      </div>
+      <div><h4 style="font-size:1rem">Shop</h4><div class="foot-links"><a href="#collection">The Collection</a><a href="#make">Our Materials</a><a href="#care">Shipping &amp; Returns</a></div></div>
+      <div><h4 style="font-size:1rem">Contact</h4><div class="foot-links"><a href="https://wa.me/601161200054" target="_blank" rel="noopener">WhatsApp · 011-6120 0054</a><a href="mailto:muhdhazwan90@gmail.com">muhdhazwan90@gmail.com</a></div></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> MORWELL Menswear. Demo build.</span>
+      <span>Designed and built by KNM Web Studio · Muhammad Razak</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const IMG=id=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800`;
+/* Products use licensed Pexels photographs. Each variant is a size, and the per-size stock here is sample data; a production store would read stock from a backend such as a Google Sheet. */
+const PRODUCTS=[
+  {id:'oxford',no:'01',name:'Heritage Oxford Shirt',fabric:'Cotton Oxford',colour:'White',price:149,img:901424,
+   desc:'A crisp button-down shirt that softens with every wear. It has a tailored fit, mother-of-pearl buttons, and layers easily.',
+   sizes:[{l:'S',s:6},{l:'M',s:14},{l:'L',s:9},{l:'XL',s:3}]},
+  {id:'tee',no:'02',name:'Everyday Heavy T-Shirt',fabric:'Heavy Jersey Cotton',colour:'White',price:69,img:24779116,
+   desc:'A t-shirt that holds its shape. Mid-weight jersey with a clean crew neck, made for daily wear.',
+   sizes:[{l:'S',s:22},{l:'M',s:30},{l:'L',s:18},{l:'XL',s:11}]},
+  {id:'stripe',no:'03',name:'Striped Lambswool Knit',fabric:'Fine-Gauge Lambswool',colour:'Navy Stripe',price:179,img:6748636,
+   desc:'A clean-lined knit with a subtle stripe. It is warm without bulk, true to size, and smart over a collar.',
+   sizes:[{l:'S',s:4},{l:'M',s:7},{l:'L',s:0},{l:'XL',s:2}]},
+  {id:'crew',no:'04',name:'Cotton Crew Sweater',fabric:'Combed Cotton Knit',colour:'Rosé',price:159,img:9558579,
+   desc:'A soft combed-cotton crew neck in a seasonal tone. Relaxed and breathable, it layers well under outerwear.',
+   sizes:[{l:'S',s:9},{l:'M',s:12},{l:'L',s:6},{l:'XL',s:1}]},
+  {id:'puffer',no:'05',name:'Featherlight Puffer',fabric:'Recycled Insulation',colour:'Slate Grey',price:289,img:7026775,
+   desc:'Light, warm, and packable. Recycled insulation with a matte shell, ready for the daily commute.',
+   sizes:[{l:'S',s:3},{l:'M',s:8},{l:'L',s:10},{l:'XL',s:5}]},
+  {id:'coat',no:'06',name:'Tailored Wool Coat',fabric:'Wool Blend',colour:'Charcoal',price:359,img:2463413,
+   desc:'A structured overcoat that completes any outfit. Made from a wool blend with a clean lapel and tailored through the body.',
+   sizes:[{l:'S',s:0},{l:'M',s:5},{l:'L',s:6},{l:'XL',s:2}]}
+];
+const FREE_SHIP=250;
+function totalStock(p){return p.sizes.reduce((s,z)=>s+z.s,0);}
+function stockClass(n){return n===0?'out':(n<=3?'low':'ok');}
+function stockText(n){return n===0?'Sold out':(n<=3?`Low stock, only ${n} left`:`${n} in stock`);}
+
+/* render grid */
+const grid=document.getElementById('productGrid');
+PRODUCTS.forEach(p=>{
+  const tot=totalStock(p);
+  let tag='',cls='';
+  if(tot===0){tag='Sold out';cls='out';}
+  else if(tot<=8){tag='Low stock';cls='low';}
+  else tag='View';
+  const card=document.createElement('div');
+  card.className='card reveal';
+  card.innerHTML=`
+    <div class="card__media">
+      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+      <span class="card__no">${p.no}</span>
+      <span class="card__tag ${cls}">${tag}</span>
+    </div>
+    <div class="card__body">
+      <h3>${p.name}</h3>
+      <p class="card__fabric">${p.fabric} · ${p.colour}</p>
+      <p class="card__price">RM${p.price}</p>
+      <button class="btn" data-open="${p.id}">View &amp; select size</button>
+    </div>`;
+  grid.appendChild(card);
+});
+
+/* product modal */
+const overlay=document.getElementById('overlay'),modal=document.getElementById('modal');
+let current=null,curSize=-1,qty=1;
+
+function openProduct(id){
+  current=PRODUCTS.find(p=>p.id===id); curSize=-1; qty=1;
+  document.getElementById('pNo').textContent='Piece '+current.no;
+  document.getElementById('pName').textContent=current.name;
+  document.getElementById('pFab').textContent=current.fabric;
+  document.getElementById('pPrice').textContent='RM'+current.price;
+  document.getElementById('pDesc').textContent=current.desc;
+  document.getElementById('pColour').textContent=current.colour;
+  const img=document.getElementById('pImg'); img.style.opacity=1; img.src=IMG(current.img); img.alt=current.name;
+  const row=document.getElementById('sizeRow'); row.innerHTML='';
+  current.sizes.forEach((z,i)=>{
+    const b=document.createElement('button');
+    b.className='sz'; b.textContent=z.l; b.setAttribute('aria-pressed','false');
+    b.disabled=z.s===0;
+    b.onclick=()=>{curSize=i;qty=1;refreshSize();};
+    row.appendChild(b);
+  });
+  // pick first in-stock size by default
+  const first=current.sizes.findIndex(z=>z.s>0);
+  if(first>=0){curSize=first;}
+  refreshSize();
+  openOverlay(modal);
+}
+function refreshSize(){
+  document.querySelectorAll('#sizeRow .sz').forEach((b,i)=>b.setAttribute('aria-pressed',i===curSize));
+  const sl=document.getElementById('stockLine');
+  const add=document.getElementById('addCart');
+  if(curSize<0){ sl.textContent='Select a size to see availability'; sl.className='stock none'; document.getElementById('qMax').textContent=''; add.textContent='Select a size'; add.style.opacity=.5; add.style.pointerEvents='none'; updateQtyUI(); return; }
+  const z=current.sizes[curSize];
+  sl.textContent='Size '+z.l+' — '+stockText(z.s); sl.className='stock '+stockClass(z.s);
+  document.getElementById('qMax').textContent=z.s>0?`Max ${z.s}`:'';
+  updateQtyUI();
+  if(z.s===0){add.textContent='Sold out';add.style.opacity=.4;add.style.pointerEvents='none';}
+  else{add.textContent='Add to bag';add.style.opacity=1;add.style.pointerEvents='auto';}
+}
+function updateQtyUI(){
+  const max=curSize>=0?current.sizes[curSize].s:1;
+  qty=Math.max(1,Math.min(qty,Math.max(1,max)));
+  document.getElementById('qInput').value=qty;
+  document.getElementById('qMinus').disabled=qty<=1;
+  document.getElementById('qPlus').disabled=qty>=max||max===0;
+}
+document.getElementById('qMinus').onclick=()=>{qty--;updateQtyUI();};
+document.getElementById('qPlus').onclick=()=>{qty++;updateQtyUI();};
+document.getElementById('qInput').oninput=e=>{qty=parseInt(e.target.value)||1;updateQtyUI();};
+document.getElementById('sizeGuide').onclick=()=>toast('Size guide: S 36" · M 38-40" · L 42" · XL 44" chest');
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openProduct(b.dataset.open));
+
+document.getElementById('addCart').onclick=()=>{
+  if(curSize<0)return; const z=current.sizes[curSize]; if(z.s===0)return;
+  addToCart(current,curSize,qty); closeAll(); openCart(); toast(`${current.name} (${z.l}) added to your bag`);
+};
+
+/* cart */
+let cart=[];
+function keyOf(id,si){return id+'::'+si;}
+function addToCart(p,si,q){
+  const k=keyOf(p.id,si),ex=cart.find(i=>i.k===k),max=p.sizes[si].s;
+  if(ex){ex.qty=Math.min(ex.qty+q,max);} else{cart.push({k,id:p.id,sizeIdx:si,qty:Math.min(q,max)});}
+  renderCartCount();
+}
+function renderCartCount(){document.getElementById('cartCount').textContent=cart.reduce((s,i)=>s+i.qty,0);}
+function subtotal(){return cart.reduce((s,i)=>{const p=PRODUCTS.find(x=>x.id===i.id);return s+p.price*i.qty;},0);}
+
+const drawer=document.getElementById('drawer'),body=document.getElementById('drawerBody'),foot=document.getElementById('drawerFoot');
+function openCart(){renderCart();openOverlay(drawer);}
+function renderCart(){
+  document.getElementById('drawerTitle').textContent='Your bag';
+  if(cart.length===0){
+    body.innerHTML=`<div class="empty">Your bag is empty.<br>Browse the collection to begin.</div>`;
+    foot.innerHTML=`<button class="btn btn--ghost" onclick="closeAll()">Continue shopping</button>`; return;
+  }
+  body.innerHTML=cart.map((i,idx)=>{
+    const p=PRODUCTS.find(x=>x.id===i.id),z=p.sizes[i.sizeIdx];
+    return `<div class="citem">
+      <img class="citem__img" src="${IMG(p.img)}" alt="${p.name}" onerror="this.style.opacity=.2">
+      <div>
+        <div class="citem__name">${p.name}</div>
+        <div class="citem__meta">${p.colour} · Size ${z.l}</div>
+        <div class="stepper"><button onclick="cartQty(${idx},-1)" aria-label="Decrease">−</button><input value="${i.qty}" readonly aria-label="Quantity"><button onclick="cartQty(${idx},1)" aria-label="Increase">+</button></div>
+        <button class="citem__rm" onclick="cartRemove(${idx})">Remove</button>
+      </div>
+      <div class="citem__price">RM${p.price*i.qty}</div>
+    </div>`;
+  }).join('');
+  const sub=subtotal(),toFree=Math.max(0,FREE_SHIP-sub);
+  foot.innerHTML=`
+    ${toFree>0?`<div class="freeship">RM${toFree} away from free shipping</div>`:`<div class="freeship">You have qualified for free shipping</div>`}
+    <div class="sumrow"><span>Subtotal</span><span>RM${sub}</span></div>
+    <div class="sumrow" style="color:var(--muted)"><span>Shipping</span><span>Calculated at checkout</span></div>
+    <button class="btn" onclick="openCheckout()">Checkout · RM${sub}</button>`;
+}
+window.cartQty=(idx,d)=>{const i=cart[idx],p=PRODUCTS.find(x=>x.id===i.id),max=p.sizes[i.sizeIdx].s;i.qty=Math.max(1,Math.min(i.qty+d,max));renderCartCount();renderCart();};
+window.cartRemove=(idx)=>{cart.splice(idx,1);renderCartCount();renderCart();};
+
+/* checkout */
+const EAST=['Sabah','Sarawak','Labuan'];
+const STATES=['Selangor','Kuala Lumpur','Putrajaya','Johor','Melaka','Negeri Sembilan','Perak','Pulau Pinang','Kedah','Perlis','Pahang','Terengganu','Kelantan','Sabah','Sarawak','Labuan'];
+function postageFor(state,sub){if(sub>=FREE_SHIP)return 0;return EAST.includes(state)?15:10;}
+window.openCheckout=()=>{
+  document.getElementById('drawerTitle').textContent='Checkout';
+  const sub=subtotal();
+  body.innerHTML=`
+    <span class="back-link" onclick="openCart()">← Back to bag</span>
+    <div class="co-form">
+      <div><label>Full name</label><input id="f_name" autocomplete="name"></div>
+      <div class="row2">
+        <div><label>WhatsApp number</label><input id="f_phone" inputmode="tel" placeholder="0123456789" autocomplete="tel"></div>
+        <div><label>Email</label><input id="f_email" inputmode="email" autocomplete="email"></div>
+      </div>
+      <div><label>Address</label><textarea id="f_addr" rows="2" autocomplete="street-address"></textarea></div>
+      <div class="row2">
+        <div><label>City</label><input id="f_city" autocomplete="address-level2"></div>
+        <div><label>Postcode</label><input id="f_post" inputmode="numeric" autocomplete="postal-code"></div>
+      </div>
+      <div><label>State</label><select id="f_state">${STATES.map(s=>`<option>${s}</option>`).join('')}</select></div>
+      <div class="pdpa">Your details are used only to process and deliver this order, and to contact you about it (PDPA). We do not store card or banking details on this site.</div>
+      <div id="coSummary"></div>
+      <label class="tnc"><input type="checkbox" id="f_tnc"><span>I have read and agree to the <a onclick="openTnc()">terms, returns, and privacy policy</a>.</span></label>
+      <div class="err" id="coErr">Please complete the highlighted fields and accept the terms.</div>
+      <button class="btn" id="payBtn">Pay with ToyyibPay →</button>
+      <p class="pay-note">You will be taken to a secure local payment page, and funds go directly to MORWELL. <br><b>Demo:</b> this confirms your order via WhatsApp.</p>
+    </div>`;
+  foot.innerHTML='';
+  const stateSel=document.getElementById('f_state');
+  function paint(){const ship=postageFor(stateSel.value,sub);
+    document.getElementById('coSummary').innerHTML=`
+      <div class="sumrow"><span>Subtotal</span><span>RM${sub}</span></div>
+      <div class="sumrow"><span>Shipping (${EAST.includes(stateSel.value)?'East':'West'} Malaysia)</span><span>${ship===0?'FREE':'RM'+ship}</span></div>
+      <div class="sumrow total"><span>Total</span><span>RM${sub+ship}</span></div>`;}
+  stateSel.onchange=paint; paint();
+  document.getElementById('payBtn').onclick=()=>doPay(sub);
+};
+function doPay(sub){
+  const g=id=>document.getElementById(id); let ok=true;
+  ['f_name','f_phone','f_email','f_addr','f_city','f_post'].forEach(id=>{const el=g(id);if(!el.value.trim()){el.style.borderColor='var(--bad)';ok=false;}else el.style.borderColor='var(--line)';});
+  if(!ok||!g('f_tnc').checked){g('coErr').classList.add('show');return;}
+  g('coErr').classList.remove('show');
+  const state=g('f_state').value,ship=postageFor(state,sub),total=sub+ship;
+  let msg=`*MORWELL — New Order*\n\n`;
+  cart.forEach(i=>{const p=PRODUCTS.find(x=>x.id===i.id),z=p.sizes[i.sizeIdx];msg+=`• ${p.name} — ${p.colour} / ${z.l} ×${i.qty}  (RM${p.price*i.qty})\n`;});
+  msg+=`\nSubtotal: RM${sub}\nShipping (${EAST.includes(state)?'East':'West'}): ${ship===0?'FREE':'RM'+ship}\n*Total: RM${total}*\n\n`;
+  msg+=`Name: ${g('f_name').value}\nPhone: ${g('f_phone').value}\nEmail: ${g('f_email').value}\nAddress: ${g('f_addr').value}, ${g('f_post').value} ${g('f_city').value}, ${state}\n\n(Sent from the MORWELL demo store)`;
+  window.open('https://wa.me/601161200054?text='+encodeURIComponent(msg),'_blank','noopener');
+  toast('Order summary opened in WhatsApp');
+}
+
+/* overlay plumbing */
+function openOverlay(el){overlay.classList.add('open');el.classList.add('open');document.body.style.overflow='hidden';}
+function closeAll(){overlay.classList.remove('open');modal.classList.remove('open');drawer.classList.remove('open');document.getElementById('tncModal').classList.remove('open');document.body.style.overflow='';}
+window.openTnc=()=>{document.getElementById('tncModal').classList.add('open');overlay.classList.add('open');};
+document.getElementById('closeTnc').onclick=()=>{document.getElementById('tncModal').classList.remove('open');if(!drawer.classList.contains('open')&&!modal.classList.contains('open'))closeAll();};
+document.getElementById('openCart').onclick=openCart;
+document.getElementById('closeModal').onclick=closeAll;
+document.getElementById('closeDrawer').onclick=closeAll;
+overlay.onclick=closeAll;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();});
+
+let toastT=null;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.getElementById('yr').textContent=new Date().getFullYear();
+renderCartCount();
+</script>
+</body>
+</html>
