@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Razak Homestay KL — Private Condominium Stays at KLCC & Maxim Cheras</title>
+<meta name="description" content="Two thoughtfully furnished 3-bedroom condominium homes in Kuala Lumpur — one at KLCC, one at Maxim Cheras. Book directly with the host. No agency fees. Secure RM100 deposit, confirmed on WhatsApp." />
+<meta name="theme-color" content="#0E1B23" />
+<meta property="og:title" content="Razak Homestay KL — Private Condominium Stays" />
+<meta property="og:description" content="Direct booking for two private KL condo homes at KLCC & Maxim Cheras. No agency fees." />
+<meta property="og:type" content="website" />
+
+<!--
+  =========================================================================
+  RAZAK HOMESTAY KL — owner quick-edit guide (Phase 1, manual control)
+  -------------------------------------------------------------------------
+  1) TOYYIBPAY DEPOSIT LINK: search "TOYYIBPAY_LINK" below and paste your
+     own ToyyibPay hosted bill URL. Money goes straight to YOUR bank.
+     (Never put any secret key in this file — the hosted link is enough.)
+
+  2) BLOCK / FREE A DATE: search "AVAILABILITY" below. Each unit has a
+     bookedRanges list. To lock dates, add ["YYYY-MM-DD","YYYY-MM-DD"]
+     (check-in to check-out). To free a date, delete that line.
+     This is your manual control until the Phase 2 auto-lock backend.
+
+  3) WHATSAPP NUMBER lives in the WHATSAPP_NUMBER constant below.
+  =========================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0E1B23;          /* deep teal-ink */
+    --ink-2:#14252F;        /* panel */
+    --ink-3:#1C313C;        /* raised panel */
+    --brass:#C9A24B;        /* premium accent */
+    --brass-soft:#E2C988;
+    --paper:#F4EFE6;        /* warm paper light section */
+    --paper-2:#EDE6D8;
+    --cream-text:#EDE7DB;   /* text on dark */
+    --muted:#9CAAB0;        /* muted text on dark */
+    --muted-dark:#5C6E74;   /* muted text on light */
+    --line:rgba(201,162,75,.22);
+    --line-soft:rgba(237,231,219,.12);
+    --ok:#7FB287;
+    --busy:#D98A6A;
+    --maxw:1180px;
+    --r:14px;
+    --shadow:0 24px 60px -28px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--cream-text);
+    font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.08;margin:0;letter-spacing:-.01em}
+  p{margin:0 0 1em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-family:"Manrope";font-weight:600;font-size:12.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--brass);margin:0 0 18px;display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--brass);opacity:.7}
+  .sec{padding:104px 0}
+  .sec-paper{background:var(--paper);color:var(--ink)}
+  .sec-paper .eyebrow{color:#9a7a2e}
+  .sec-paper .eyebrow::before{background:#9a7a2e}
+  .lead{font-size:19px;color:var(--muted);max-width:60ch}
+  .sec-paper .lead{color:var(--muted-dark)}
+
+  /* buttons */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:"Manrope";font-weight:600;font-size:15.5px;letter-spacing:.01em;
+    padding:15px 26px;border-radius:100px;border:1px solid transparent;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    text-align:center;
+  }
+  .btn-primary{background:var(--brass);color:#1a1206;border-color:var(--brass)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(201,162,75,.6)}
+  .btn-ghost{background:transparent;color:var(--cream-text);border-color:var(--line-soft)}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass-soft);transform:translateY(-2px)}
+  .btn-wa{background:#1f7a4d;color:#fff;border-color:#1f7a4d}
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(31,122,77,.6)}
+  .btn-block{width:100%}
+
+  /* nav */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s ease, box-shadow .35s ease, padding .35s ease;padding:22px 0}
+  header.nav.scrolled{background:rgba(14,27,35,.86);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line-soft);padding:14px 0}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:"Fraunces";font-size:21px;font-weight:600;letter-spacing:-.01em}
+  .brand .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,var(--brass),#8c6f2c);display:grid;place-items:center;color:#1a1206;font-weight:700;font-family:"Fraunces";font-size:17px}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--cream-text)}
+  .nav-cta{padding:11px 20px;font-size:14px}
+  .nav-toggle{display:none;background:none;border:0;color:var(--cream-text);cursor:pointer;padding:6px}
+
+  /* hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a141a,#16303b 60%,#0E1B23);z-index:0}
+  .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,16,20,.55) 0%,rgba(10,16,20,.25) 38%,rgba(14,27,35,.92) 100%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:78px;padding-top:140px}
+  .hero h1{font-size:clamp(40px,7vw,82px);max-width:16ch;font-weight:500}
+  .hero h1 .gl{color:var(--brass-soft)}
+  .hero p.sub{font-size:clamp(17px,2vw,21px);color:var(--cream-text);max-width:54ch;margin:26px 0 34px;opacity:.92}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
+  .hero-trust{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;color:var(--muted);align-items:center}
+  .hero-trust span{display:inline-flex;align-items:center;gap:8px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--brass)}
+
+  /* reveal animation (load) */
+  .rise{opacity:0;transform:translateY(26px)}
+  /* facts strip */
+  .facts{background:var(--ink-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .facts .wrap{display:flex;flex-wrap:wrap;gap:26px 40px;padding-top:30px;padding-bottom:30px;justify-content:space-between}
+  .fact{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--muted)}
+  .fact b{color:var(--cream-text);font-weight:600}
+  .fact svg{width:22px;height:22px;stroke:var(--brass);fill:none;flex:none}
+
+  /* section head */
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:54px}
+  .sec-head h2{font-size:clamp(30px,4.4vw,48px);max-width:18ch}
+
+  /* units */
+  .unit{margin-bottom:96px}
+  .unit:last-child{margin-bottom:0}
+  .unit-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:26px}
+  .unit-title h3{font-size:clamp(26px,3.4vw,38px)}
+  .unit-area{display:inline-flex;align-items:center;gap:8px;color:#9a7a2e;font-weight:600;font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+  .unit-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:14px;color:var(--muted-dark);font-size:14.5px}
+  .unit-meta span{display:inline-flex;align-items:center;gap:8px}
+  .unit-meta svg{width:18px;height:18px;stroke:#9a7a2e;fill:none}
+  .badge{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:100px;font-weight:600;font-size:13.5px;white-space:nowrap}
+  .badge .pulse{width:9px;height:9px;border-radius:50%;position:relative}
+  .badge-ok{background:rgba(127,178,135,.16);color:#3f7a4a;border:1px solid rgba(127,178,135,.4)}
+  .badge-ok .pulse{background:#4f9a5c;box-shadow:0 0 0 0 rgba(79,154,92,.5);animation:pulse 2.2s infinite}
+  .badge-busy{background:rgba(217,138,106,.16);color:#b35a36;border:1px solid rgba(217,138,106,.4)}
+  .badge-busy .pulse{background:#c9633c}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(79,154,92,.5)}70%{box-shadow:0 0 0 9px rgba(79,154,92,0)}100%{box-shadow:0 0 0 0 rgba(79,154,92,0)}}
+
+  /* gallery grid */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:12px}
+  .tile{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;border:0;padding:0;background:var(--ink-3);transition:transform .35s ease, box-shadow .35s ease}
+  .tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .tile:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+  .tile .ph{position:absolute;inset:0}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .tile:hover img{transform:scale(1.06)}
+  .tile .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 14px 11px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(180deg,transparent,rgba(8,14,18,.82));text-align:left}
+  .tile.big{grid-column:span 2;grid-row:span 2}
+  .tile .zoom{position:absolute;top:11px;right:11px;z-index:3;width:30px;height:30px;border-radius:50%;background:rgba(14,27,35,.55);display:grid;place-items:center;opacity:0;transition:opacity .25s}
+  .tile:hover .zoom{opacity:1}
+  .tile .zoom svg{width:15px;height:15px;stroke:#fff;fill:none}
+
+  /* booking */
+  .book-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+  .book-card{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r);padding:34px;box-shadow:var(--shadow)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .field select,.field input{
+    width:100%;padding:14px 16px;border-radius:11px;border:1px solid var(--line-soft);
+    background:var(--ink);color:var(--cream-text);font-family:"Manrope";font-size:16px;
+  }
+  .field select:focus,.field input:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .result{margin-top:8px;border-radius:11px;padding:18px;font-size:15px;display:none}
+  .result.show{display:block}
+  .result.ok{background:rgba(127,178,135,.12);border:1px solid rgba(127,178,135,.35)}
+  .result.bad{background:rgba(217,138,106,.12);border:1px solid rgba(217,138,106,.35)}
+  .result h4{font-family:"Manrope";font-size:16px;font-weight:700;margin-bottom:8px}
+  .result .sum{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line-soft);font-size:14.5px}
+  .result .sum:last-of-type{border-bottom:0}
+  .result .sum b{color:var(--brass-soft)}
+  .result-actions{display:grid;gap:10px;margin-top:16px}
+  .fineprint{font-size:13px;color:var(--muted);margin-top:14px;line-height:1.5}
+  .book-side .step{display:flex;gap:16px;margin-bottom:24px}
+  .book-side .step .n{flex:none;width:38px;height:38px;border-radius:10px;background:var(--ink-2);border:1px solid var(--line);display:grid;place-items:center;font-family:"Fraunces";color:var(--brass);font-weight:600}
+  .book-side .step h4{font-family:"Manrope";font-size:16px;font-weight:700;margin-bottom:4px}
+  .book-side .step p{font-size:14.5px;color:var(--muted);margin:0}
+
+  /* amenities */
+  .amen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .amen{background:#fff;border:1px solid var(--paper-2);border-radius:12px;padding:22px 20px;transition:transform .3s ease, box-shadow .3s ease}
+  .amen:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(20,37,47,.3)}
+  .amen svg{width:28px;height:28px;stroke:#9a7a2e;fill:none;margin-bottom:14px}
+  .amen h4{font-family:"Manrope";font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+  .amen p{font-size:13.5px;color:var(--muted-dark);margin:0}
+
+  /* rules */
+  .rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rule{background:var(--ink-2);border:1px solid var(--line-soft);border-radius:var(--r);padding:28px}
+  .rule h4{font-family:"Manrope";font-size:16px;font-weight:700;color:var(--brass-soft);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .rule h4 svg{width:20px;height:20px;stroke:var(--brass);fill:none}
+  .rule ul{margin:0;padding:0;list-style:none}
+  .rule li{position:relative;padding-left:22px;margin-bottom:11px;font-size:14.5px;color:var(--muted);line-height:1.5}
+  .rule li:last-child{margin-bottom:0}
+  .rule li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--brass);opacity:.8}
+
+  /* location */
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .loc{background:#fff;border:1px solid var(--paper-2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+  .loc .loc-img{height:170px;position:relative;background:linear-gradient(135deg,#16303b,#0E1B23)}
+  .loc .loc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .loc .loc-body{padding:24px}
+  .loc h4{font-family:"Fraunces";font-size:22px;color:var(--ink);margin-bottom:6px}
+  .loc .area{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#9a7a2e;font-weight:600;margin-bottom:12px}
+  .loc p{font-size:14.5px;color:var(--muted-dark)}
+  .loc a.maplink{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ink);border-bottom:1px solid var(--brass);padding-bottom:2px}
+  .loc a.maplink svg{width:16px;height:16px;stroke:#9a7a2e;fill:none}
+
+  /* faq */
+  .faq{max-width:780px;margin:0 auto}
+  .qa{border-bottom:1px solid var(--line-soft)}
+  .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;color:var(--cream-text);padding:22px 0;cursor:pointer;font-family:"Manrope";font-size:17px;font-weight:600;text-align:left}
+  .qa .icon{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s, background .3s}
+  .qa .icon svg{width:13px;height:13px;stroke:var(--brass);fill:none}
+  .qa.open .icon{background:var(--brass);transform:rotate(180deg)}
+  .qa.open .icon svg{stroke:#1a1206}
+  .qa .ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .qa .ans p{color:var(--muted);font-size:15px;padding-bottom:22px;margin:0}
+
+  /* footer */
+  footer{background:#0a141a;border-top:1px solid var(--line-soft);padding:64px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot p{color:var(--muted);font-size:14.5px}
+  .foot h5{font-family:"Manrope";font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:0 0 16px;font-weight:600}
+  .foot a{display:block;color:var(--muted);font-size:14.5px;margin-bottom:10px;transition:color .2s}
+  .foot a:hover{color:var(--cream-text)}
+  .foot-bottom{border-top:1px solid var(--line-soft);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted-dark)}
+
+  /* whatsapp float */
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.5);transition:transform .25s}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:30px;height:30px;fill:#fff}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:120;background:rgba(8,13,17,.94);display:none;align-items:center;justify-content:center;padding:30px}
+  .lb.open{display:flex}
+  .lb-img{max-width:92vw;max-height:78vh;border-radius:12px;box-shadow:var(--shadow)}
+  .lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:var(--cream-text);font-size:14.5px;letter-spacing:.05em}
+  .lb-x{position:absolute;top:22px;right:24px;background:rgba(255,255,255,.08);border:1px solid var(--line-soft);color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:22px;display:grid;place-items:center}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid var(--line-soft);color:#fff;width:50px;height:50px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+  .lb-nav svg{width:20px;height:20px;stroke:#fff;fill:none}
+  .lb-prev{left:24px}.lb-next{right:24px}
+  .lb-count{position:absolute;top:28px;left:24px;color:var(--muted);font-size:13.5px;letter-spacing:.1em}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* responsive */
+  @media(max-width:980px){
+    .book-grid{grid-template-columns:1fr;gap:30px}
+    .amen-grid{grid-template-columns:repeat(2,1fr)}
+    .rules-grid{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+    .tile.big{grid-column:span 2;grid-row:span 1}
+  }
+  @media(max-width:760px){
+    .sec{padding:74px 0}
+    .nav-links{display:none}
+    .nav-toggle{display:block}
+    .nav-links.show{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;background:rgba(14,27,35,.97);padding:24px;backdrop-filter:blur(12px);border-top:1px solid var(--line-soft)}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    .loc-grid{grid-template-columns:1fr}
+    .hero-inner{padding-bottom:54px}
+  }
+  @media(max-width:520px){
+    body{font-size:16px}
+    .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:120px}
+    .two{grid-template-columns:1fr}
+    .amen-grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal,.rise{opacity:1!important;transform:none!important}
+    .hero-bg img{animation:none!important}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .hero-bg img{animation:kb 22s ease-in-out infinite alternate}
+    @keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand"><span class="mark">R</span> Razak Homestay KL</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#units">The Homes</a>
+      <a href="#booking">Availability</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#rules">House Rules</a>
+      <a href="#booking" class="btn btn-primary nav-cta">Book a Stay</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Kuala Lumpur city skyline at dusk" onerror="this.style.display='none'" />
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow rise" data-rise="1">Kuala Lumpur · Direct Booking</p>
+    <h1 class="rise" data-rise="2">Your private corner of <span class="gl">Kuala Lumpur</span>, on your terms.</h1>
+    <p class="sub rise" data-rise="3">Two thoughtfully furnished three-bedroom condominium homes — one set against the skyline at KLCC, one in the calm of Maxim Cheras. Booked directly with the host, with no agency fees in between.</p>
+    <div class="hero-cta rise" data-rise="4">
+      <a href="#units" class="btn btn-primary">View the homes</a>
+      <a href="#booking" class="btn btn-ghost">Check availability</a>
+    </div>
+    <div class="hero-trust rise" data-rise="5">
+      <span><span class="dot"></span> Two private units</span>
+      <span><span class="dot"></span> Secure RM100 deposit</span>
+      <span><span class="dot"></span> Confirmed personally on WhatsApp</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FACTS ============ -->
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg><span><b>2 homes</b> · KLCC & Maxim Cheras</span></div>
+    <div class="fact"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span><b>Self check-in</b> · flexible arrival</span></div>
+    <div class="fact"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 12.5a7 7 0 0 1 14 0"/><path d="M2 9a11 11 0 0 1 20 0"/><circle cx="12" cy="17" r="1.5"/></svg><span><b>Fast Wi-Fi</b> · work-ready</span></div>
+    <div class="fact"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>24-hour</b> building security</span></div>
+    <div class="fact"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 13h2l2-5h10l2 5h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><b>Covered parking</b> included</span></div>
+  </div>
+</div>
+
+<!-- ============ UNITS ============ -->
+<section class="sec sec-paper" id="units">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">The Homes</p>
+        <h2>Two distinct stays, one easy host.</h2>
+      </div>
+      <p class="lead">Each home sleeps a family or a small group comfortably across three bedrooms, with a full kitchen, living area, and access to the building's resort-style amenities. Tap any photo to view it full screen.</p>
+    </div>
+
+    <!-- UNIT A: MAXIM CHERAS -->
+    <article class="unit reveal">
+      <div class="unit-top">
+        <div class="unit-title">
+          <span class="unit-area"><svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.8" fill="none" stroke="currentColor"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Maxim, Cheras</span>
+          <h3>The Maxim Residence</h3>
+          <div class="unit-meta">
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 18h18"/></svg> 3 bedrooms</span>
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M4 21V8l8-4 8 4v13"/></svg> Sleeps up to 6</span>
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg> Near MRT & malls</span>
+          </div>
+        </div>
+        <span class="badge" id="badge-maxim"></span>
+      </div>
+      <div class="gallery" data-gallery="Maxim Residence, Cheras">
+        <button class="tile big" data-cap="The Maxim Residence — building exterior"><div class="ph" style="background:linear-gradient(135deg,#16303b,#0E1B23)"></div><img src="https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Condominium building exterior in Cheras" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Building &amp; entrance</span></button>
+        <button class="tile" data-cap="The Maxim Residence — living room"><div class="ph" style="background:linear-gradient(135deg,#2a3b42,#14252F)"></div><img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Bright living room with sofa" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Living room</span></button>
+        <button class="tile" data-cap="The Maxim Residence — bedroom one"><div class="ph" style="background:linear-gradient(135deg,#3a3026,#14252F)"></div><img src="https://images.pexels.com/photos/1454806/pexels-photo-1454806.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Master bedroom with double bed" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 1</span></button>
+        <button class="tile" data-cap="The Maxim Residence — bedroom two"><div class="ph" style="background:linear-gradient(135deg,#33372b,#14252F)"></div><img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Second bedroom" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 2</span></button>
+        <button class="tile" data-cap="The Maxim Residence — bedroom three"><div class="ph" style="background:linear-gradient(135deg,#2c3a3a,#14252F)"></div><img src="https://images.pexels.com/photos/1648768/pexels-photo-1648768.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Third bedroom with twin beds" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 3</span></button>
+        <button class="tile" data-cap="The Maxim Residence — kitchen"><div class="ph" style="background:linear-gradient(135deg,#243a36,#14252F)"></div><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Modern fitted kitchen" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Kitchen</span></button>
+        <button class="tile" data-cap="The Maxim Residence — facilities & pool"><div class="ph" style="background:linear-gradient(135deg,#1f2e3a,#0E1B23)"></div><img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Swimming pool facility" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Pool &amp; facilities</span></button>
+      </div>
+    </article>
+
+    <!-- UNIT B: KLCC -->
+    <article class="unit reveal">
+      <div class="unit-top">
+        <div class="unit-title">
+          <span class="unit-area"><svg width="16" height="16" viewBox="0 0 24 24" stroke-width="1.8" fill="none" stroke="currentColor"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> KLCC, Kuala Lumpur</span>
+          <h3>The Skyline Suite</h3>
+          <div class="unit-meta">
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 18h18"/></svg> 3 bedrooms</span>
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M4 21V8l8-4 8 4v13"/></svg> Sleeps up to 6</span>
+            <span><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 12h4M10 16h4"/></svg> Walk to Suria KLCC</span>
+          </div>
+        </div>
+        <span class="badge" id="badge-klcc"></span>
+      </div>
+      <div class="gallery" data-gallery="Skyline Suite, KLCC">
+        <button class="tile big" data-cap="The Skyline Suite — tower &amp; city view"><div class="ph" style="background:linear-gradient(135deg,#16303b,#0E1B23)"></div><img src="https://images.pexels.com/photos/1486785/pexels-photo-1486785.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="High-rise residential tower in the city" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Tower &amp; city view</span></button>
+        <button class="tile" data-cap="The Skyline Suite — living room"><div class="ph" style="background:linear-gradient(135deg,#2a3b42,#14252F)"></div><img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Contemporary living room" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Living room</span></button>
+        <button class="tile" data-cap="The Skyline Suite — bedroom one"><div class="ph" style="background:linear-gradient(135deg,#3a3026,#14252F)"></div><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Master bedroom" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 1</span></button>
+        <button class="tile" data-cap="The Skyline Suite — bedroom two"><div class="ph" style="background:linear-gradient(135deg,#33372b,#14252F)"></div><img src="https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Second bedroom" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 2</span></button>
+        <button class="tile" data-cap="The Skyline Suite — bedroom three"><div class="ph" style="background:linear-gradient(135deg,#2c3a3a,#14252F)"></div><img src="https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Third bedroom" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Bedroom 3</span></button>
+        <button class="tile" data-cap="The Skyline Suite — kitchen"><div class="ph" style="background:linear-gradient(135deg,#243a36,#14252F)"></div><img src="https://images.pexels.com/photos/1599791/pexels-photo-1599791.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Fully equipped kitchen" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Kitchen</span></button>
+        <button class="tile" data-cap="The Skyline Suite — rooftop facilities"><div class="ph" style="background:linear-gradient(135deg,#1f2e3a,#0E1B23)"></div><img src="https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Infinity pool with skyline" onerror="this.style.display='none'"><span class="zoom"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM11 8v6M8 11h6"/></svg></span><span class="cap">Rooftop pool</span></button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section class="sec" id="booking">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Availability &amp; Booking</p>
+        <h2>Check your dates, then hold them with a deposit.</h2>
+      </div>
+      <p class="lead">Choose a home and your travel dates. If the dates are open, you can pay the RM100 deposit and confirm directly with the host on WhatsApp — no agency in between.</p>
+    </div>
+
+    <div class="book-grid">
+      <div class="book-card reveal">
+        <div class="field">
+          <label for="unit">Choose your home</label>
+          <select id="unit">
+            <option value="maxim">The Maxim Residence — Cheras</option>
+            <option value="klcc">The Skyline Suite — KLCC</option>
+          </select>
+        </div>
+        <div class="two">
+          <div class="field">
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin" />
+          </div>
+          <div class="field">
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout" />
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="checkBtn">Check availability</button>
+
+        <div class="result" id="result" role="status" aria-live="polite"></div>
+        <p class="fineprint">Your selected dates are held only once your RM100 deposit is received and confirmed by the host on WhatsApp. The deposit is applied toward your total stay. The details you share are used only to process and confirm your booking — they are never sold or passed to third parties. Live, instant date-locking on payment is being added as the next upgrade to this site.</p>
+      </div>
+
+      <div class="book-side reveal">
+        <div class="step"><span class="n">1</span><div><h4>Pick a home &amp; dates</h4><p>Select your unit and check the calendar for open nights.</p></div></div>
+        <div class="step"><span class="n">2</span><div><h4>Pay the RM100 deposit</h4><p>Pay securely through ToyyibPay. Funds go directly to the host's bank account.</p></div></div>
+        <div class="step"><span class="n">3</span><div><h4>Confirm on WhatsApp</h4><p>Send your booking details and deposit reference. The host confirms and your dates are locked.</p></div></div>
+        <div class="step"><span class="n">4</span><div><h4>Receive your check-in guide</h4><p>You'll get the address, access details, and house guide before arrival.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES ============ -->
+<section class="sec sec-paper" id="amenities">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">In Every Home</p>
+        <h2>Everything you need, already here.</h2>
+      </div>
+      <p class="lead">Both homes share the same standard of comfort and the building's resort-style facilities.</p>
+    </div>
+    <div class="amen-grid">
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 12.5a7 7 0 0 1 14 0M2 9a11 11 0 0 1 20 0"/><circle cx="12" cy="17" r="1.5"/></svg><h4>High-speed Wi-Fi</h4><p>Fibre internet, ideal for remote work and streaming.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M2 12h20M5 12V8a7 7 0 0 1 14 0v4M7 16a5 5 0 0 0 10 0"/></svg><h4>Resort pool</h4><p>Access to the building's swimming pool and sun deck.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M6 7v10M18 7v10M6 12h12M3 9v6M21 9v6"/></svg><h4>Gym &amp; fitness</h4><p>Fully equipped gymnasium on-site for residents.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 13h2l2-5h10l2 5h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><h4>Covered parking</h4><p>Secure reserved parking bay included with your stay.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><h4>Smart TV</h4><p>Netflix-ready television in the living area.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 6h6"/></svg><h4>Washer &amp; dryer</h4><p>In-unit laundry for longer stays.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 21V8a2 2 0 0 1 2-2h2V3h8v3h2a2 2 0 0 1 2 2v13M9 21v-5h6v5"/></svg><h4>Full kitchen</h4><p>Cooker, fridge, microwave, and basic cookware.</p></div>
+      <div class="amen reveal"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>24-hour security</h4><p>Guarded lobby and CCTV throughout the building.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section class="sec" id="rules">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">House Rules</p>
+        <h2>A few house rules, simply put.</h2>
+      </div>
+      <p class="lead">These keep both homes comfortable for every guest and respectful to the residents who live alongside you. By booking, you agree to the points below.</p>
+    </div>
+    <div class="rules-grid">
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Arrival &amp; departure</h4>
+        <ul>
+          <li>Check-in is from 3:00 PM; check-out is by 12:00 noon.</li>
+          <li>Earlier arrival or later departure may be arranged in advance, subject to availability.</li>
+          <li>Self check-in details are shared on the day of arrival once your booking is confirmed.</li>
+        </ul>
+      </div>
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg> Living considerately</h4>
+        <ul>
+          <li>The homes are non-smoking throughout, including balconies.</li>
+          <li>Please keep noise low after 10:00 PM out of respect for neighbouring residents.</li>
+          <li>Parties, events, and commercial filming are not permitted.</li>
+        </ul>
+      </div>
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> Guests &amp; visitors</h4>
+        <ul>
+          <li>Only the number of guests listed in your booking may stay overnight.</li>
+          <li>Day visitors are welcome, but please let the host know in advance.</li>
+          <li>A valid ID is required from the lead guest at booking, in line with building policy.</li>
+        </ul>
+      </div>
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Safety &amp; care</h4>
+        <ul>
+          <li>Pets are not allowed unless agreed with the host beforehand.</li>
+          <li>Please switch off air-conditioning and lights when you leave the home.</li>
+          <li>Treat the furnishings and shared facilities as you would your own.</li>
+        </ul>
+      </div>
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg> Deposit &amp; damages</h4>
+        <ul>
+          <li>An RM100 deposit secures your dates and is applied toward your stay.</li>
+          <li>The home is checked after departure; any damage beyond normal use may be charged.</li>
+          <li>Lost access cards or keys are subject to a replacement fee.</li>
+        </ul>
+      </div>
+      <div class="rule reveal">
+        <h4><svg viewBox="0 0 24 24" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Changes &amp; cancellation</h4>
+        <ul>
+          <li>Let the host know as early as possible if your plans change.</li>
+          <li>Cancellation terms are confirmed in writing on WhatsApp at the time of booking.</li>
+          <li>Date changes are accommodated where the calendar allows.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="sec sec-paper" id="location">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Where You'll Stay</p>
+        <h2>Two well-connected addresses.</h2>
+      </div>
+      <p class="lead">Whether you want the buzz of the city centre or a quieter base near the suburbs, there's a home to match.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc reveal">
+        <div class="loc-img"><img src="https://images.pexels.com/photos/1738434/pexels-photo-1738434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cheras neighbourhood" onerror="this.style.display='none'"></div>
+        <div class="loc-body">
+          <span class="area">Maxim, Cheras</span>
+          <h4>The Maxim Residence</h4>
+          <p>A modern, family-friendly base in Cheras with quick access to the MRT line, shopping malls, and a wide choice of local food just minutes from your door.</p>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Maxim+Cheras+Kuala+Lumpur" target="_blank" rel="noopener">View on Google Maps <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+      <div class="loc reveal">
+        <div class="loc-img"><img src="https://images.pexels.com/photos/2227774/pexels-photo-2227774.jpeg?auto=compress&cs=tinysrgb&w=800" alt="KLCC and Petronas Towers" onerror="this.style.display='none'"></div>
+        <div class="loc-body">
+          <span class="area">KLCC, Kuala Lumpur</span>
+          <h4>The Skyline Suite</h4>
+          <p>In the heart of the city, within walking distance of Suria KLCC, the Petronas Twin Towers, KLCC Park, and the city's best dining and nightlife.</p>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=KLCC+Kuala+Lumpur" target="_blank" rel="noopener">View on Google Maps <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:40px">
+      <div>
+        <p class="eyebrow">Good to Know</p>
+        <h2>Questions, answered.</h2>
+      </div>
+    </div>
+    <div class="faq reveal">
+      <div class="qa"><button aria-expanded="false">How do I book a stay?<span class="icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="ans"><p>Choose your home and dates in the booking section above. If your dates are open, pay the RM100 deposit through ToyyibPay and send your details on WhatsApp. The host confirms and locks your dates.</p></div></div>
+      <div class="qa"><button aria-expanded="false">What does the RM100 deposit cover?<span class="icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="ans"><p>The deposit secures your selected dates and is applied toward the total cost of your stay. It is not an extra charge on top of the room rate.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Is the deposit payment secure?<span class="icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="ans"><p>Yes. Payment is processed through ToyyibPay, a licensed Malaysian payment gateway, and funds go directly to the host's bank account. No card details are stored on this website.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Is check-in self-service?<span class="icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="ans"><p>Yes. Once your booking is confirmed, you'll receive the address and access details so you can check in on your own from 3:00 PM.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Can I bring more guests than listed?<span class="icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="ans"><p>Please book for the actual number of overnight guests. If your group size changes, message the host on WhatsApp so the booking can be updated where the home allows.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom:16px"><span class="mark">R</span> Razak Homestay KL</a>
+        <p>Two private condominium homes in Kuala Lumpur, managed personally by the host. Book directly — no agency fees, just a comfortable stay.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#units">The Homes</a>
+        <a href="#booking">Availability</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#rules">House Rules</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="https://wa.me/601161200054" target="_blank" rel="noopener">WhatsApp the host</a>
+        <a href="mailto:muhdhazwan90@gmail.com">muhdhazwan90@gmail.com</a>
+        <a href="#location">KLCC &amp; Maxim Cheras</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Razak Homestay KL. All rights reserved.</span>
+      <span>Direct booking · Managed personally by the host · Your details are used only to process your booking</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a class="wa-float" id="waFloat" href="https://wa.me/601161200054" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-x" id="lbX" aria-label="Close">&times;</button>
+  <span class="lb-count" id="lbCount"></span>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <img class="lb-img" id="lbImg" alt="" />
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  <span class="lb-cap" id="lbCap"></span>
+</div>
+
+<script>
+/* =======================================================================
+   OWNER-EDITABLE SETTINGS
+   ======================================================================= */
+// Paste your ToyyibPay hosted bill link between the quotes (replace placeholder).
+const TOYYIBPAY_LINK = "https://toyyibpay.com/"; // <-- REPLACE with your real hosted bill URL
+const WHATSAPP_NUMBER = "601161200054";
+const DEPOSIT = 100;
+
+// Phase 2 booking backend (live availability). Paste your Apps Script Web App
+// URL between the quotes; it ends with /exec. See backend/README.md for setup.
+// Leave it blank to keep the site fully manual using the AVAILABILITY list below.
+const BOOKING_API = "";
+
+// AVAILABILITY: add a line per booked stay to lock those dates.
+// Format: ["check-in YYYY-MM-DD", "check-out YYYY-MM-DD"]
+// Delete a line to free the dates. (This is your manual control for now.)
+const AVAILABILITY = {
+  maxim: {
+    name: "The Maxim Residence — Cheras",
+    bookedRanges: [
+      // ["2026-06-20", "2026-06-24"],
+    ]
+  },
+  klcc: {
+    name: "The Skyline Suite — KLCC",
+    bookedRanges: [
+      // ["2026-07-01", "2026-07-05"],
+    ]
+  }
+};
+
+/* =======================================================================
+   HELPERS
+   ======================================================================= */
+const $ = (s, c=document) => c.querySelector(s);
+const toDate = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const fmt = d => d.toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" });
+const todayISO = () => { const d=new Date(); return d.toISOString().split("T")[0]; };
+
+// overlap check between [aIn,aOut) and [bIn,bOut)
+function overlaps(aIn, aOut, bIn, bOut){ return aIn < bOut && bIn < aOut; }
+
+function nextFreeFrom(unitKey){
+  // returns "Available now" status text + class for the badge
+  const ranges = AVAILABILITY[unitKey].bookedRanges.map(r => [toDate(r[0]), toDate(r[1])]);
+  const today = toDate(todayISO());
+  const occupiedNow = ranges.find(([i,o]) => today >= i && today < o);
+  if(occupiedNow){
+    return { cls:"badge-busy", html:'<span class="pulse"></span> Booked until ' + fmt(occupiedNow[1]) };
+  }
+  return { cls:"badge-ok", html:'<span class="pulse"></span> Available now' };
+}
+
+/* =======================================================================
+   BADGES
+   ======================================================================= */
+function paintBadge(k){
+  const b = $("#badge-" + k);
+  const s = nextFreeFrom(k);
+  b.className = "badge " + s.cls;
+  b.innerHTML = s.html;
+}
+["maxim","klcc"].forEach(paintBadge);
+
+/* =======================================================================
+   LIVE AVAILABILITY (Phase 2 backend)
+   Reads the latest booked ranges from the Apps Script web app and merges
+   them with the manual list above. If BOOKING_API is blank or the request
+   fails, the site simply keeps working with the manual ranges.
+   ======================================================================= */
+function loadLiveAvailability(){
+  if(!BOOKING_API) return;
+  const cbName = "rhkAvail" + Date.now();
+  const script = document.createElement("script");
+  const cleanup = () => {
+    delete window[cbName];
+    if(script.parentNode) script.parentNode.removeChild(script);
+  };
+  window[cbName] = res => {
+    try{
+      if(res && res.ok && res.availability){
+        ["maxim","klcc"].forEach(k => {
+          const live = res.availability[k] || [];
+          const seen = new Set(AVAILABILITY[k].bookedRanges.map(r => r.join("|")));
+          live.forEach(r => {
+            const key = r[0] + "|" + r[1];
+            if(!seen.has(key)){ AVAILABILITY[k].bookedRanges.push([r[0], r[1]]); seen.add(key); }
+          });
+          paintBadge(k);
+        });
+      }
+    }catch(err){ /* keep manual ranges on any error */ }
+    cleanup();
+  };
+  script.onerror = cleanup;
+  script.src = BOOKING_API + (BOOKING_API.indexOf("?") > -1 ? "&" : "?") +
+    "action=availability&callback=" + cbName;
+  document.head.appendChild(script);
+}
+loadLiveAvailability();
+
+/* Record a held booking as Pending in the backend log. Fire and forget:
+   the WhatsApp message and on-screen reference are the source of truth, so
+   the booking still works even if this request does not go through. */
+function logPendingBooking(unitKey, ref, inISO, outISO, nights){
+  if(!BOOKING_API) return;
+  try{
+    fetch(BOOKING_API, {
+      method: "POST",
+      redirect: "follow",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        action: "book", unit: unitKey, ref: ref,
+        checkIn: inISO, checkOut: outISO, nights: nights
+      })
+    }).catch(() => {});
+  }catch(err){ /* ignore network errors */ }
+}
+
+/* =======================================================================
+   BOOKING WIDGET
+   ======================================================================= */
+const ci = $("#checkin"), co = $("#checkout"), result = $("#result");
+ci.min = todayISO(); co.min = todayISO();
+ci.addEventListener("change", () => { co.min = ci.value || todayISO(); });
+
+$("#checkBtn").addEventListener("click", () => {
+  const unitKey = $("#unit").value;
+  const unit = AVAILABILITY[unitKey];
+  result.className = "result";
+
+  if(!ci.value || !co.value){
+    return showResult(false, "Please select both a check-in and a check-out date.");
+  }
+  const inD = toDate(ci.value), outD = toDate(co.value);
+  const today = toDate(todayISO());
+  if(inD < today) return showResult(false, "Check-in cannot be in the past. Please choose a future date.");
+  if(outD <= inD) return showResult(false, "Check-out must be after your check-in date.");
+
+  // clash check
+  const clash = unit.bookedRanges.find(r => overlaps(inD, outD, toDate(r[0]), toDate(r[1])));
+  if(clash){
+    return showResult(false,
+      "Sorry, " + unit.name + " is already booked between " + fmt(toDate(clash[0])) +
+      " and " + fmt(toDate(clash[1])) + ". Try different dates, or message the host to check nearby openings.",
+      true);
+  }
+
+  // available
+  const nights = Math.round((outD - inD) / 86400000);
+  const ref = "RHK-" + unitKey.toUpperCase() + "-" + Date.now().toString(36).toUpperCase();
+
+  // Record this hold in the backend log (no effect if BOOKING_API is blank).
+  logPendingBooking(unitKey, ref, ci.value, co.value, nights);
+
+  const waMsg =
+    "Hello Razak Homestay KL. I would like to book the following stay:%0A%0A" +
+    "Home: " + unit.name + "%0A" +
+    "Check-in: " + fmt(inD) + "%0A" +
+    "Check-out: " + fmt(outD) + "%0A" +
+    "Nights: " + nights + "%0A" +
+    "Deposit: RM" + DEPOSIT + "%0A" +
+    "Booking reference: " + ref + "%0A%0A" +
+    "I am ready to pay the RM" + DEPOSIT + " deposit to hold these dates.";
+  const waLink = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + waMsg;
+
+  result.className = "result ok show";
+  result.innerHTML =
+    '<h4>Good news — these dates are open.</h4>' +
+    '<div class="sum"><span>Home</span><b>' + unit.name + '</b></div>' +
+    '<div class="sum"><span>Check-in</span><b>' + fmt(inD) + '</b></div>' +
+    '<div class="sum"><span>Check-out</span><b>' + fmt(outD) + '</b></div>' +
+    '<div class="sum"><span>Nights</span><b>' + nights + '</b></div>' +
+    '<div class="sum"><span>Deposit to hold</span><b>RM' + DEPOSIT + '</b></div>' +
+    '<div class="sum"><span>Booking reference</span><b>' + ref + '</b></div>' +
+    '<div class="result-actions">' +
+      '<a class="btn btn-primary btn-block" href="' + TOYYIBPAY_LINK + '" target="_blank" rel="noopener">Pay RM' + DEPOSIT + ' deposit (ToyyibPay)</a>' +
+      '<a class="btn btn-wa btn-block" href="' + waLink + '" target="_blank" rel="noopener">Confirm on WhatsApp</a>' +
+    '</div>';
+  result.scrollIntoView({behavior:"smooth", block:"nearest"});
+});
+
+function showResult(ok, msg, soft){
+  result.className = "result " + (ok ? "ok" : "bad") + " show";
+  const waLink = "https://wa.me/" + WHATSAPP_NUMBER;
+  result.innerHTML = '<p style="margin:0">' + msg + '</p>' +
+    (soft ? '<div class="result-actions"><a class="btn btn-wa btn-block" href="' + waLink + '" target="_blank" rel="noopener">Message the host on WhatsApp</a></div>' : '');
+}
+
+/* =======================================================================
+   NAV: scroll state + mobile toggle
+   ======================================================================= */
+const nav = $("#nav");
+window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 40));
+const navLinks = $("#navLinks"), navToggle = $("#navToggle");
+navToggle.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("show");
+  navToggle.setAttribute("aria-expanded", open);
+});
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  navLinks.classList.remove("show"); navToggle.setAttribute("aria-expanded", false);
+}));
+
+/* =======================================================================
+   HERO LOAD REVEAL
+   ======================================================================= */
+window.addEventListener("load", () => {
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll("[data-rise]").forEach(el => {
+    const order = parseInt(el.getAttribute("data-rise"), 10);
+    el.style.transition = "opacity .8s ease, transform .8s ease";
+    el.style.transitionDelay = (order * 0.11) + "s";
+    requestAnimationFrame(() => { el.style.opacity = "1"; el.style.transform = "none"; });
+  });
+});
+// fallback so hero is never stuck hidden
+setTimeout(() => document.querySelectorAll(".rise").forEach(el => { el.style.opacity="1"; el.style.transform="none"; }), 1500);
+
+/* =======================================================================
+   SCROLL REVEAL
+   ======================================================================= */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* =======================================================================
+   FAQ accordion
+   ======================================================================= */
+document.querySelectorAll(".qa button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const qa = btn.parentElement, ans = qa.querySelector(".ans");
+    const open = qa.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+    ans.style.maxHeight = open ? ans.scrollHeight + "px" : "0";
+  });
+});
+
+/* =======================================================================
+   LIGHTBOX
+   ======================================================================= */
+const lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbCount = $("#lbCount");
+let group = [], idx = 0;
+
+document.querySelectorAll(".gallery").forEach(gal => {
+  const tiles = [...gal.querySelectorAll(".tile")];
+  tiles.forEach((t, i) => {
+    t.addEventListener("click", () => {
+      group = tiles.map(x => ({
+        src: (x.querySelector("img") ? x.querySelector("img").getAttribute("src") : ""),
+        cap: x.getAttribute("data-cap") || ""
+      }));
+      idx = i; openLB();
+    });
+  });
+});
+function openLB(){
+  const item = group[idx];
+  lbImg.src = item.src; lbImg.alt = item.cap;
+  lbCap.textContent = item.cap;
+  lbCount.textContent = (idx+1) + " / " + group.length;
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeLB(){ lb.classList.remove("open"); document.body.style.overflow = ""; }
+function step(n){ idx = (idx + n + group.length) % group.length; openLB(); }
+$("#lbX").addEventListener("click", closeLB);
+$("#lbPrev").addEventListener("click", () => step(-1));
+$("#lbNext").addEventListener("click", () => step(1));
+lb.addEventListener("click", e => { if(e.target === lb) closeLB(); });
+document.addEventListener("keydown", e => {
+  if(!lb.classList.contains("open")) return;
+  if(e.key === "Escape") closeLB();
+  if(e.key === "ArrowLeft") step(-1);
+  if(e.key === "ArrowRight") step(1);
+});
+</script>
+
+<!-- SEO / AEO structured data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LodgingBusiness",
+  "name":"Razak Homestay KL",
+  "description":"Two private three-bedroom condominium homestays in Kuala Lumpur, at KLCC and Maxim Cheras. Direct booking with the host.",
+  "areaServed":"Kuala Lumpur, Malaysia",
+  "telephone":"+601161200054",
+  "email":"muhdhazwan90@gmail.com",
+  "priceRange":"$$",
+  "amenityFeature":[
+    {"@type":"LocationFeatureSpecification","name":"Free Wi-Fi","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Swimming pool","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Gym","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Free parking","value":true}
+  ],
+  "containsPlace":[
+    {"@type":"Accommodation","name":"The Maxim Residence — Cheras","numberOfBedrooms":3,"occupancy":{"@type":"QuantitativeValue","maxValue":6}},
+    {"@type":"Accommodation","name":"The Skyline Suite — KLCC","numberOfBedrooms":3,"occupancy":{"@type":"QuantitativeValue","maxValue":6}}
+  ]
+}
+</script>
+</body>
+</html>
