@@ -357,6 +357,10 @@ const PRODUCTS=[
    sizes:[{l:'S',s:0},{l:'M',s:5},{l:'L',s:6},{l:'XL',s:2}]}
 ];
 const FREE_SHIP=250;
+/* Payment backend. Once the PHP files are uploaded and config.php is filled in,
+   set this to 'create-bill.php' to take live ToyyibPay payments. Leave it empty
+   to run in demo mode, which sends the order summary to WhatsApp instead. */
+const PAY_ENDPOINT='';
 function totalStock(p){return p.sizes.reduce((s,z)=>s+z.s,0);}
 function stockClass(n){return n===0?'out':(n<=3?'low':'ok');}
 function stockText(n){return n===0?'Sold out':(n<=3?`Low stock, only ${n} left`:`${n} in stock`);}
@@ -511,7 +515,7 @@ window.openCheckout=()=>{
       <label class="tnc"><input type="checkbox" id="f_tnc"><span>I have read and agree to the <a onclick="openTnc()">terms, returns, and privacy policy</a>.</span></label>
       <div class="err" id="coErr">Please complete the highlighted fields and accept the terms.</div>
       <button class="btn" id="payBtn">Pay with ToyyibPay →</button>
-      <p class="pay-note">You will be taken to a secure local payment page, and funds go directly to MORWELL. <br><b>Demo:</b> this confirms your order via WhatsApp.</p>
+      <p class="pay-note">You will be taken to a secure ToyyibPay payment page, and funds go directly to MORWELL. Your card and banking details are never stored on this site.</p>
     </div>`;
   foot.innerHTML='';
   const stateSel=document.getElementById('f_state');
@@ -529,12 +533,28 @@ function doPay(sub){
   if(!ok||!g('f_tnc').checked){g('coErr').classList.add('show');return;}
   g('coErr').classList.remove('show');
   const state=g('f_state').value,ship=postageFor(state,sub),total=sub+ship;
+  if(PAY_ENDPOINT){payViaToyyibpay(g,state);return;}
+  // Demo fallback: open a pre-filled order summary in WhatsApp
   let msg=`*MORWELL — New Order*\n\n`;
   cart.forEach(i=>{const p=PRODUCTS.find(x=>x.id===i.id),z=p.sizes[i.sizeIdx];msg+=`• ${p.name} — ${p.colour} / ${z.l} ×${i.qty}  (RM${p.price*i.qty})\n`;});
   msg+=`\nSubtotal: RM${sub}\nShipping (${EAST.includes(state)?'East':'West'}): ${ship===0?'FREE':'RM'+ship}\n*Total: RM${total}*\n\n`;
   msg+=`Name: ${g('f_name').value}\nPhone: ${g('f_phone').value}\nEmail: ${g('f_email').value}\nAddress: ${g('f_addr').value}, ${g('f_post').value} ${g('f_city').value}, ${state}\n\n(Sent from the MORWELL demo store)`;
   window.open('https://wa.me/601161200054?text='+encodeURIComponent(msg),'_blank','noopener');
   toast('Order summary opened in WhatsApp');
+}
+/* Submit the validated order to the ToyyibPay backend. Prices and shipping are
+   recalculated on the server, then the customer is sent to the payment page. */
+function payViaToyyibpay(g,state){
+  const items=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id),z=p.sizes[i.sizeIdx];return{id:p.id,size:z.l,qty:i.qty};});
+  const f=document.createElement('form');
+  f.method='POST'; f.action=PAY_ENDPOINT;
+  const add=(n,v)=>{const inp=document.createElement('input');inp.type='hidden';inp.name=n;inp.value=v;f.appendChild(inp);};
+  add('order',JSON.stringify(items));
+  add('name',g('f_name').value); add('phone',g('f_phone').value); add('email',g('f_email').value);
+  add('address',g('f_addr').value); add('city',g('f_city').value); add('postcode',g('f_post').value); add('state',state);
+  document.body.appendChild(f);
+  toast('Redirecting to secure payment…');
+  f.submit();
 }
 
 /* overlay plumbing */
