@@ -78,22 +78,23 @@
   @media(max-width:520px){.navcta{display:none}}
 
   /* hero */
-  .hero{position:relative;padding:96px 0 84px;overflow:hidden;z-index:1}
-  .hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;opacity:.5}
-  .hero__veil{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(8,8,12,.45),rgba(8,8,12,.86)),radial-gradient(70% 60% at 72% 22%,transparent,rgba(8,8,12,.55))}
+  .hero{position:relative;min-height:90svh;display:flex;align-items:flex-end;padding:130px 0 78px;overflow:hidden;z-index:1}
+  .hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;opacity:.92}
+  .hero__veil{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(8,8,12,.5) 0%,rgba(8,8,12,.22) 28%,rgba(8,8,12,.72) 68%,rgba(8,8,12,.96) 100%),linear-gradient(90deg,rgba(8,8,12,.6),transparent 60%)}
   .hero__bg{position:absolute;inset:-20% -10% auto;height:130%;z-index:-4;filter:blur(64px);opacity:.72}
   .hero__bg span{position:absolute;border-radius:50%;mix-blend-mode:screen;animation:float 18s ease-in-out infinite}
   .b1{width:520px;height:520px;left:-6%;top:-10%;background:radial-gradient(circle,#3a5cff,transparent 65%)}
   .b2{width:480px;height:480px;right:-4%;top:0;background:radial-gradient(circle,#9B6BFF,transparent 65%);animation-delay:-6s}
   .b3{width:420px;height:420px;left:38%;top:24%;background:radial-gradient(circle,#48E1C8,transparent 65%);animation-delay:-11s}
   @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,24px) scale(.95)}}
-  .hero__grid-lines{position:absolute;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  .hero__grid-lines{position:absolute;inset:0;z-index:-4;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
     background-size:54px 54px;mask:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 75%);-webkit-mask:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 75%);opacity:.5}
-  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
-  .hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700}
+  .hero__grid{display:block;max-width:760px}
+  .hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700;text-shadow:0 2px 28px rgba(0,0,0,.55)}
+  .hero .eyebrow{color:#cfd3e0}
   .rotator{display:inline-block;position:relative;min-width:5ch}
   .rotator b{display:inline-block;font-weight:700;animation:rotWord 9s infinite}
-  .hero p.lead{margin:24px 0 32px;font-size:1.1rem;color:var(--muted);max-width:50ch}
+  .hero p.lead{margin:24px 0 32px;font-size:1.1rem;color:rgba(238,240,248,.9);max-width:50ch;text-shadow:0 1px 16px rgba(0,0,0,.5)}
   .hero__cta{display:flex;gap:14px;flex-wrap:wrap}
   .hero__chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
   .chip{font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.02)}
@@ -315,11 +316,6 @@
         <span class="chip"><b>Secure</b> online payments</span>
         <span class="chip"><b>Direct</b> owner support</span>
       </div>
-    </div>
-    <div class="showcase hu hu4" aria-hidden="true">
-      <div class="pv pv1"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=600')"></div></div>
-      <div class="pv pv2"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600')"></div></div>
-      <div class="pv pv3"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('../Npremiumwedding/pengantin-berdua.jpg')"></div></div>
     </div>
   </div>
 </section>
