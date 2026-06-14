@@ -9,9 +9,9 @@
 <meta property="og:description" content="Fast, modern websites for small businesses. Front end, back end, and design, explained simply. See our work.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://haz1-90.github.io/WESBITEDEMO/knm-web-studio/">
-<meta property="og:image" content="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta property="og:image" content="https://haz1-90.github.io/WESBITEDEMO/knm-web-studio/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta name="twitter:image" content="https://haz1-90.github.io/WESBITEDEMO/knm-web-studio/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -59,7 +59,23 @@
   .nav__links a{color:var(--muted);transition:color .2s}
   .nav__links a:hover{color:var(--text)}
   .nav .btn{padding:10px 18px;font-size:.85rem}
-  @media(max-width:860px){.nav__links{display:none}}
+  .nav__right{display:flex;align-items:center;gap:12px}
+  .burger{display:none;width:42px;height:42px;border:1px solid var(--line-2);border-radius:11px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(255,255,255,.02)}
+  .burger span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mnav{position:fixed;inset:0;z-index:70;background:rgba(8,8,12,.98);backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:48px 32px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .mnav.open{opacity:1;pointer-events:auto}
+  .mnav a{font-family:'Space Grotesk';font-size:1.55rem;font-weight:600;color:var(--text);padding:14px 0;border-bottom:1px solid var(--line)}
+  .mnav .btn{margin-top:22px;font-size:1rem;justify-content:center;border-bottom:none}
+  .totop{position:fixed;left:20px;bottom:20px;z-index:80;width:46px;height:46px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--text);opacity:0;pointer-events:none;transition:opacity .3s,transform .25s}
+  .totop.show{opacity:1;pointer-events:auto}
+  .totop:hover{transform:translateY(-3px)}
+  .totop svg{width:20px;height:20px}
+  @media(min-width:861px){.mnav{display:none}}
+  @media(max-width:860px){.nav__links{display:none}.burger{display:flex}}
+  @media(max-width:520px){.navcta{display:none}}
 
   /* hero */
   .hero{position:relative;padding:96px 0 84px;overflow:hidden;z-index:1}
@@ -89,7 +105,8 @@
   @media(max-width:860px){.hero__grid{grid-template-columns:1fr;gap:40px}}
 
   .showcase{position:relative;height:440px;perspective:1400px}
-  .pv{position:absolute;width:62%;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 30px 70px -30px rgba(0,0,0,.8);background:var(--surface);will-change:transform}
+  .pv{position:absolute;width:62%;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 30px 70px -30px rgba(0,0,0,.8);background:linear-gradient(155deg,#243260,#3a2358);will-change:transform}
+  .pv .shot{width:100%;height:170px;background-size:cover;background-position:center top}
   .pv .bar{display:flex;gap:6px;padding:10px 12px;background:#0c0c14;border-bottom:1px solid var(--line)}
   .pv .bar i{width:9px;height:9px;border-radius:50%;background:#33333f}
   .pv img{width:100%;height:170px;object-fit:cover;object-position:center top}
@@ -116,13 +133,13 @@
   .center{margin-left:auto;margin-right:auto;text-align:center}
 
   .problem{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
-  .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+  .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:stretch}
   .prob-list{display:grid;gap:16px}
   .prob-item{display:flex;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:.3s}
   .prob-item:hover{border-color:var(--line-2);transform:translateX(4px)}
   .prob-item .x{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(255,90,90,.14);color:#ff7a7a;display:grid;place-items:center;font-size:.9rem}
   .prob-item b{font-weight:600}.prob-item span{color:var(--muted);font-size:.92rem;display:block}
-  .prob-aside{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:radial-gradient(120% 120% at 0% 0%,rgba(91,140,255,.14),transparent 50%),var(--surface)}
+  .prob-aside{display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);border-radius:var(--r);padding:34px;background:radial-gradient(120% 120% at 0% 0%,rgba(91,140,255,.14),transparent 50%),var(--surface)}
   .prob-aside h3{font-size:1.5rem;margin-bottom:12px}
   .prob-aside p{color:var(--muted)}
   .prob-aside .tick{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.95rem}
@@ -254,9 +271,23 @@
       <a href="#work">Our Work</a>
       <a href="#process">Process</a>
     </nav>
-    <a class="btn btn-primary" href="https://wa.me/601161200054?text=Hi%20KNM%20Web%20Studio%2C%20I%27d%20like%20to%20ask%20about%20a%20website%20for%20my%20business." target="_blank" rel="noopener">Let's talk</a>
+    <div class="nav__right">
+      <a class="btn btn-primary navcta" href="https://wa.me/601161200054?text=Hi%20KNM%20Web%20Studio%2C%20I%27d%20like%20to%20ask%20about%20a%20website%20for%20my%20business." target="_blank" rel="noopener">Let's talk</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
+
+<!-- mobile menu -->
+<nav class="mnav" id="mnav" aria-hidden="true">
+  <a href="#top">Home</a>
+  <a href="#services">Services</a>
+  <a href="#packages">Packages</a>
+  <a href="#work">Our Work</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-primary" href="https://wa.me/601161200054?text=Hi%20KNM%20Web%20Studio%21" target="_blank" rel="noopener">Start on WhatsApp</a>
+</nav>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -285,16 +316,38 @@
       </div>
     </div>
     <div class="showcase hu hu4" aria-hidden="true">
-      <div class="pv pv1"><div class="bar"><i></i><i></i><i></i></div><img src="https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="eager" onerror="this.style.display='none'"></div>
-      <div class="pv pv2"><div class="bar"><i></i><i></i><i></i></div><img src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-      <div class="pv pv3"><div class="bar"><i></i><i></i><i></i></div><img src="https://images.pexels.com/photos/2120584/pexels-photo-2120584.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="pv pv1"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=600')"></div></div>
+      <div class="pv pv2"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600')"></div></div>
+      <div class="pv pv3"><div class="bar"><i></i><i></i><i></i></div><div class="shot" style="background-image:url('../Npremiumwedding/pengantin-berdua.jpg')"></div></div>
     </div>
   </div>
 </section>
 
 <!-- STATS removed -->
 
-<div class="marquee" aria-hidden="true"><div class="marquee__t"><span>Online Stores</span><span>Homestay Booking</span><span>Wedding Invitations</span><span>Restaurant Menus</span><span>Service Pages</span><span>Secure Payments</span></div></div>
+
+<!-- SHOWREEL — selected work (near the top for impact) -->
+<section class="reel" id="showreel" aria-label="Selected work">
+  <div class="reel-stage">
+    <div class="reel-copy">
+      <p class="eyebrow"><span class="reel-num" id="reelNum">01 / 04</span> &nbsp; Selected work</p>
+      <h2 class="reel-title" id="reelTitle">MORWELL Menswear</h2>
+      <p class="reel-desc" id="reelDesc">An online store with live stock by size, a shopping bag, and secure checkout.</p>
+      <a class="work__link" id="reelLink" href="../morwell-menswear/" target="_blank" rel="noopener">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <div class="reel-dots" id="reelDots"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="reel-deviceWrap">
+      <div class="device tilt">
+        <div class="device__screen" id="reelScreen">
+          <img class="first on" src="https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=600" alt="MORWELL" onerror="this.style.opacity=0">
+          <img src="../Npremiumwedding/pengantin-berdua.jpg" alt="Adam &amp; Aisyah" onerror="this.style.opacity=0">
+          <img src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Razak Homestay" onerror="this.style.opacity=0">
+          <img src="https://images.pexels.com/photos/2120584/pexels-photo-2120584.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Liora" onerror="this.style.opacity=0">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROBLEM -->
 <section class="block problem" id="why">
@@ -353,28 +406,6 @@
   </div>
 </section>
 
-<!-- SHOWREEL (pinned) -->
-<section class="reel" id="showreel" aria-label="Selected work">
-  <div class="reel-stage">
-    <div class="reel-copy">
-      <p class="eyebrow"><span class="reel-num" id="reelNum">01 / 04</span> &nbsp; Selected work</p>
-      <h2 class="reel-title" id="reelTitle">MORWELL Menswear</h2>
-      <p class="reel-desc" id="reelDesc">An online store with live stock by size, a shopping bag, and secure checkout.</p>
-      <a class="work__link" id="reelLink" href="../morwell-menswear/" target="_blank" rel="noopener">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-      <div class="reel-dots" id="reelDots"><i class="on"></i><i></i><i></i><i></i></div>
-    </div>
-    <div class="reel-deviceWrap">
-      <div class="device tilt">
-        <div class="device__screen" id="reelScreen">
-          <img class="first on" src="https://images.pexels.com/photos/832998/pexels-photo-832998.jpeg?auto=compress&cs=tinysrgb&w=600" alt="MORWELL" onerror="this.style.opacity=0">
-          <img src="../Npremiumwedding/pengantin-berdua.jpg" alt="Adam &amp; Aisyah" onerror="this.style.opacity=0">
-          <img src="https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Razak Homestay" onerror="this.style.opacity=0">
-          <img src="https://images.pexels.com/photos/2120584/pexels-photo-2120584.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Liora" onerror="this.style.opacity=0">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PACKAGES -->
 <section class="block packages" id="packages">
@@ -523,6 +554,8 @@
   </div>
 </footer>
 
+<button class="totop" id="totop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
 <a class="wa-float" href="https://wa.me/601161200054?text=Hi%20KNM%20Web%20Studio%21" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.6 14.86L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm5.8 14.06c-.24.69-1.4 1.32-1.94 1.4-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.82 2.02.89 2.17.07.14.12.31.02.5-.09.19-.14.31-.27.48-.14.16-.29.37-.41.49-.14.14-.28.29-.12.57.16.27.7 1.16 1.51 1.88 1.04.93 1.92 1.21 2.19 1.35.27.14.43.12.59-.07.16-.19.68-.79.86-1.07.18-.27.36-.22.61-.13.25.09 1.59.75 1.86.89.27.14.45.2.52.31.07.12.07.66-.17 1.35z"/></svg>
 </a>
@@ -622,9 +655,10 @@
       {n:'04 / 04',t:'Liora Scarves',d:'A soft, elegant boutique page with a collection and one-tap WhatsApp ordering.',l:'../template-basic-2-boutique.html'}
     ];
     const num=document.getElementById('reelNum'),title=document.getElementById('reelTitle'),desc=document.getElementById('reelDesc'),link=document.getElementById('reelLink');
-    let cur=-1, ticking=false;
-    // give the section scroll length (one screen per slide) on larger screens
-    function setH(){ reel.style.height = window.matchMedia('(max-width:860px)').matches ? 'auto' : (data.length*100)+'svh'; }
+    let cur=-1, ticking=false, autoT=null;
+    const isMobile=()=>window.matchMedia('(max-width:860px)').matches;
+    // desktop: scroll-driven (one screen per slide). mobile: auto-play.
+    function setH(){ reel.style.height = isMobile() ? 'auto' : (data.length*100)+'svh'; }
     function apply(i){
       if(i===cur) return; cur=i;
       imgs.forEach((im,j)=>im.classList.toggle('on',j===i));
@@ -632,18 +666,37 @@
       const d=data[i]; num.textContent=d.n; title.textContent=d.t; desc.textContent=d.d; link.href=d.l;
     }
     function onScroll(){
-      if(ticking) return; ticking=true;
+      if(isMobile() || ticking) return; ticking=true;
       requestAnimationFrame(()=>{
         ticking=false;
-        if(window.matchMedia('(max-width:860px)').matches){ apply(0); return; }
         const r=reel.getBoundingClientRect(), span=reel.offsetHeight-innerHeight;
         const p=Math.min(1,Math.max(0,(-r.top)/(span||1)));
         apply(Math.min(data.length-1, Math.max(0, Math.floor(p*data.length))));
       });
     }
-    setH(); apply(0);
+    function startAuto(){ if(autoT||RM) return; autoT=setInterval(()=>apply((cur+1)%data.length), 2800); }
+    function stopAuto(){ if(autoT){ clearInterval(autoT); autoT=null; } }
+    function mode(){ if(isMobile()) startAuto(); else { stopAuto(); onScroll(); } }
+    setH(); apply(0); mode();
     addEventListener('scroll', onScroll, {passive:true});
-    addEventListener('resize', ()=>{ setH(); onScroll(); });
+    addEventListener('resize', ()=>{ setH(); mode(); });
+  })();
+
+  /* mobile burger menu */
+  (function(){
+    const burger=document.getElementById('burger'), mnav=document.getElementById('mnav');
+    if(!burger||!mnav) return;
+    function set(o){ burger.classList.toggle('open',o); mnav.classList.toggle('open',o); burger.setAttribute('aria-expanded',o); document.body.style.overflow=o?'hidden':''; }
+    burger.addEventListener('click',()=>set(!mnav.classList.contains('open')));
+    mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+    addEventListener('keydown',e=>{ if(e.key==='Escape') set(false); });
+  })();
+
+  /* back-to-top button */
+  (function(){
+    const t=document.getElementById('totop'); if(!t) return;
+    addEventListener('scroll',()=>t.classList.toggle('show', scrollY>600), {passive:true});
+    t.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
   })();
 </script>
 </body>
