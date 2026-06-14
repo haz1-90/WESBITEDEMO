@@ -115,7 +115,7 @@
   .pv3{left:16%;bottom:0;z-index:4;width:60%;animation:bob 7s ease-in-out infinite;animation-delay:-4.8s;--rot:-2deg}
   .pv1,.pv2,.pv3{transform:rotate(var(--rot))}
   @keyframes bob{0%,100%{transform:translateY(0) rotate(var(--rot))}50%{transform:translateY(-16px) rotate(var(--rot))}}
-  @media(max-width:860px){.showcase{height:360px;max-width:460px;margin:0 auto}}
+  @media(max-width:860px){.showcase{display:none}}
 
 
   .marquee{overflow:hidden;white-space:nowrap;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -183,6 +183,7 @@
     .reel-stage{grid-template-columns:1fr;height:auto;position:relative;padding:70px 0;text-align:center}
     .reel-copy{padding:0 24px;order:2}.reel-deviceWrap{order:1;margin-bottom:30px}
     .reel-desc,.reel-dots{margin-left:auto;margin-right:auto}.reel-copy .eyebrow{justify-content:center}
+    .reel-title{min-height:2.4em}.reel-desc{min-height:5.4em;max-width:30ch}.reel-dots{justify-content:center}
     .device{width:240px;height:490px}
   }
 
@@ -542,14 +543,13 @@
           Email us
         </a>
       </div>
-      <p class="contact__small">WhatsApp 011-6120 0054 &nbsp;·&nbsp; muhdhazwan90@gmail.com</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <p>© <span id="yr"></span> KNM Web Studio · Muhammad Razak. Websites for small businesses.</p>
+    <p>© <span id="yr"></span> KNM Web Studio · Muhammad R.. Websites for small businesses.</p>
     <div class="links"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#work">Our Work</a><a href="https://wa.me/601161200054" target="_blank" rel="noopener">WhatsApp</a></div>
   </div>
 </footer>

@@ -532,7 +532,7 @@ footer a{color:var(--gold);text-decoration:none}
   <div class="wrap rv">
     <div class="card">
       <p class="eyebrow">Maklum Kehadiran</p>
-      <h2 class="sec-title">Jawab <em>Jemputan</em></h2>
+      <h2 class="sec-title"><em>RSVP</em></h2>
       <!-- kiraan kehadiran live -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;text-align:center">
         <div>
@@ -776,6 +776,18 @@ musicBtn.addEventListener("click", () => {
   if (bgm.paused) { bgm.play(); musicBtn.classList.add("on"); musicBtn.setAttribute("aria-pressed","true"); }
   else { bgm.pause(); musicBtn.classList.remove("on"); musicBtn.setAttribute("aria-pressed","false"); }
 });
+/* Stop the music when the page is hidden (tab switched, minimised, or closed),
+   and resume only if it was playing before. */
+let bgmWasPlaying = false;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    bgmWasPlaying = !bgm.paused;
+    bgm.pause(); musicBtn.classList.remove("on"); musicBtn.setAttribute("aria-pressed","false");
+  } else if (bgmWasPlaying) {
+    bgm.play().then(()=>{ musicBtn.classList.add("on"); musicBtn.setAttribute("aria-pressed","true"); }).catch(()=>{});
+  }
+});
+addEventListener("pagehide", () => { bgm.pause(); });
 
 /* ---------- parallax hero (transform sahaja, rAF) ---------- */
 /* ---------- KISAH — native scroll-snap decides the page; CSS animates a slow page-turn ----------
