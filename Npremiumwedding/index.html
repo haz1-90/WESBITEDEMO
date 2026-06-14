@@ -296,32 +296,33 @@ footer a{color:var(--gold);text-decoration:none}
 .board-count{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold,#B08F52);margin-bottom:10px}
 .board-inner .notes{overflow:auto;flex:1;padding:4px 2px 8px}
 
-/* ===== KISAH — scroll-driven PAGE-TURN (book flip): smooth, dwell, easy to read ===== */
+/* ===== KISAH — native scroll-snap pages + CSS page-turn (one scroll = one slow page) ===== */
 #kisah{position:relative;padding:0;background:#171309}
-.kisah-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#171309;perspective:1700px}
-.kbook{position:relative;width:100%;max-width:500px;height:100svh;transform-style:preserve-3d}
-.kpage{position:absolute;inset:0;overflow:hidden;background:#171309;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform;box-shadow:0 0 70px rgba(0,0,0,.45)}
+.kisah-scroller{height:100svh;overflow-y:scroll;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;perspective:1700px;background:#171309}
+.kisah-scroller::-webkit-scrollbar{display:none}
+.kbook{position:sticky;top:0;height:100svh;width:100%;max-width:500px;margin:0 auto -100svh;transform-style:preserve-3d;z-index:2}
+.kpage{position:absolute;inset:0;overflow:hidden;background:#171309;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 0 70px rgba(0,0,0,.45);transition:transform .85s cubic-bezier(.45,.05,.2,1)}
 .kimg{position:absolute;inset:-6%;background-size:cover;background-position:center;background-color:#171309;transform:scale(1.06)}
 .kpage.live .kimg{animation:kb 16s ease-out forwards}
 @keyframes kb{from{transform:scale(1.06)}to{transform:scale(1.13) translateY(-1.5%)}}
 .kveil{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,16,9,.92),rgba(20,16,9,.05) 52%,rgba(20,16,9,.3))}
-.kshade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+.kshade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .85s ease}
 .kcap{position:absolute;left:0;right:0;bottom:16svh;text-align:center;padding:0 34px;z-index:2;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .kpage.live .kcap{opacity:1;transform:none}
 .kt{font-family:var(--serif);font-size:1.2rem;line-height:1.75;color:#F6EEE0;max-width:25ch;margin:0 auto;letter-spacing:.012em;text-shadow:0 1px 18px rgba(0,0,0,.62)}
-.kisah-ui{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;z-index:6;pointer-events:none}
+.ksnap{height:100svh;scroll-snap-align:start;scroll-snap-stop:always}
+.kisah-ui{position:absolute;inset:0;z-index:10;pointer-events:none}
 .kisah-hint{position:absolute;top:7svh;left:0;right:0;text-align:center;font-size:.56rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(255,243,223,.74);transition:opacity .6s}
 .kisah-hint.gone{opacity:0}
 .kprogress{position:absolute;left:34px;right:34px;bottom:9svh;height:1px;background:rgba(255,243,223,.2)}
-.kprogress span{display:block;height:100%;background:var(--gold);transform-origin:left;transition:width .25s ease;width:16%}
+.kprogress span{display:block;height:100%;background:var(--gold);transform-origin:left;transition:width .85s ease;width:16%}
 /* reduced motion / fallback — simple readable vertical stack */
-#kisah.kisah--static{height:auto!important}
-.kisah--static .kisah-sticky{position:relative;height:auto;display:block;padding:40px 0}
-.kisah--static .kbook{height:auto;margin:0 auto;transform-style:flat}
-.kisah--static .kpage{position:relative;inset:auto;aspect-ratio:4/5;margin:0 auto 14px;transform:none!important;box-shadow:var(--shadow)}
+.kisah--static .kisah-scroller{height:auto;overflow:visible;scroll-snap-type:none;perspective:none}
+.kisah--static .kbook{position:static;height:auto;margin:0 auto;transform-style:flat}
+.kisah--static .kpage{position:relative;inset:auto;aspect-ratio:4/5;margin:0 auto 14px;transform:none!important;transition:none;box-shadow:var(--shadow)}
 .kisah--static .kimg{animation:none;transform:none;inset:0}
 .kisah--static .kcap{opacity:1;transform:none}
-.kisah--static .kshade,.kisah--static .kisah-ui{display:none}
+.kisah--static .ksnap,.kisah--static .kshade,.kisah--static .kisah-ui{display:none}
 </style>
 </head>
 <body>
@@ -359,7 +360,7 @@ footer a{color:var(--gold);text-decoration:none}
 
 <!-- ============ 2c. KISAH — scroll glide+dwell (no titles) ============ -->
 <section id="kisah" aria-label="Kisah pasangan">
-  <div class="kisah-sticky">
+  <div class="kisah-scroller" id="kisahScroller">
     <div class="kbook" id="kisahBook">
       <article class="kpage"><div class="kimg" style="background-image:url('scene-pertemuan.webp')"></div><div class="kveil"></div><div class="kshade"></div><div class="kcap"><p class="kt">Bermula dengan sapaan yang sederhana, dua hati perlahan menemukan rasa.</p></div></article>
       <article class="kpage"><div class="kimg" style="background-image:url('scene-pinangan.webp')"></div><div class="kveil"></div><div class="kshade"></div><div class="kcap"><p class="kt">Datang membawa hajat dan harapan, sebuah pinangan disambut penuh restu.</p></div></article>
@@ -367,11 +368,17 @@ footer a{color:var(--gold);text-decoration:none}
       <article class="kpage"><div class="kimg" style="background-image:url('scene-akad.webp')"></div><div class="kveil"></div><div class="kshade"></div><div class="kcap"><p class="kt">Dengan satu lafaz yang sah, dua jiwa disatukan atas nama-Nya.</p></div></article>
       <article class="kpage"><div class="kimg" style="background-image:url('scene-walimah.webp')"></div><div class="kveil"></div><div class="kshade"></div><div class="kcap"><p class="kt">Bersanding di singgahsana, berpegangan tangan, diraikan insan yang dikasihi.</p></div></article>
       <article class="kpage"><div class="kimg" style="background-image:url('scene-doa.webp')"></div><div class="kveil"></div><div class="kshade"></div><div class="kcap"><p class="kt">Moga kasih ini kekal hingga ke hujung usia, dan dipertemukan semula di syurga-Nya.</p></div></article>
+      <div class="kisah-ui">
+        <p class="kisah-hint" id="kHint">Skrol perlahan &mdash; satu skrol, satu kisah</p>
+        <div class="kprogress"><span id="kProg"></span></div>
+      </div>
     </div>
-    <div class="kisah-ui">
-      <p class="kisah-hint" id="kHint">Skrol perlahan &mdash; kisah kami</p>
-      <div class="kprogress"><span id="kProg"></span></div>
-    </div>
+    <div class="ksnap"></div>
+    <div class="ksnap"></div>
+    <div class="ksnap"></div>
+    <div class="ksnap"></div>
+    <div class="ksnap"></div>
+    <div class="ksnap"></div>
   </div>
 </section>
 
@@ -771,71 +778,38 @@ musicBtn.addEventListener("click", () => {
 });
 
 /* ---------- parallax hero (transform sahaja, rAF) ---------- */
-/* ---------- KISAH — page-turn that SNAPS to one page on release (slow, readable) ----------
-   Scroll a little and the page begins to turn; let go and it eases (slow-motion) to settle
-   on a whole page so the caption can be read. Not enough scroll = it returns to the page you
-   were on. One deliberate scroll = one page. */
+/* ---------- KISAH — native scroll-snap decides the page; CSS animates a slow page-turn ----------
+   The scene track uses CSS scroll-snap (mandatory + snap-stop:always), so one scroll = exactly
+   one page and it rests there to be read — no lag, no skipping two pages. When the snapped page
+   changes, the previous page turns away over ~0.85s (CSS transition) for a smooth, slow flip. */
 (function(){
-  const sec=$("#kisah"), book=$("#kisahBook");
-  if(!sec||!book) return;
-  const pages=[...book.children], N=pages.length, prog=$("#kProg"), hint=$("#kHint");
+  const sec=$("#kisah"), scroller=$("#kisahScroller"), book=$("#kisahBook");
+  if(!sec||!scroller||!book) return;
+  const pages=[...book.querySelectorAll(".kpage")], N=pages.length, prog=$("#kProg"), hint=$("#kHint");
   if(reduceMotion){ sec.classList.add("kisah--static"); pages.forEach(p=>p.classList.add("live")); return; }
-  pages.forEach((p,j)=>{ p.style.zIndex=String(N-j); });   // first page sits on top of the stack
-  const HOLD=0.45, TURN=105, STEP=1.3;   // STEP = screens of scroll per page
-  const SETTLE=780;                      // ms — slow-motion settle when you stop scrolling
-  let vh=innerHeight, stepPx=STEP*vh, idx=-1, ticking=false, idleT=0, snapRAF=0, snapping=false;
-
-  function setHeight(){ vh=innerHeight; stepPx=STEP*vh; sec.style.height=((N*STEP)+1)*100+"svh"; }
-  function ease(e){ return e<.5 ? 4*e*e*e : 1-Math.pow(-2*e+2,3)/2; } // easeInOutCubic
-  function shade(p,o){ const s=p.querySelector(".kshade"); if(s) s.style.opacity=o; }
-  function live(i){ if(i===idx)return; idx=i; pages.forEach((p,j)=>p.classList.toggle("live",j===i)); if(prog)prog.style.width=((i+1)/N*100)+"%"; }
-  function progress(){ return Math.max(0, -sec.getBoundingClientRect().top)/stepPx; } // pages from section top
-
-  function render(){
-    ticking=false;
-    const pr=progress();
-    let b=Math.floor(pr); if(b>N-1)b=N-1;
-    const f=pr-b;
-    const c = (pr>=N-1) ? N-1 : b+(f<HOLD ? 0 : ease((f-HOLD)/(1-HOLD)));
-    for(let j=0;j<N;j++){
-      const pos=c-j;
-      if(pos<=0){ pages[j].style.transform="rotateY(0deg)"; shade(pages[j],0); }
-      else if(pos>=1){ pages[j].style.transform="rotateY(-"+TURN+"deg)"; shade(pages[j],.5); }
-      else { pages[j].style.transform="rotateY(-"+(pos*TURN)+"deg)"; shade(pages[j],pos*.5); }
-    }
-    live(Math.round(c));
-    if(hint && pr>0.012 && !hint.classList.contains("gone")) hint.classList.add("gone");
+  pages.forEach((p,j)=>{ p.style.zIndex=String(N-j); });   // first page on top of the stack
+  let cur=-1, ticking=false;
+  function apply(i){
+    if(i===cur) return; cur=i;
+    pages.forEach((p,j)=>{
+      p.style.transform = j<i ? "rotateY(-105deg)" : "rotateY(0deg)";   // turned away vs. flat
+      const s=p.querySelector(".kshade"); if(s) s.style.opacity = j<i ? .5 : 0;
+      p.classList.toggle("live", j===i);
+    });
+    if(prog) prog.style.width=((i+1)/N*100)+"%";
   }
-
-  function cancelSnap(){ if(snapRAF){ cancelAnimationFrame(snapRAF); snapRAF=0; } snapping=false; document.documentElement.style.scrollBehavior=""; }
-
-  function snapToNearest(){
-    const nb=Math.round(progress());
-    if(nb<0 || nb>N-1) return;                       // entering above, or leaving past the last page
-    const fromY=scrollY, toY=Math.round(scrollY + sec.getBoundingClientRect().top + nb*stepPx);
-    if(Math.abs(toY-fromY)<2) return;
-    document.documentElement.style.scrollBehavior="auto";  // take over from CSS smooth so we control the speed
-    snapping=true;
-    const t0=performance.now();
-    (function tween(now){
-      const k=Math.min(1,(now-t0)/SETTLE);
-      scrollTo(0, fromY+(toY-fromY)*ease(k));
-      if(k<1){ snapRAF=requestAnimationFrame(tween); }
-      else { snapRAF=0; snapping=false; document.documentElement.style.scrollBehavior=""; }
-    })(t0);
-  }
-
   function onScroll(){
-    if(!ticking){ ticking=true; requestAnimationFrame(render); }
-    if(snapping) return;                              // ignore our own settle scroll
-    clearTimeout(idleT);
-    const r=sec.getBoundingClientRect();
-    if(r.top<=1 && r.bottom>vh) idleT=setTimeout(snapToNearest, 120);   // pinned & inside → settle when idle
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(()=>{
+      ticking=false;
+      const unit=scroller.clientHeight||innerHeight;
+      apply(Math.max(0,Math.min(N-1,Math.round(scroller.scrollTop/unit))));
+      if(hint && scroller.scrollTop>unit*0.05 && !hint.classList.contains("gone")) hint.classList.add("gone");
+    });
   }
-  ["wheel","touchstart","keydown","pointerdown"].forEach(ev=>addEventListener(ev, ()=>{ if(snapping) cancelSnap(); }, {passive:true}));
-  addEventListener("scroll", onScroll, {passive:true});
-  addEventListener("resize", ()=>{ setHeight(); render(); });
-  setHeight(); live(0); render();
+  scroller.addEventListener("scroll", onScroll, {passive:true});
+  addEventListener("resize", onScroll);
+  apply(0);
 })();
 
 
